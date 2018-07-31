@@ -58,14 +58,14 @@ public class Admin extends HttpServlet {
 
 		String searchPrice = request.getParameter("searchPrice");
 
-		String strSearchFavorite = request.getParameter("searchFavorite");
-		boolean searchFavorite = Boolean.parseBoolean(strSearchFavorite);
+		String strSearchSold = request.getParameter("searchSold");
+		boolean searchSold = Boolean.parseBoolean(strSearchSold);
 
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);
 
 		ItemDAO itemDAO = new ItemDAO();
-		ArrayList<Item> searchItemList = itemDAO.search(searchName, searchPrice, searchFavorite, userId);
+		ArrayList<Item> searchItemList = itemDAO.soldSearch(searchName, searchPrice, searchSold, userId);
 
 		request.setAttribute("searchItemList", searchItemList);
 

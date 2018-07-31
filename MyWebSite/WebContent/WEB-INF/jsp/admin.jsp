@@ -60,6 +60,7 @@
 					<option value="20000">10001～20000円</option>
 					<option value="20001">20001円～</option>
 				</select>
+				<p><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える
 				<p><input class="button btn-success" type="submit" value="検索">
 			</form>
 			<p><font size="5">検索結果</font>

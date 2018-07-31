@@ -283,7 +283,7 @@ public class BuyDAO {
 		return boughtList;
 	}
 
-	public static Item boughtDetail(int buyId, String buyDate, String buyTime) throws SQLException {
+	public static Item boughtDetail(int buyerId, int buyId, String buyDate, String buyTime) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -291,8 +291,9 @@ public class BuyDAO {
 			con = DBManager.getConnection();
 
 			st = con.prepareStatement(
-					"SELECT DISTINCT total_price, delivery_method FROM buy WHERE buy_id = ?");
-			st.setInt(1, buyId);
+					"SELECT DISTINCT total_price, delivery_method FROM buy WHERE buyer_id = ? AND buy_id = ?");
+			st.setInt(1, buyerId);
+			st.setInt(2, buyId);
 
 			ResultSet rs = st.executeQuery();
 
@@ -330,7 +331,7 @@ public class BuyDAO {
 
 	}
 
-	public static ArrayList<Item> boughtListData(int buyId) throws SQLException {
+	public static ArrayList<Item> boughtListData(int buyerId, int buyId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -343,8 +344,9 @@ public class BuyDAO {
 				"SELECT name,price,count "
 				+ "FROM item "
 				+ "JOIN buy ON item.id = buy.item_id "
-				+ " WHERE buy.buy_id = ?");
-			st.setInt(1, buyId);
+				+ " WHERE buy.buyer_id = ? AND buy.buy_id = ?");
+			st.setInt(1, buyerId);
+			st.setInt(2, buyId);
 
 			ResultSet rs = st.executeQuery();
 

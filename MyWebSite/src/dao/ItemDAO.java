@@ -19,35 +19,35 @@ public class ItemDAO {
 		Connection con = null;
 		PreparedStatement st = null;
         ArrayList<Item> itemList = new ArrayList<Item>();
-        try {
-        	con = DBManager.getConnection();
-        	st = con.prepareStatement(
-        			"SELECT * FROM item "
-        			+ "JOIN buy ON item.id = buy.item_id "
-        			+ "JOIN user ON buy.buyer_id = user.id "
-        			+ "WHERE item.type IN ("
-        				+ "SELECT item.type FROM item "
-        				+ "WHERE buy.item_id IN ("
-        					+ "SELECT DISTINCT buy.item_id FROM buy "
-        					+ "WHERE user.id = ? "
-        					+ "ORDER BY buy.buy_date DESC LIMIT 3"
-        				+ ")"
-        			+ ")");
-        	st.setInt(1, userId);
-            ResultSet rs = st.executeQuery();
+	    try {
+	        	con = DBManager.getConnection();
+	        	st = con.prepareStatement(
+	        			"SELECT * FROM item "
+	        			+ "WHERE item.type = ("
+	        				+ "SELECT DISTINCT item.type FROM item "
+	        				+ "JOIN buy ON item.id = buy.item_id "
+	        				+ "WHERE buy.buy_date = ("
+	        					+ "SELECT DISTINCT max(buy.buy_date) "
+	        					+ "FROM buy "
+	        					+ "WHERE buy.buyer_id = ?"
+	        				+ ")"
+	        			+ ")"
+	        	);
+	        	st.setInt(1, userId);
+	            ResultSet rs = st.executeQuery();
 
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String itemName = rs.getString("name");
-                String itemDetail = rs.getString("detail");
-                String type = rs.getString("type");
-                int price = rs.getInt("price");
-                int soldNum = rs.getInt("sold_num");
-                String fileName = rs.getString("file_Name");
-                Item item = new Item(id, itemName, itemDetail, type, price, soldNum, fileName);
+	            while (rs.next()) {
+	                int id = rs.getInt("id");
+	                String itemName = rs.getString("name");
+	                String itemDetail = rs.getString("detail");
+	                String type = rs.getString("type");
+	                int price = rs.getInt("price");
+	                int soldNum = rs.getInt("sold_num");
+	                String fileName = rs.getString("file_Name");
+	                Item item = new Item(id, itemName, itemDetail, type, price, soldNum, fileName);
 
-                itemList.add(item);
-            }
+	                itemList.add(item);
+	            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -447,6 +447,82 @@ public class ItemDAO {
 	        				+ "AND price >= '" + priceLow + "' "
 	        				+ "AND price <= '" + priceHigh + "' "
 	        			+ "ORDER BY sold_num DESC");
+			}
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+            	int id = rs.getInt("id");
+                String itemName = rs.getString("name");
+                String itemDetail = rs.getString("detail");
+                int price = rs.getInt("price");
+                int soldNum = rs.getInt("sold_num");
+                String fileName = rs.getString("file_Name");
+                Item item = new Item(id, itemName, itemDetail, price, soldNum, fileName);
+
+                itemList.add(item);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+        	 if (con != null) {
+                 try {
+                     con.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                     return null;
+                 }
+             }
+         }
+         return itemList;
+	}
+
+	public ArrayList<Item> soldSearch(String searchName, String searchPrice, boolean searchSold, int userId) {
+		Connection con = null;
+		PreparedStatement st = null;
+
+		int priceLow = 0;
+		int priceHigh = 999999999;
+
+		switch(searchPrice) {
+			case "0" : priceLow = 0; priceHigh = 999999999;
+			break;
+
+			case "1000" : priceHigh = 1000;
+			break;
+
+			case "3000" : priceLow = 1001; priceHigh = 3000;
+			break;
+
+			case "5000" : priceLow = 3001; priceHigh = 5000;
+			break;
+
+			case "10000" : priceLow = 5001; priceHigh = 10000;
+			break;
+
+			case "20000" : priceLow = 10001; priceHigh = 20000;
+			break;
+
+			case "20001" : priceLow = 20001;
+			break;
+		}
+		ArrayList<Item> itemList = new ArrayList<Item>();
+		try {
+			con = DBManager.getConnection();
+			if(searchSold == true) {
+				st = con.prepareStatement(
+						"SELECT * FROM item "
+			        		+ "WHERE name LIKE '%" + searchName + "%' "
+			        			+ "AND price >= '" + priceLow + "' "
+			        			+ "AND price <= '" + priceHigh + "' "
+			        		+ "ORDER BY sold_num DESC");
+			}else {
+	        	st = con.prepareStatement(
+	        			"SELECT * FROM item "
+	        			+ "WHERE name LIKE '%" + searchName + "%' "
+	        				+ "AND price >= '" + priceLow + "' "
+	        				+ "AND price <= '" + priceHigh + "'");
 			}
             ResultSet rs = st.executeQuery();
 

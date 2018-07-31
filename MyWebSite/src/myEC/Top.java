@@ -42,8 +42,7 @@ public class Top extends HttpServlet {
 		}
 		User user = (User)session.getAttribute("user");
 		int userId = user.getId();
-		//userId = (int)request.getAttribute("userId");
-		ArrayList<Item>itemList = ItemDAO.recommendItem(userId); //おすすめというからには過去の購入品の種類と同じものを出すべき
+		ArrayList<Item>itemList = ItemDAO.recommendItem(userId);
 		request.setAttribute("itemList", itemList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");

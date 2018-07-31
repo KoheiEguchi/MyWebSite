@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Item;
+import beans.User;
 import dao.BuyDAO;
 
 /**
@@ -41,55 +42,19 @@ public class History extends HttpServlet {
 			return;
 		}
 
+		User user = (User)session.getAttribute("user");
+		int buyerId = user.getId();
 		String strBuyId = request.getParameter("buyId");
 		String buyDate = request.getParameter("buyDate");
 		String buyTime = request.getParameter("buyTime");
 
 		int buyId = Integer.parseInt(strBuyId);
 
-		/*Date buyDate = null;
-		Date buyTime = null;
-
-		/*StringBuilder builderD = new StringBuilder(strBuyDate);
-		int i = builderD.indexOf("年");
-		builderD.replace(i, i+1, "-");
-		i = builderD.indexOf("月");
-		builderD.replace(i, i+1, "-");
-		i = builderD.indexOf("日");
-		builderD.delete(i, i+1);
-		String buyDate = builderD.toString();//1月～9月はMが一桁になり合わなくなる
-
-		StringBuilder builderT = new StringBuilder(strBuyTime);
-		int j = builderT.indexOf("時");
-		builderT.replace(j, j+1, ":");
-		j = builderT.indexOf("分");
-		builderT.replace(j, j+1, ":");
-		j = builderT.indexOf("秒");
-		builderT.delete(j, j+1);
-		String buyTime = builderT.toString();*/
-
-		/*try {
-			SimpleDateFormat fmD = new SimpleDateFormat("yyyy-MM-dd");
-	        fmD.setLenient(false);
-	        fmD.applyPattern("yyyy'年'M'月'dd'日'");
-			buyDate = fmD.parse(strBuyDate);
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-
 		try {
-			SimpleDateFormat fmT = new SimpleDateFormat("k:mm:ss");
-			fmT.setLenient(false);
-		    fmT.applyPattern("k'時'mm'分'ss'秒'");
-			buyTime = fmT.parse(strBuyTime);
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}*/
-		try {
-			Item buyHistory = BuyDAO.boughtDetail(buyId, buyDate, buyTime);
+			Item buyHistory = BuyDAO.boughtDetail(buyerId, buyId, buyDate, buyTime);
 			request.setAttribute("buyHistory",buyHistory);
 
-			ArrayList<Item> buyHistoryDetailList = BuyDAO.boughtListData(buyId);
+			ArrayList<Item> buyHistoryDetailList = BuyDAO.boughtListData(buyerId, buyId);
 			request.setAttribute("buyHistoryDetailList",buyHistoryDetailList);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/history.jsp");
