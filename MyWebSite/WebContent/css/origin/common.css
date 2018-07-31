@@ -1,0 +1,138 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+#contents{
+	background-color: #c2e2e1;
+	position: relative;
+	min-height: 100%;
+}
+
+#adminContents{
+	background-color: #87ceeb;
+	position: relative;
+	min-height: 100%;
+}
+
+#header-bk{
+	background-color: #00008B;
+	padding: 10px 0 0;
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#header{
+	height: 30px;
+	width: 1800px;
+	margin: auto;
+}
+
+#body-bk{
+	width: 970ox;
+	margin: 10px auto 0;
+	padding-bottom: 150px;
+}
+
+#footer-bk{
+	background-color: #006400;
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	bottom: 0px;
+	padding: 10px 0;
+}
+
+#footer{
+	height: 30px;
+	width: 1800px;
+	margin: auto;
+}
+
+.userName {
+	text-align: left;
+	float: left;
+}
+
+.logout {
+	text-align: right;
+}
+
+.headermargin{
+	margin-top: 50px;
+}
+
+p{
+	text-align:center
+}
+
+.button{
+	width:15%;
+}
+
+.topmargin{
+	margin-top: 10%;
+}
+
+.topmarginShort{
+	margin-top: 5%;
+}
+
+.formTitle{
+	margin-right: 10%;
+	line-height: 50%;
+}
+.longText{
+	width: 15%;
+	}
+
+.leftspace {
+	margin-left: 100px;
+}
+
+label,input[type='checkbox']{
+	cursor: pointer;
+}
+
+.table,td,th{
+	border: 2px #808080 solid;
+}
+
+.tablePic{
+	border-collapse: collapse;
+  	margin: 0 auto;
+}
+
+.table-img,
+.table-txt{
+	text-align: center;
+	vertical-align: top;
+	width: 300px;
+}
+
+.box-img,
+.box-text{
+  display: inline-block;
+  vertical-align: middle;
+}
+.box-img > img{
+  width: 60px;
+}
+
+.detailA{
+	text-align:left;
+	float:left;
+	margin-left:40%;
+}
+
+.detailB{
+	text-align:right;
+	margin-right:40%;
+}
+

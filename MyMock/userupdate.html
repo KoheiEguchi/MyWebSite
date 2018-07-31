@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザー情報更新</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
+	<style type="text/css">
+		body{}
+	</style>
+</head>
+
+<body>
+	<div id="contents">
+		<div id="header-bk">
+			<div id="header">
+				<p class="userName"><a href="userdata.html"><font color="yellow">ユーザー名さん</font></a>
+				<p class="logout"><a href="login.html"><font color="yellow">ログアウト</font></a>
+			</div>
+		</div>
+
+		<div id="body-bk">
+			<p class="headermargin"><font size="7">ユーザー情報更新</font>
+			<form action="userdata.html" method="post">
+				<p class="formTitle">ログインID
+				<p>○○○
+				<p class="formTitle">ユーザー名
+				<p><input type="text" class="longText" name="username" placeholder="User Name">
+				<p class="formTitle">パスワード
+				<p><input type="password" class="longText" name="loginpass1" placeholder="Password">
+				<p class="formTitle">パスワード(確認)
+				<p><input type="password" class="longText" name="loginpass2" placeholder="Password">
+				<p class="formTitle">住所
+				<p><textarea name="address" cols="38" rows="2" placeholder="Address"></textarea>
+				<p><input class="button btn-success" type="submit" value="更新">
+				<p class="topmarginShort"><a href="userdata.html"><input class="button btn-info" type="button" value="戻る"></a>
+			</form>
+		</div>
+
+		<div id="footer-bk">
+			<div id="footer">
+				<p class="userName"><a href="top.html"><font color="orange">トップへ戻る</font></a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

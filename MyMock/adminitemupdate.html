@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品情報更新</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
+	<style type="text/css">
+		body{}
+	</style>
+</head>
+
+<body>
+	<div id="adminContents">
+		<div id="header-bk">
+			<div id="header">
+				<p class="userName"><a href="userdata.html"><font color="yellow">ユーザー名さん</font></a>
+				<p class="logout"><a href="login.html"><font color="yellow">ログアウト</font></a>
+			</div>
+		</div>
+
+		<div id="body-bk">
+			<p class="headermargin"><font size="7">商品情報更新</font>
+			<form action="adminitemdetail.html" method="post">
+				<p class="formTitle">商品名
+				<p><textarea name="itemname" cols="100" rows="1" placeholder="Item Name"></textarea>
+				<p class="formTitle">商品詳細
+				<p><textarea name="itemdetail" cols="100" rows="10" placeholder="Item Detail"></textarea>
+				<p class="formTitle">価格
+				<p><input type="text" class="longText" name="price" placeholder="Price">
+				<p class="formTitle">商品画像
+				<p><input type="text" class="longText" name="itempicture" placeholder="Picture Name">
+				<p><input class="button btn-success" type="submit" value="更新">
+				<p class="topmarginShort"><a href="adminitemdetail.html"><input class="button btn-info" type="button" value="戻る"></a>
+			</form>
+		</div>
+
+		<div id="footer-bk">
+			<div id="footer">
+				<p class="userName"><a href="top.html"><font color="orange">トップへ戻る</font></a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

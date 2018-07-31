@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>人気ランキング</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+	<style type="text/css">
+		body{}
+		.centerText{text-align: center;}
+		.starIcon{color: gold;}
+	</style>
+</head>
+
+<body>
+	<div id="contents">
+		<div id="header-bk">
+			<div id="header">
+				<p class="userName"><a href="userdata.html"><font color="yellow">ユーザー名さん</font></a>
+				<p class="logout"><a href="login.html"><font color="yellow">ログアウト</font></a>
+			</div>
+		</div>
+
+		<div id="body-bk">
+			<p class="headermargin"><font size="7">人気ランキング</font>
+			<form action="Ranking" method="post">
+				<p class="topmarginShort formTitle">名前で絞り込む
+				<p><input type="text" class="longText" name="rankingname" placeholder="絞り込み語句"></input>
+				<p class="formTitle">価格で絞り込む
+				<p><select class="longText" name="rankingprice">
+					<option value="0">価格指定しない</option>
+					<option value="1000">～1000円</option>
+					<option value="3000">1001～3000円</option>
+					<option value="5000">3001～5000円</option>
+					<option value="10000">5001～10000円</option>
+					<option value="20000">10001～20000円</option>
+					<option value="20001">20001円～</option>
+				</select>
+				<p><label for="searchfavorite">
+					<i class="fas fa-star starIcon"></i><input type="checkbox" id="searchfavorite" />お気に入りで絞り込む
+				</label>
+				<p><input class="button btn-success" type="submit" value="絞り込み">
+			</form>
+			<table class="table">
+				<tr>
+					<td class="centerText">
+						<font size="6" color="orange">
+							1位
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="6" color="gray">
+							2位
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="6" color="bronze">
+							3位
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td class="centerText">
+						<font size="5">
+							<a href="itemdetail.html">
+								<img src="pic/item1.jpg" alt="1位" width="500px" height="250px">
+							</a>
+							<p>テトラ　クリスタルアクアリウム　ＬＥＤライト＆ヒーターセット３００　CA-300LH
+							<p><font color="red">4,500円</font>
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							<a href="itemdetail.html">
+								<img src="pic/item2.jpg" alt="2位" width="500px" height="250px">
+							</a>
+							<p>コトブキ　プログレ９００　熱帯魚飼育９点セット　上部フィルター・ＬＥＤライト仕様
+							<p><font color="red">33,900円</font>
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							<a href="itemdetail.html">
+								<img src="pic/item3.jpg" alt="3位" width="500px" height="250px">
+							</a>
+							<p>ＧＥＸ　グラステリア　ＡＧＳ(アグス)　OF-230　ホワイト　小型オーバーフロー水槽セット
+							<p><font color="red">13,900円</font>
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td class="centerText">
+						<font size="5">
+							4位
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							5位
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							6位
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td class="centerText">
+						<font size="4">
+							<a href="itemdetail.html">
+								<img src="pic/item4.jpg" alt="4位" width="400px" height="200px">
+							</a>
+							<p>ニッソー　９０cmガラス水槽　ＮＳ－１３Ｍ　７点セット　パワーマスターＬＥＤ
+							<p><font color="red">29,900円</font>
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							<a href="itemdetail.html">
+								<img src="pic/item5.jpg" alt="5位" width="400px" height="200px">
+							</a>
+							<p>水作　グラスガーデン　Ｎ２８０　水中フィルター＋ＬＥＤセット
+							<p><font color="red">3,980円</font>
+						</font>
+					</td>
+					<td class="centerText">
+						<font size="5">
+							<a href="itemdetail.html">
+								<img src="picture/test6.jpg" alt="6位" width="400px" height="200px">
+							</a>
+							<p>写真探し多い
+							<p><font color="red">0円</font>
+						</font>
+					</td>
+				</tr>
+			</table>
+			<p class="topmarginShort"><a href="top.html"><input class="button btn-info" type="button" value="戻る"></a>
+		</div>
+
+		<div id="footer-bk">
+			<div id="footer">
+				<p class="userName"><a href="top.html"><font color="orange">トップへ戻る</font></a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

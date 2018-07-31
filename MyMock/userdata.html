@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>ユーザー情報</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
+	<style type="text/css">
+		body{}
+		.leftButton{margin-right:20%;}
+		.rightButton{margin-left:20%;}
+	</style>
+</head>
+
+<body>
+	<div id="contents">
+		<div id="header-bk">
+			<div id="header">
+				<p class="userName"><a href="userdata.html"><font color="yellow">ユーザー名さん</font></a>
+				<p class="logout"><a href="login.html"><font color="yellow">ログアウト</font></a>
+			</div>
+		</div>
+
+		<div id="body-bk">
+			<p class="headermargin"><font size="7">ユーザー情報</font>
+			<p class="topmarginShort"><font size="6">ユーザー名さんの情報</font>
+			<table class="table">
+				<tr><td>ログインID</td><td>○○○</td></tr>
+				<tr><td>住所</td><td>×××</td></tr>
+				<tr><td>登録日時</td><td>yyyy年mm月dd日hh時mm分</td></tr>
+				<tr><td>更新日時</td><td>yyyy年mm月dd日hh時mm分</td></tr>
+			</table>
+			<p><a href="userupdate.html"><input class="leftButton button btn-success" type="submit" value="ユーザー情報更新"></a>
+			<a href="top.html"><input class="button btn-info" type="button" value="トップへ戻る"></a>
+			<a href="userdelete.html"><input class="rightButton button btn-danger" type="button" value="退会"></a>
+			<p><font size="5">購入履歴</font>
+			<table class="table">
+				<tr><td><a href="history.html">履歴1</a></td><td>○○円</td><td>yyyy年mm月dd日hh時mm分</td></tr>
+				<tr><td><a href="history.html">履歴2</a></td><td>××円</td><td>yyyy年mm月dd日hh時mm分</td></tr>
+			</table>
+		</div>
+
+		<div id="footer-bk">
+			<div id="footer">
+				<p class="userName"><a href="top.html"><font color="orange">トップへ戻る</font></a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

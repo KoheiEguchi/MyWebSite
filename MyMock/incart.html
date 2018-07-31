@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>カゴ内一覧</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
+	<style type="text/css">
+		body{}
+		.leftButton{margin-right:20%;}
+		.rightButton{margin-left:20%;}
+	</style>
+</head>
+
+<body>
+	<div id="contents">
+		<div id="header-bk">
+			<div id="header">
+				<p class="userName"><a href="userdata.html"><font color="yellow">ユーザー名さん</font></a>
+				<p class="logout"><a href="login.html"><font color="yellow">ログアウト</font></a>
+			</div>
+		</div>
+
+		<div id="body-bk">
+			<p class="headermargin"><font size="7">カゴ内一覧</font>
+			<form action="regist.html" method="post">
+				<p class="topmargin"><a href="top.html"><input class="leftButton button btn-info" type="button" value="買い物を続ける"></a>
+				<input class="rightButton button btn-success" type="submit" value="レジへ進む">
+				<p>配送方法を選んでください<select name="deliverymethod">
+					<option value="通常配送">通常配送(送料無料)</option>
+					<option value="お急ぎ配送">お急ぎ配送(送料500円)</option>
+					<option value="日時指定配送">日時指定配送(送料200円)</option>
+				</select>
+				<p class="topmarginShort"><font size="5">カゴ内の商品</font>
+				<table class="table">
+					<tr>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item1.jpg" alt="おすすめ1" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									テトラ　クリスタルアクアリウム　ＬＥＤライト＆ヒーターセット３００　CA-300LH
+									<p><font color="red">4,500円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item2.jpg" alt="おすすめ2" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									コトブキ　プログレ９００　熱帯魚飼育９点セット　上部フィルター・ＬＥＤライト仕様
+									<p><font color="red">33,900円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item3.jpg" alt="おすすめ3" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									ＧＥＸ　グラステリア　ＡＧＳ(アグス)　OF-230　ホワイト　小型オーバーフロー水槽セット
+									<p><font color="red">13,900円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item4.jpg" alt="おすすめ4" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									ニッソー　９０cmガラス水槽　ＮＳ－１３Ｍ　７点セット　パワーマスターＬＥＤ
+									<p><font color="red">29,900円</font>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item1.jpg" alt="おすすめ1" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									テトラ　クリスタルアクアリウム　ＬＥＤライト＆ヒーターセット３００　CA-300LH
+									<p><font color="red">4,500円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item2.jpg" alt="おすすめ2" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									コトブキ　プログレ９００　熱帯魚飼育９点セット　上部フィルター・ＬＥＤライト仕様
+									<p><font color="red">33,900円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item3.jpg" alt="おすすめ3" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									ＧＥＸ　グラステリア　ＡＧＳ(アグス)　OF-230　ホワイト　小型オーバーフロー水槽セット
+									<p><font color="red">13,900円</font>
+								</div>
+							</div>
+						</td>
+						<td class="table-img">
+							<div class="box">
+								<div class="box-img">
+									<a href="itemdetail.html">
+										<img src="pic/item4.jpg" alt="おすすめ4" width="400px" height="200px">
+									</a>
+								</div>
+								<div class="box-text">
+									ニッソー　９０cmガラス水槽　ＮＳ－１３Ｍ　７点セット　パワーマスターＬＥＤ
+									<p><font color="red">29,900円</font>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<p><a href="top.html"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
+			</form>
+		</div>
+
+		<div id="footer-bk">
+			<div id="footer">
+				<p class="userName"><a href="top.html"><font color="orange">トップへ戻る</font></a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
