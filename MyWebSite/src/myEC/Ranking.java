@@ -57,6 +57,8 @@ public class Ranking extends HttpServlet {
 
 		String searchName = request.getParameter("searchName");
 
+		String searchType = request.getParameter("searchType");
+
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchFavorite = request.getParameter("searchFavorite");
@@ -66,7 +68,7 @@ public class Ranking extends HttpServlet {
 		int userId = Integer.parseInt(strUserId);
 
 		ItemDAO itemDAO = new ItemDAO();
-		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchPrice, searchFavorite, userId);
+		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId);
 
 		request.setAttribute("itemList", itemList);
 

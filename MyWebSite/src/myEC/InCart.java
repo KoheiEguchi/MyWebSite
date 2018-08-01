@@ -54,9 +54,8 @@ public class InCart extends HttpServlet {
 				request.setAttribute("noCart", noCart);
 			}
 
-			Object objCartAD = request.getAttribute("cartAD");
-			if(objCartAD != null) {
-				String strCartAD = objCartAD.toString();
+			String strCartAD = (String)request.getAttribute("cartAD");
+			if(strCartAD != null) {
 				Boolean cartAD = Boolean.parseBoolean(strCartAD);
 				if(cartAD == true) {
 					cartActionMessage = "カゴの中を全て削除しました";

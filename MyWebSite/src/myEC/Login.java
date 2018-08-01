@@ -56,11 +56,12 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 
-		/*int userId = user.getId();
-		request.setAttribute("userId", userId);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
-		dispatcher.forward(request, response);*/
-		response.sendRedirect("Top");
+		int adminCheck = user.getId();
+		if(adminCheck == 1) {
+			response.sendRedirect("Admin");
+		}else {
+			response.sendRedirect("Top");
+		}
 	}
 
 }

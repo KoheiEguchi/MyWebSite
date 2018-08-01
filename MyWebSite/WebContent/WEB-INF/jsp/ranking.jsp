@@ -26,6 +26,16 @@
 			<form action="Ranking?userId=${user.id}" method="post">
 				<p class="topmarginShort formTitle">名前で絞り込む
 				<p><input type="text" class="longText" name="searchName" placeholder="絞り込み語句"></input>
+				<p class="formTitle">種類で絞り込む
+				<p><select class="longText" name="searchType">
+					<option value="all">種類指定しない</option>
+					<option value="set">セット</option>
+					<option value="sand">底砂</option>
+					<option value="filter">濾過フィルター</option>
+					<option value="light">照明</option>
+					<option value="food">エサ</option>
+					<option value="air">エアー関連</option>
+				</select>
 				<p class="formTitle">価格で絞り込む
 				<p><select class="longText" name="searchPrice">
 					<option value="0">価格指定しない</option>
@@ -95,7 +105,7 @@
 			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
 			<c:if test="${searchResult == true}">
 				<script type="text/javascript">
-					window.scrollTo(0,330);
+					window.scrollTo(0,400);
 				</script>
 			</c:if>
 		</div>

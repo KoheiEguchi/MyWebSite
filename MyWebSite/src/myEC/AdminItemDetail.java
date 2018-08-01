@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.Buy;
 import beans.Item;
+import beans.User;
 import dao.BuyDAO;
 import dao.ItemDAO;
 
@@ -39,6 +40,13 @@ public class AdminItemDetail extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		User user = (User)session.getAttribute("user");
+		int adminCheck = user.getId();
+		if(adminCheck != 1) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 			dispatcher.forward(request, response);
 			return;
 		}

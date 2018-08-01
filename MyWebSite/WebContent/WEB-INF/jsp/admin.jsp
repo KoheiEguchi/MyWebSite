@@ -19,7 +19,37 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">管理用商品一覧</font>
+			<p class="headermargin"><font size="7">管理者用トップページ</font>
+			<p class="topmarginShort"><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
+			<form action="Admin?userId=${user.id}" method="post">
+				<p class="topmarginShort formTitle">名前検索
+				<p><input type="text" class="longText" name="searchName" placeholder="検索語句"></input>
+				<p class="formTitle">種類検索
+				<p><select class="longText" name="searchType">
+					<option value="all">種類指定しない</option>
+					<option value="set">セット</option>
+					<option value="sand">底砂</option>
+					<option value="filter">濾過フィルター</option>
+					<option value="light">照明</option>
+					<option value="food">エサ</option>
+					<option value="air">エアー関連</option>
+				</select>
+				<p class="formTitle">価格検索
+				<p><select class="longText" name="searchPrice">
+					<option value="0">価格指定しない</option>
+					<option value="1000">～1000円</option>
+					<option value="3000">1001～3000円</option>
+					<option value="5000">3001～5000円</option>
+					<option value="10000">5001～10000円</option>
+					<option value="20000">10001～20000円</option>
+					<option value="20001">20001円～</option>
+				</select>
+				<p><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える
+				<p><input class="button btn-success" type="submit" value="検索">
+			</form>
+			<c:if test="${searchResult == true}">
+				<p><font size="5">検索結果</font>
+			</c:if>
 			<table class="table">
 				<tr>
 					<c:set var="cnt">
@@ -47,23 +77,6 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<form action="Admin?userId=${user.id}" method="post">
-				<p class="topmarginShort formTitle">名前検索
-				<p><input type="text" class="longText" name="searchName" placeholder="検索語句"></input>
-				<p class="formTitle">価格検索
-				<p><select class="longText" name="searchPrice">
-					<option value="0">価格指定しない</option>
-					<option value="1000">～1000円</option>
-					<option value="3000">1001～3000円</option>
-					<option value="5000">3001～5000円</option>
-					<option value="10000">5001～10000円</option>
-					<option value="20000">10001～20000円</option>
-					<option value="20001">20001円～</option>
-				</select>
-				<p><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える
-				<p><input class="button btn-success" type="submit" value="検索">
-			</form>
-			<p><font size="5">検索結果</font>
 			<table class="table">
 				<tr>
 					<c:set var="cnt">
@@ -73,7 +86,7 @@
 						<td class="table-img">
 							<div class="box">
 								<div class="box-img">
-									<a href="ItemDetail?id=${searchItem.id}&userId=${user.id}">
+									<a href="AdminItemDetail?id=${searchItem.id}">
 										<img src="${searchItem.fileName}" width="400px" height="200px">
 									</a>
 								</div>
@@ -96,8 +109,12 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<p class="topmarginShort"><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
 			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
+			<c:if test="${searchResult == true}">
+				<script  type="text/javascript">
+					window.scrollTo(0,520);
+				</script>
+			</c:if>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

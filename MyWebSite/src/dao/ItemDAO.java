@@ -203,17 +203,18 @@ public class ItemDAO {
 		}
 	}
 
-	public void ItemUpdate(int id,String itemName,String itemDetail,int price,String fileName) throws SQLException {
+	public void ItemUpdate(int id, String itemName, String itemDetail, String type, int price, String fileName) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
 			con = DBManager.getConnection();
-			st = con.prepareStatement("UPDATE item SET name = ?, detail = ?, price = ?, file_name = ? WHERE id = ?");
+			st = con.prepareStatement("UPDATE item SET name = ?, detail = ?, type = ?, price = ?, file_name = ? WHERE id = ?");
 			st.setString(1, itemName);
 			st.setString(2, itemDetail);
-			st.setInt(3, price);
-			st.setString(4, fileName);
-			st.setInt(5,id);
+			st.setString(3, type);
+			st.setInt(4, price);
+			st.setString(5, fileName);
+			st.setInt(6, id);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -316,7 +317,7 @@ public class ItemDAO {
 		}
 	}
 
-	public ArrayList<Item> search(String searchName, String searchPrice, boolean searchFavorite, int userId) {
+	public ArrayList<Item> search(String searchName, String searchType, String searchPrice, boolean searchFavorite, int userId) {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -348,9 +349,13 @@ public class ItemDAO {
 		ArrayList<Item> searchItemList = new ArrayList<Item>();
 		try {
 			con = DBManager.getConnection();
+
+			String sql = "SELECT * FROM item "
+        				 + "WHERE name LIKE '%" + searchName + "%' "
+        				 + "AND price >= '" + priceLow + "' "
+        				 + "AND price <= '" + priceHigh + "'";
 			if(searchFavorite == true) {
-				st = con.prepareStatement(
-						"SELECT * FROM item "
+				sql = "SELECT * FROM item "
 						+ "JOIN favorite ON item.id = favorite.item_id "
 						+ "WHERE item.name LIKE '%" + searchName + "%' "
     						+ "AND item.price >= '" + priceLow + "' "
@@ -358,14 +363,12 @@ public class ItemDAO {
     						+ "AND favorite.id IN("
     							+ "SELECT favorite.id FROM favorite "
     							+ "WHERE item.name LIKE '%" + searchName + "%' "
-    								+ "AND favorite.user_id = '" + userId + "')");
-			}else {
-	        	st = con.prepareStatement(
-	        			"SELECT * FROM item "
-	        			+ "WHERE name LIKE '%" + searchName + "%' "
-	        				+ "AND price >= '" + priceLow + "' "
-	        				+ "AND price <= '" + priceHigh + "'");
+    								+ "AND favorite.user_id = '" + userId + "')";
 			}
+    		if(!(searchType.equals("all"))){
+				sql = sql + "AND type = '" + searchType + "' ";
+			}
+			st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -396,7 +399,7 @@ public class ItemDAO {
          return searchItemList;
 	}
 
-	public ArrayList<Item> rankingSearch(String searchName, String searchPrice, boolean searchFavorite, int userId) {
+	public ArrayList<Item> rankingSearch(String searchName, String searchType, String searchPrice, boolean searchFavorite, int userId) {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -428,9 +431,13 @@ public class ItemDAO {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		try {
 			con = DBManager.getConnection();
+
+			String sql = "SELECT * FROM item "
+        				 + "WHERE name LIKE '%" + searchName + "%' "
+        				 + "AND price >= '" + priceLow + "' "
+        				 + "AND price <= '" + priceHigh + "'";
 			if(searchFavorite == true) {
-				st = con.prepareStatement(
-						"SELECT * FROM item "
+				sql = "SELECT * FROM item "
 						+ "JOIN favorite ON item.id = favorite.item_id "
 						+ "WHERE item.name LIKE '%" + searchName + "%' "
     						+ "AND item.price >= '" + priceLow + "' "
@@ -438,16 +445,13 @@ public class ItemDAO {
     						+ "AND favorite.id IN("
     							+ "SELECT favorite.id FROM favorite "
     							+ "WHERE item.name LIKE '%" + searchName + "%' "
-    								+ "AND favorite.user_id = '" + userId + "') "
-    					+ "ORDER BY sold_num DESC");
-			}else {
-	        	st = con.prepareStatement(
-	        			"SELECT * FROM item "
-	        			+ "WHERE name LIKE '%" + searchName + "%' "
-	        				+ "AND price >= '" + priceLow + "' "
-	        				+ "AND price <= '" + priceHigh + "' "
-	        			+ "ORDER BY sold_num DESC");
+    								+ "AND favorite.user_id = '" + userId + "')";
 			}
+    		if(!(searchType.equals("all"))){
+				sql = sql + "AND type = '" + searchType + "' ";
+			}
+    		sql = sql + "ORDER BY sold_num DESC";
+			st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -457,9 +461,9 @@ public class ItemDAO {
                 int price = rs.getInt("price");
                 int soldNum = rs.getInt("sold_num");
                 String fileName = rs.getString("file_Name");
-                Item item = new Item(id, itemName, itemDetail, price, soldNum, fileName);
+                Item searchItem = new Item(id, itemName, itemDetail, price, soldNum, fileName);
 
-                itemList.add(item);
+                itemList.add(searchItem);
             }
 
         } catch (SQLException e) {
@@ -478,7 +482,7 @@ public class ItemDAO {
          return itemList;
 	}
 
-	public ArrayList<Item> soldSearch(String searchName, String searchPrice, boolean searchSold, int userId) {
+	public ArrayList<Item> soldSearch(String searchName, String searchType, String searchPrice, boolean searchSold, int userId) {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -510,20 +514,18 @@ public class ItemDAO {
 		ArrayList<Item> itemList = new ArrayList<Item>();
 		try {
 			con = DBManager.getConnection();
-			if(searchSold == true) {
-				st = con.prepareStatement(
+				String sql =
 						"SELECT * FROM item "
-			        		+ "WHERE name LIKE '%" + searchName + "%' "
-			        			+ "AND price >= '" + priceLow + "' "
-			        			+ "AND price <= '" + priceHigh + "' "
-			        		+ "ORDER BY sold_num DESC");
-			}else {
-	        	st = con.prepareStatement(
-	        			"SELECT * FROM item "
-	        			+ "WHERE name LIKE '%" + searchName + "%' "
-	        				+ "AND price >= '" + priceLow + "' "
-	        				+ "AND price <= '" + priceHigh + "'");
-			}
+			        	+ "WHERE name LIKE '%" + searchName + "%' "
+			        		+ "AND price >= '" + priceLow + "' "
+			        		+ "AND price <= '" + priceHigh + "' ";
+				if(!(searchType.equals("all"))) {
+					sql = sql + "AND type = '" + searchType + "' ";
+				}
+				if(searchSold == true) {
+					sql = sql + "ORDER BY sold_num DESC";
+				}
+			st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {

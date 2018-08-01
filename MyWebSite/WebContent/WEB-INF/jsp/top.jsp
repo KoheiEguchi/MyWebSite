@@ -62,6 +62,16 @@
 			<form action="Top?userId=${user.id}" method="post">
 				<p class="topmarginShort formTitle">名前検索
 				<p><input type="text" class="longText" name="searchName" placeholder="検索語句"></input>
+				<p class="formTitle">種類検索
+				<p><select class="longText" name="searchType">
+					<option value="all">種類指定しない</option>
+					<option value="set">セット</option>
+					<option value="sand">底砂</option>
+					<option value="filter">濾過フィルター</option>
+					<option value="light">照明</option>
+					<option value="food">エサ</option>
+					<option value="air">エアー関連</option>
+				</select>
 				<p class="formTitle">価格検索
 				<p><select class="longText" name="searchPrice">
 					<option value="0">価格指定しない</option>
@@ -77,7 +87,9 @@
 				</label>
 				<p><input class="button btn-success" type="submit" value="検索">
 			</form>
-			<p><font size="5">検索結果</font>
+			<c:if test="${searchResult == true}">
+				<p><font size="5">検索結果</font>
+			</c:if>
 			<table class="table">
 				<tr>
 					<c:set var="cnt">
@@ -114,7 +126,7 @@
 			</c:if>
 			<c:if test="${searchResult == true}">
 				<script  type="text/javascript">
-					window.scrollTo(0,850);
+					window.scrollTo(0,950);
 				</script>
 			</c:if>
 		</div>

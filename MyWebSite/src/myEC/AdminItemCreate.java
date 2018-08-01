@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.User;
 import dao.ItemDAO;
 
 /**
@@ -38,6 +39,13 @@ public class AdminItemCreate extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
+		User user = (User)session.getAttribute("user");
+		int adminCheck = user.getId();
+		if(adminCheck != 1) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+			dispatcher.forward(request, response);
+			return;
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemcreate.jsp");
 		dispatcher.forward(request, response);
@@ -54,6 +62,14 @@ public class AdminItemCreate extends HttpServlet {
 		String type = request.getParameter("type");
 		String strPrice = request.getParameter("price");
 		String fileName = request.getParameter("fileName");
+
+		if(type.equals("noSelect")) {
+			request.setAttribute("errMsg", "商品の種類を選択してください。");
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemcreate.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
 
 		int price = Integer.parseInt(strPrice);
 

@@ -20,13 +20,26 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">商品情報更新</font>
+			<c:if test="${errMsg != null}" >
+	    		<div class="alert alert-danger" role="alert">
+		 			${errMsg}
+				</div>
+			</c:if>
 			<form action="AdminItemUpdate?id=${item.id}" method="post">
 				<p class="formTitle">商品名
 				<p><textarea name="itemName" cols="100" rows="1">${item.itemName}</textarea>
 				<p class="formTitle">商品詳細
 				<p><textarea name="itemDetail" cols="100" rows="10">${item.itemDetail}</textarea>
 				<p class="formTitle">種類
-				<p><input type="text" class="longText" name="type" value="${item.type}">
+				<p><select class="longText" name="type">
+					<option value="${item.type}">変更しない</option>
+					<option value="set">セット</option>
+					<option value="sand">底砂</option>
+					<option value="filter">濾過フィルター</option>
+					<option value="light">照明</option>
+					<option value="food">エサ</option>
+					<option value="air">エアー関連</option>
+				</select>
 				<p class="formTitle">価格
 				<p><input type="text" class="longText" name="price" value="${item.price}">
 				<p class="formTitle">商品画像

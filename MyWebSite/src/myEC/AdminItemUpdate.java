@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.Item;
+import beans.User;
 import dao.ItemDAO;
 
 /**
@@ -39,6 +40,13 @@ public class AdminItemUpdate extends HttpServlet {
 			dispatcher.forward(request, response);
 			return;
 		}
+		User user = (User)session.getAttribute("user");
+		int adminCheck = user.getId();
+		if(adminCheck != 1) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+			dispatcher.forward(request, response);
+			return;
+		}
 
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
@@ -59,6 +67,7 @@ public class AdminItemUpdate extends HttpServlet {
 		String strId = request.getParameter("id");
 		String itemName = request.getParameter("itemName");
 		String itemDetail = request.getParameter("itemDetail");
+		String type = request.getParameter("type");
 		String strPrice = request.getParameter("price");
 		String fileName = request.getParameter("fileName");
 
@@ -67,7 +76,7 @@ public class AdminItemUpdate extends HttpServlet {
 
 		ItemDAO itemDAO = new ItemDAO();
 		try {
-			itemDAO.ItemUpdate(id,itemName,itemDetail,price,fileName);
+			itemDAO.ItemUpdate(id,itemName,itemDetail,type,price,fileName);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

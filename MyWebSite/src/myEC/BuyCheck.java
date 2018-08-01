@@ -33,8 +33,15 @@ public class BuyCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user") == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+		dispatcher.forward(request, response);
+		return;
 	}
 
 	/**
@@ -72,7 +79,7 @@ public class BuyCheck extends HttpServlet {
 			int buyId = Integer.parseInt(strBuyId);
 
 			String strCount = request.getParameter("count");
-			int count = Integer.parseInt(strCount);//buycheckから戻ってくるとcount=nullになる
+			int count = Integer.parseInt(strCount);//カゴから一度ほかの画面に行くとcount=nullになる
 
 			String deliAddress = request.getParameter("deliAddress");
 

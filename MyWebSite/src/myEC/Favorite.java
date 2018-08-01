@@ -45,6 +45,12 @@ public class Favorite extends HttpServlet {
 		String strUserId = request.getParameter("userId");
 		String strFavorite = request.getParameter("favorite");
 
+		if(strItemId == null || strUserId == null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+			dispatcher.forward(request, response);
+			return;
+		}
+
 		int itemId = Integer.parseInt(strItemId);
 		int userId = Integer.parseInt(strUserId);
 		boolean favoCheck = Boolean.parseBoolean(strFavorite);

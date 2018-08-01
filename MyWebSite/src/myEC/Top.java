@@ -58,6 +58,8 @@ public class Top extends HttpServlet {
 
 		String searchName = request.getParameter("searchName");
 
+		String searchType = request.getParameter("searchType");
+
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchFavorite = request.getParameter("searchFavorite");
@@ -67,7 +69,7 @@ public class Top extends HttpServlet {
 		int userId = Integer.parseInt(strUserId);
 
 		ItemDAO itemDAO = new ItemDAO();
-		ArrayList<Item> searchItemList = itemDAO.search(searchName, searchPrice, searchFavorite, userId);
+		ArrayList<Item> searchItemList = itemDAO.search(searchName, searchType, searchPrice, searchFavorite, userId);
 
 		request.setAttribute("searchItemList", searchItemList);
 
