@@ -78,14 +78,15 @@ public class BuyCheck extends HttpServlet {
 			String strBuyId = request.getParameter("id");
 			int buyId = Integer.parseInt(strBuyId);
 
-			String strCount = request.getParameter("count");
-			int count = Integer.parseInt(strCount);//カゴから一度ほかの画面に行くとcount=nullになる
+			//String strCount = request.getParameter("count");
+			//int count = Integer.parseInt(strCount);//カゴから一度ほかの画面に行くとcount=nullになる
+
 
 			String deliAddress = request.getParameter("deliAddress");
 
 			Buy buy = new Buy();
 			buy.setBuyId(buyId);
-			buy.setCount(count);
+			//buy.setCount(count);
 			buy.setAllPrice(allPrice);
 			buy.setTotalPrice(totalPrice);
 			buy.setDeliveryMethod(deliveryMethod);

@@ -54,8 +54,9 @@ public class InCart extends HttpServlet {
 				request.setAttribute("noCart", noCart);
 			}
 
-			String strCartAD = (String)request.getAttribute("cartAD");
-			if(strCartAD != null) {
+			Object objCartAD = request.getAttribute("cartAD");
+			if(objCartAD != null) {
+				String strCartAD = objCartAD.toString();
 				Boolean cartAD = Boolean.parseBoolean(strCartAD);
 				if(cartAD == true) {
 					cartActionMessage = "カゴの中を全て削除しました";
@@ -87,6 +88,13 @@ public class InCart extends HttpServlet {
 			String strCount = request.getParameter("count");
 			int count = Integer.parseInt(strCount);
 
+			if(count <= 0) {
+				request.setAttribute("errMsg", "個数は1以上入力してください。");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("ItemDetail");
+				dispatcher.forward(request, response);
+				return;
+			}
+
 			Item item = ItemDAO.CartIn(itemId,count);
 			request.setAttribute("item", item);
 
@@ -102,10 +110,10 @@ public class InCart extends HttpServlet {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/incart.jsp");
 			dispatcher.forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			session.setAttribute("errorMessage", e.toString());
-			response.sendRedirect("Error");
+		} catch (NumberFormatException e) {
+			request.setAttribute("errMsg", "個数を1以上の整数で入力してください。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("ItemDetail");
+			dispatcher.forward(request, response);
 		}
 	}
 

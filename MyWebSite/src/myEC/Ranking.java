@@ -43,6 +43,9 @@ public class Ranking extends HttpServlet {
 		ArrayList<Item>itemList = ItemDAO.ranking();
 		request.setAttribute("itemList", itemList);
 
+		int rankNum = 6;
+		request.setAttribute("rankNum", rankNum);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
 		dispatcher.forward(request, response);
 
@@ -67,10 +70,15 @@ public class Ranking extends HttpServlet {
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);
 
+		String strRankNum = request.getParameter("rankNum");
+		int rankNum = Integer.parseInt(strRankNum);
+
 		ItemDAO itemDAO = new ItemDAO();
-		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId);
+		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId, rankNum);
 
 		request.setAttribute("itemList", itemList);
+
+		request.setAttribute("rankNum", rankNum);
 
 		boolean searchResult = true;
 		request.setAttribute("searchResult", searchResult);

@@ -30,7 +30,7 @@ public class ItemDAO {
 	        					+ "SELECT DISTINCT max(buy.buy_date) "
 	        					+ "FROM buy "
 	        					+ "WHERE buy.buyer_id = ?"
-	        				+ ")"
+	        				+ ") HAVING max(buy.id)"
 	        			+ ")"
 	        	);
 	        	st.setInt(1, userId);
@@ -109,7 +109,7 @@ public class ItemDAO {
         ArrayList<Item> itemList = new ArrayList<Item>();
         try {
         	con = DBManager.getConnection();
-        	st = con.prepareStatement("SELECT * FROM item ORDER BY sold_num DESC");
+        	st = con.prepareStatement("SELECT * FROM item ORDER BY sold_num DESC LIMIT 6");
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
@@ -399,7 +399,7 @@ public class ItemDAO {
          return searchItemList;
 	}
 
-	public ArrayList<Item> rankingSearch(String searchName, String searchType, String searchPrice, boolean searchFavorite, int userId) {
+	public ArrayList<Item> rankingSearch(String searchName, String searchType, String searchPrice, boolean searchFavorite, int userId, int rankNum) {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -450,7 +450,7 @@ public class ItemDAO {
     		if(!(searchType.equals("all"))){
 				sql = sql + "AND type = '" + searchType + "' ";
 			}
-    		sql = sql + "ORDER BY sold_num DESC";
+    		sql = sql + "ORDER BY sold_num DESC LIMIT " + rankNum;
 			st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 

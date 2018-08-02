@@ -82,8 +82,8 @@
 					<option value="20000">10001～20000円</option>
 					<option value="20001">20001円～</option>
 				</select>
-				<p><label for="searchfavorite">
-					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true" />お気に入りで絞り込む
+				<p><label>
+					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
 				</label>
 				<p><input class="button btn-success" type="submit" value="検索">
 			</form>
@@ -125,7 +125,7 @@
 				<p class="topmarginShort"><a href="Admin"><input class="button btn-primary" type="button" value="管理者用ページ"></a>
 			</c:if>
 			<c:if test="${searchResult == true}">
-				<script  type="text/javascript">
+				<script type="text/javascript">
 					window.scrollTo(0,950);
 				</script>
 			</c:if>

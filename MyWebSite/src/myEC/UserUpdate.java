@@ -70,7 +70,7 @@ public class UserUpdate extends HttpServlet {
 
 		int id = Integer.parseInt(strId);
 
-		if(password1.equals(password2)) {
+		if(password1.equals(password2) && !(password1.equals(""))) {
 			String password = password1;
 
 			UserDAO userDAO = new UserDAO();

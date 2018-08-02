@@ -46,9 +46,11 @@
 					<option value="20000">10001～20000円</option>
 					<option value="20001">20001円～</option>
 				</select>
-				<p><label for="searchfavorite">
-					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true" />お気に入りで絞り込む
+				<p><label>
+					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
 				</label>
+				<p class="formTitle">表示順位を変える
+				<p><input type="text" name="rankNum" size="1" value="${rankNum}">位まで表示
 				<p><input class="button btn-success" type="submit" value="絞り込み">
 			</form>
 			<table class="table">

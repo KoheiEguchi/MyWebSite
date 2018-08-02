@@ -25,7 +25,7 @@
 		<div id="body-bk">
 			<form action="UserDelete?id=${user.id}" method="post">
 				<p class="headermargin"><font size="7">退会</font>
-				<p><font size="5"> <font color="red">ユーザー名</font>さんのアカウントを<font color="red"><b>削除</b></font>しますがよろしいですか？</font>
+				<p><font size="5"> <font color="red">${user.userName}</font>さんのアカウントを<font color="red"><b>削除</b></font>しますがよろしいですか？</font>
 				<p class="topmarginShort"><i class="fas fa-exclamation fa-5x warningIcon"></i>
 				<p><a href="UserData?id=${user.id}"><input class="inCartButton button btn-info" type="button" value="キャンセル"></a>
 				<input class="cancelButton button btn-danger" type="submit" value="退会">

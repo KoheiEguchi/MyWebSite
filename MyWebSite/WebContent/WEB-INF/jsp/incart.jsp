@@ -23,19 +23,27 @@
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">カゴ内一覧</font>
 			<p class="topmarginShort"><font size="5">${cartActionMessage}</font>
-			<form action="BuyCheck?id=${user.id}&count=${item.count}" method="post">
+			<form action="BuyCheck?id=${user.id}" method="post">
 				<c:if test = "${noCart != null}">
 					<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
 				</c:if>
 				<c:if test = "${noCart == null}">
 					<p class="topmarginShort"><a href="Top"><input class="leftButton button btn-info" type="button" value="買い物を続ける"></a>
 					<input class="rightButton button btn-success" type="submit" value="レジへ進む">
-					<p>配送方法を選んでください<select name="deliveryMethod">
-						<option value="normal">通常配送(送料無料)</option>
-						<option value="quick">お急ぎ配送(送料500円)</option>
-						<option value="select">日時指定配送(送料200円)</option>
-					</select>
-					<p>配送先の住所を入力してください<textarea class="topmarginShort" name="deliAddress" cols="38" rows="2">${user.address}</textarea>
+					<p>配送方法を選んでください<br>
+					<label>
+						<input type="radio" name="deliveryMethod" value="normal" checked="checked"><font size="4">通常配送(送料無料)</font>
+					</label>
+					<br>
+					<label>
+						<input type="radio" name="deliveryMethod" value="quick"><font size="4">お急ぎ配送(送料500円)</font>
+					</label>
+					<br>
+					<label>
+						<input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font>
+					</label>
+					<p class="topmarginShort">配送先の住所を入力してください<br>
+					<textarea name="deliAddress" cols="38" rows="2">${user.address}</textarea>
 				</c:if>
 				<p class="topmarginShort"><font size="5">カゴ内の商品</font>
 				<c:if test="${noCart != null}">
@@ -73,7 +81,7 @@
 				</table>
 			</form>
 			<c:if test = "${noCart == null}">
-				<p><a href="CartAllDelete?count=${buy.count}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
+				<p><a href="CartAllDelete"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
 			</c:if>
 		</div>
 

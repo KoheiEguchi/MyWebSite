@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.Buy;
 import beans.Item;
+import beans.User;
 import dao.BuyDAO;
 import dao.ItemDAO;
 
@@ -68,21 +69,16 @@ public class BuyResult extends HttpServlet {
 
 				Item sold = BuyDAO.soldCheck(buyItem);
 				ItemDAO.insertSold(sold);
-
-				/*Buy buyResult = BuyDAO.buyResult(buyData);
-				request.setAttribute("buyResult", buyResult);*/
-
-				/*ArrayList<Item> buyResultList = BuyDAO.buyResultList(buyData);
-				request.setAttribute("buyResultList", buyResultList);*/
 			}
 
-			//Date buyDate = item.getBuyDate();
 			ArrayList<Buy> buyIdList = BuyDAO.buyIdSelect();
 			Buy buyId = buyIdList.get(0);
 			BuyDAO.insertBuyId(buyId);
 
 
-			ArrayList<Item>itemList = ItemDAO.allItem();
+			User user = (User)session.getAttribute("user");
+			int userId = user.getId();
+			ArrayList<Item>itemList = ItemDAO.recommendItem(userId);
 			request.setAttribute("itemList", itemList);
 
 			session.removeAttribute("cart");

@@ -6,7 +6,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>管理用商品一覧</title>
+	<title>管理者用トップページ</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
@@ -44,7 +44,7 @@
 					<option value="20000">10001～20000円</option>
 					<option value="20001">20001円～</option>
 				</select>
-				<p><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える
+				<p><label><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える</label>
 				<p><input class="button btn-success" type="submit" value="検索">
 			</form>
 			<c:if test="${searchResult == true}">

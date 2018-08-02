@@ -44,10 +44,10 @@ public class ItemDetail extends HttpServlet {
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
 		Item item = itemDAO.detail(detailId);
+		int itemId = Integer.parseInt(detailId);
 
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);
-		int itemId = Integer.parseInt(detailId);
 
 		FavoriteDAO favoriteDAO = new FavoriteDAO();
 		boolean favorite = false;
@@ -70,7 +70,7 @@ public class ItemDetail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doGet(request, response);
 	}
 
 }

@@ -26,6 +26,11 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">商品詳細</font>
+			<c:if test="${errMsg != null}" >
+	    		<div class="alert alert-danger" role="alert">
+		 			${errMsg}
+				</div>
+			</c:if>
 			<form action="InCart?id=${item.id}&userId=${user.id}" method="post">
 				<p><font size="6"><b>${item.itemName}</b></font>
 				<p class="rightText">
@@ -43,16 +48,22 @@
 					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1">個
 					<p class="topmarginShort"><input class="inCartButton button btn-success" type="submit" value="カゴに入れる">
 					<c:if test = "${favorite == false}">
-						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}"><input class="button btn-warning" type="button" value="お気に入り登録"></a>
+						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}">
+							<input class="button btn-warning" type="button" value="お気に入り登録">
+						</a>
 					</c:if>
 					<c:if test = "${favorite == true}">
-						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}"><input class="button btn-warning" type="button" value="お気に入り解除"></a>
+						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}">
+							<input class="button btn-warning" type="button" value="お気に入り解除">
+						</a>
 					</c:if>
 					<a href="Top"><input class="cancelButton button btn-danger" type="button" value="買わない"></a>
 				</c:if>
 				<c:if test = "${link == 'cart'}">
 					　×　${item.count}個　＝　<font size="5" color="red">${item.countPrice}円</font>
-					<p class="topmarginShort"><a href="CartDelete?id=${item.id}"><input class="inCartButton button btn-danger" type="button" value="カゴから出す"></a>
+					<p class="topmarginShort"><a href="CartDelete?id=${item.id}">
+						<input class="inCartButton button btn-danger" type="button" value="カゴから出す">
+					</a>
 					<a href="InCart"><input class="cancelButton button btn-success" type="button" value="戻る"></a>
 				</c:if>
 			</form>

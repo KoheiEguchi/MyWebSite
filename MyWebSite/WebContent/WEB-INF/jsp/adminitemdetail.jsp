@@ -31,7 +31,7 @@
 			<table class="table">
 				<tr><th>売り上げ日時</th><th>売り上げ個数</th>
 				<c:forEach var="soldHistory" items="${soldHistoryList}">
-					<tr><td>${soldHistory.buyDate}</td><td>${soldHistory.count}個</td></tr>
+					<tr><td>${soldHistory.buyDate} ${soldHistory.buyTime}</td><td>${soldHistory.count}個</td></tr>
 				</c:forEach>
 				<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
 			</table>

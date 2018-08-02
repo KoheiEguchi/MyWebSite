@@ -49,7 +49,7 @@ public class UserCreate extends HttpServlet {
 		UserDAO userDAO = new UserDAO();
 		boolean check = userDAO.CreateCheck(loginId);
 
-		if(password1.equals(password2) && !(password1.equals("")) && !(userName.equals("")) && (check == true)){
+		if((check == true) && password1.equals(password2) && !(password1.equals("")) && !(userName.equals("")) && !(address.equals(""))){
 			String password = password1;
 			userDAO.UserCreate(loginId,userName,password,address);
 

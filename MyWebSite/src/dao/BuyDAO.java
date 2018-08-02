@@ -74,6 +74,39 @@ public class BuyDAO {
 		}
 	}
 
+	public static Item soldCheck(Buy buyItem) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DBManager.getConnection();
+
+			st = con.prepareStatement(
+					"SELECT SUM(count) FROM buy WHERE item_id = ? GROUP BY item_id");
+			st.setInt(1, buyItem.getItemId());
+
+			ResultSet rs = st.executeQuery();
+
+			if (!(rs.next())) {
+				return null;
+			}
+
+			int soldNum = (rs.getInt("SUM(count)"));
+			int id = buyItem.getItemId();
+
+			Item sold = new Item(soldNum, id);
+
+			return sold;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
 	public static ArrayList<Buy> buyIdSelect() throws SQLException, ParseException {
 		Connection con = null;
 		PreparedStatement preSt = null;
@@ -141,7 +174,7 @@ public class BuyDAO {
 		}
 	}
 
-	public static Buy buyResult(int buyId) throws SQLException {
+	/*public static Buy buyResult(int buyId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
@@ -184,7 +217,7 @@ public class BuyDAO {
 					break;
 				}*/
 
-				Buy buyResult = new Buy(totalPrice,buyDate,buyTime);
+				/*Buy buyResult = new Buy(totalPrice,buyDate,buyTime);
 
 				return buyResult;
 
@@ -197,9 +230,9 @@ public class BuyDAO {
 			}
 		}
 
-	}
+	}*/
 
-	public static ArrayList<Item> buyResultList(int buyId) throws SQLException {
+	/*public static ArrayList<Item> buyResultList(int buyId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 		ArrayList<Item> buyResultList = new ArrayList<Item>();
@@ -239,7 +272,7 @@ public class BuyDAO {
 			}
 		}
 		return buyResultList;
-	}
+	}*/
 
 	public static ArrayList<Buy> boughtData(String userId) throws SQLException {
 		Connection con = null;
@@ -368,39 +401,6 @@ public class BuyDAO {
 			}
 		}
 		return buyHistoryDetailList;
-	}
-
-	public static Item soldCheck(Buy buyItem) throws SQLException {
-		Connection con = null;
-		PreparedStatement st = null;
-		try {
-			con = DBManager.getConnection();
-
-			st = con.prepareStatement(
-					"SELECT SUM(count) FROM buy WHERE item_id = ? GROUP BY item_id");
-			st.setInt(1, buyItem.getItemId());
-
-			ResultSet rs = st.executeQuery();
-
-			if (!(rs.next())) {
-				return null;
-			}
-
-			int soldNum = (rs.getInt("SUM(count)"));
-			int id = buyItem.getItemId();
-
-			Item sold = new Item(soldNum, id);
-
-			return sold;
-
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new SQLException(e);
-		} finally {
-			if (con != null) {
-				con.close();
-			}
-		}
 	}
 
 	public ArrayList<Buy> soldHistory(int itemId) throws SQLException {
