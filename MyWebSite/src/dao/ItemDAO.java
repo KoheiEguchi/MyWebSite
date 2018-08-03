@@ -65,6 +65,43 @@ public class ItemDAO {
          return itemList;
 	}
 
+	public static ArrayList<Item> newUser(){
+		Connection con = null;
+		PreparedStatement st = null;
+        ArrayList<Item> itemList = new ArrayList<Item>();
+        try {
+        	con = DBManager.getConnection();
+        	st = con.prepareStatement("SELECT * FROM item ORDER BY sold_num DESC LIMIT 4");
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String itemName = rs.getString("name");
+                String itemDetail = rs.getString("detail");
+                int price = rs.getInt("price");
+                int soldNum = rs.getInt("sold_num");
+                String fileName = rs.getString("file_Name");
+                Item item = new Item(id, itemName, itemDetail, price, soldNum, fileName);
+
+                itemList.add(item);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+        	 if (con != null) {
+                 try {
+                     con.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                     return null;
+                 }
+             }
+         }
+         return itemList;
+	}
+
 	public static ArrayList<Item> allItem(){
 		Connection con = null;
 		PreparedStatement st = null;

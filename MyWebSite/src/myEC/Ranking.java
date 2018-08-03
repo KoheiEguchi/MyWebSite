@@ -73,10 +73,15 @@ public class Ranking extends HttpServlet {
 		String strRankNum = request.getParameter("rankNum");
 		int rankNum = Integer.parseInt(strRankNum);
 
+		if(rankNum <= 0) {
+			request.setAttribute("errMsg", "その順位では商品を表示できません。");
+			rankNum = 6;
+		}else {
 		ItemDAO itemDAO = new ItemDAO();
 		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId, rankNum);
 
 		request.setAttribute("itemList", itemList);
+		}
 
 		request.setAttribute("rankNum", rankNum);
 

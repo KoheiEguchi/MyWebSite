@@ -75,6 +75,58 @@ public class UserDAO {
 
 	}
 
+	public int PassChange(String loginId, String userName, String address) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DBManager.getConnection();
+
+			st = con.prepareStatement(
+					"SELECT id FROM user WHERE login_id = ? AND name = ? AND address = ?");
+			st.setString(1, loginId);
+			st.setString(2, userName);
+			st.setString(3, address);
+			ResultSet rs = st.executeQuery();
+
+			int userId = 0;
+
+			if (!rs.next()) {
+                return userId;
+            }
+
+			userId = rs.getInt("id");
+			return userId;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public void PassUpdate(int userId, String password) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DBManager.getConnection();
+			st = con.prepareStatement("UPDATE user SET password = ? WHERE id = ?");
+			st.setString(1, encryption(password));
+			st.setInt(2, userId);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
 	public boolean CreateCheck(String loginId){
         Connection conn = null;
         try {
@@ -156,7 +208,7 @@ public class UserDAO {
              Date subUpdateDate = rs.getDate("update_date");
              Time subUpdateTime = rs.getTime("update_date");
 
-             SimpleDateFormat fmD = new SimpleDateFormat("yyyy'年'M'月'dd'日'");
+             SimpleDateFormat fmD = new SimpleDateFormat("yyyy'年'M'月'd'日'");
              fmD.setLenient(false);
              SimpleDateFormat fmT = new SimpleDateFormat("k'時'mm'分'ss'秒'");
              fmT.setLenient(false);

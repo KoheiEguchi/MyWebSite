@@ -23,6 +23,11 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">人気ランキング</font>
+			<c:if test="${errMsg != null}" >
+	    		<div class="alert alert-danger" role="alert">
+		 			${errMsg}
+				</div>
+			</c:if>
 			<form action="Ranking?userId=${user.id}" method="post">
 				<p class="topmarginShort formTitle">名前で絞り込む
 				<p><input type="text" class="longText" name="searchName" placeholder="絞り込み語句"></input>

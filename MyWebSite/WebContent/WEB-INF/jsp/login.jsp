@@ -11,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		.topmarginMini{
+			margin-top: 2%;
+		}
 	</style>
 </head>
 
@@ -37,7 +40,8 @@
 				<p class="formTitle">パスワード
 				<p><input type="password" class="longText" name="password" placeholder="password"></input>
 				<p><input class="button btn-success" type="submit" value="ログイン">
-				<p class="topmarginShort"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a>
+				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a>
+				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a>
 			</form>
 			<script type="text/javascript">
 				document.login.loginId.focus();

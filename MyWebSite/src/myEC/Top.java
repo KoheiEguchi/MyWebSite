@@ -43,7 +43,13 @@ public class Top extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		int userId = user.getId();
 		ArrayList<Item>itemList = ItemDAO.recommendItem(userId);
+		boolean newCheck = itemList.isEmpty();
+		if(newCheck == true) {
+			ArrayList<Item> newItemList = ItemDAO.newUser();
+			request.setAttribute("itemList", newItemList);
+		}else {
 		request.setAttribute("itemList", itemList);
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
 		dispatcher.forward(request, response);
