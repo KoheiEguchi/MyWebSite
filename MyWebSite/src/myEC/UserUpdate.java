@@ -33,6 +33,7 @@ public class UserUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -40,10 +41,12 @@ public class UserUpdate extends HttpServlet {
 			return;
 		}
 
+		//ユーザーのIDを取得
 		String userId = request.getParameter("id");
 		UserDAO userDAO = new UserDAO();
 		User user = null;
 		try {
+			//取得したIDを引数にしてDAOへ
 			user = userDAO.UserData(userId);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -51,6 +54,7 @@ public class UserUpdate extends HttpServlet {
 
 		request.setAttribute("user",user);
 
+		//ユーザー情報更新ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userupdate.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -59,8 +63,10 @@ public class UserUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 
+		//入力された各データを取得
 		String strId = request.getParameter("id");
 		String loginId = request.getParameter("loginId");
 		String userName = request.getParameter("userName");
@@ -70,19 +76,24 @@ public class UserUpdate extends HttpServlet {
 
 		int id = Integer.parseInt(strId);
 
+		//パスワードに誤りがないか確認
 		if(password1.equals(password2) && !(password1.equals(""))) {
 			String password = password1;
 
 			UserDAO userDAO = new UserDAO();
+			//取得した各データを引数にしてDAOへ
 			userDAO.UserUpdate(id,loginId,userName,password,address);
 
 			if(true) {
 				request.setAttribute("id",id);
+				//ユーザー情報ページを再表示
 				RequestDispatcher dispatcher = request.getRequestDispatcher("UserData");
 				dispatcher.forward(request, response);
 			}
 
+		//パスワードに誤りがあった場合
 		}else {
+			//ユーザー情報を再取得
 			String userId = request.getParameter("id");
 			UserDAO userDAO = new UserDAO();
 			User user = null;
@@ -95,6 +106,7 @@ public class UserUpdate extends HttpServlet {
 			request.setAttribute("user",user);
 
 			request.setAttribute("errMsg", "入力された内容は正しくありません。");
+			//ユーザー情報更新ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userupdate.jsp");
 			dispatcher.forward(request, response);
 		}

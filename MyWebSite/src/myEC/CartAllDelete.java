@@ -29,6 +29,7 @@ public class CartAllDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -36,11 +37,14 @@ public class CartAllDelete extends HttpServlet {
 			return;
 		}
 
+		//カゴのセッションを削除
 		session.removeAttribute("cart");
 
+		//カゴの全削除をしたという記録
 		boolean cartAD = true;
 		request.setAttribute("cartAD", cartAD);
 
+		//カゴ内一覧ページを再表示
 		RequestDispatcher dispatcher = request.getRequestDispatcher("InCart");
 		dispatcher.forward(request, response);
 	}

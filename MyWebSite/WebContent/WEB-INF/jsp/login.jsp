@@ -19,7 +19,7 @@
 
 <body>
 	<div id="contents">
-		<div id="header-bk">
+		<div id="header-bk" class="headerZ">
 			<div id="header">
 			</div>
 		</div>
@@ -28,11 +28,7 @@
 			<form action="Login" method="post" name="login">
 				<p class="headermargin"><font size="7">ログイン</font>
 
-				<c:if test="${errMsg != null}" >
-	    			<div class="alert alert-danger" role="alert">
-		 				${errMsg}
-					</div>
-				</c:if>
+				<jsp:include page="alert.jsp" flush="true" />
 
 				<p><img src="pic/aqua1.jpg" width="700px" height="350px">
 				<p class="topmarginShort formTitle">ログインID

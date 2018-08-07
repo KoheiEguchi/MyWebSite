@@ -37,12 +37,14 @@ public class AdminItemDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
+		//管理者以外のユーザーはトップページを表示
 		User user = (User)session.getAttribute("user");
 		int adminCheck = user.getId();
 		if(adminCheck != 1) {
@@ -51,14 +53,17 @@ public class AdminItemDetail extends HttpServlet {
 			return;
 		}
 
+		//商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 
 		int itemId = Integer.parseInt(detailId);
 		BuyDAO buyDAO = new BuyDAO();
 		ArrayList<Buy> soldHistoryList = null;
 		try {
+			//DAOで商品の販売履歴を取得
 			soldHistoryList = buyDAO.soldHistory(itemId);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -67,6 +72,7 @@ public class AdminItemDetail extends HttpServlet {
 		request.setAttribute("item",item);
 		request.setAttribute("soldHistoryList", soldHistoryList);
 
+		//管理用商品詳細ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemdetail.jsp");
 		dispatcher.forward(request, response);
 	}

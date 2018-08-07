@@ -22,7 +22,7 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">ユーザー情報</font>
-			<p class="topmarginShort"><a href="InCart"><input class="button btn-primary" type="button" value="カゴの中を見る"></a>
+			<p class="topmarginShort"><a href="InCart?fromData"><input class="button btn-primary" type="button" value="カゴの中を見る"></a>
 			<p class="topmarginShort"><font size="6">${user.userName}さんの情報</font>
 			<table class="table">
 				<tr><td>ログインID</td><td>${user.loginId}</td></tr>

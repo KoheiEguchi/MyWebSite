@@ -26,11 +26,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">商品詳細</font>
-			<c:if test="${errMsg != null}" >
-	    		<div class="alert alert-danger" role="alert">
-		 			${errMsg}
-				</div>
-			</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="InCart?id=${item.id}&userId=${user.id}" method="post">
 				<p><font size="6"><b>${item.itemName}</b></font>
 				<p class="rightText">

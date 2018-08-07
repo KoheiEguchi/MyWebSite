@@ -37,6 +37,7 @@ public class UserData extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -44,10 +45,12 @@ public class UserData extends HttpServlet {
 			return;
 		}
 
+		//ユーザーのIDを取得
 		String userId = request.getParameter("id");
 		UserDAO userDAO = new UserDAO();
 		User user = null;
 			try {
+				//取得したIDを引数にしてDAOへ
 				user = userDAO.UserData(userId);
 			} catch (ParseException e1) {
 				e1.printStackTrace();
@@ -57,6 +60,7 @@ public class UserData extends HttpServlet {
 
 		ArrayList<Buy> boughtList = null;
 		try {
+			//ユーザーの購入履歴をDAOで取得
 			boughtList = BuyDAO.boughtData(userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,6 +68,7 @@ public class UserData extends HttpServlet {
 
 		request.setAttribute("boughtList", boughtList);
 
+		//ユーザー情報ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userdata.jsp");
 		dispatcher.forward(request, response);
 	}

@@ -33,6 +33,7 @@ public class UserDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -40,10 +41,12 @@ public class UserDelete extends HttpServlet {
 			return;
 		}
 
+		//ユーザーのIDを取得
 		String userId = request.getParameter("id");
 		UserDAO userDAO = new UserDAO();
 		User user = null;
 		try {
+			//取得したIDを引数にしてDAOへ
 			user = userDAO.UserData(userId);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -51,6 +54,7 @@ public class UserDelete extends HttpServlet {
 
 		request.setAttribute("user",user);
 
+		//ユーザー情報更新ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userdelete.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -59,15 +63,19 @@ public class UserDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 
+		//ユーザーのIDを取得
 		String strId = request.getParameter("id");
 		int id = Integer.parseInt(strId);
 
 		UserDAO userDAO = new UserDAO();
+		//取得したIDを引数にしてDAOへ
 		userDAO.UserDelete(id);
 
-		response.sendRedirect("Login");
+		//残ったセッションを削除するためログアウトページへ移行
+		response.sendRedirect("Logout");
 	}
 
 }

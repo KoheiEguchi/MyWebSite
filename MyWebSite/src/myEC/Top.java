@@ -34,16 +34,21 @@ public class Top extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
+		//ユーザー情報のセッションを取得
 		User user = (User)session.getAttribute("user");
 		int userId = user.getId();
+		//ユーザーIDを引数にしてDAOへ
 		ArrayList<Item>itemList = ItemDAO.recommendItem(userId);
+		//取得したリストの中身があるか確認
 		boolean newCheck = itemList.isEmpty();
+		//中身がない＝買ったことがない場合
 		if(newCheck == true) {
 			ArrayList<Item> newItemList = ItemDAO.newUser();
 			request.setAttribute("itemList", newItemList);
@@ -51,6 +56,7 @@ public class Top extends HttpServlet {
 		request.setAttribute("itemList", itemList);
 		}
 
+		//トップページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -59,13 +65,13 @@ public class Top extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-		String searchName = request.getParameter("searchName");
-
+		//入力された情報を取得
+        String searchName = request.getParameter("searchName");
 		String searchType = request.getParameter("searchType");
-
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchFavorite = request.getParameter("searchFavorite");
@@ -75,13 +81,16 @@ public class Top extends HttpServlet {
 		int userId = Integer.parseInt(strUserId);
 
 		ItemDAO itemDAO = new ItemDAO();
+		//取得した情報を引数にしてDAOへ
 		ArrayList<Item> searchItemList = itemDAO.search(searchName, searchType, searchPrice, searchFavorite, userId);
 
 		request.setAttribute("searchItemList", searchItemList);
 
+		//検索後につき表示を変更
 		boolean searchResult = true;
 		request.setAttribute("searchResult", searchResult);
 
+		//トップページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");
 		dispatcher.forward(request, response);
 	}

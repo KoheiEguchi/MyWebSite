@@ -35,6 +35,7 @@ public class History extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -42,7 +43,9 @@ public class History extends HttpServlet {
 			return;
 		}
 
+		//ユーザー情報のセッションを取得
 		User user = (User)session.getAttribute("user");
+		//各情報を取得
 		int buyerId = user.getId();
 		String strBuyId = request.getParameter("buyId");
 		String buyDate = request.getParameter("buyDate");
@@ -50,13 +53,17 @@ public class History extends HttpServlet {
 
 		int buyId = Integer.parseInt(strBuyId);
 
+		//取得した情報を引数にしてDAOへ
 		try {
+			//大まかなデータを取得
 			Item buyHistory = BuyDAO.boughtDetail(buyerId, buyId, buyDate, buyTime);
 			request.setAttribute("buyHistory",buyHistory);
 
+			//細かいデータを取得
 			ArrayList<Item> buyHistoryDetailList = BuyDAO.boughtListData(buyerId, buyId);
 			request.setAttribute("buyHistoryDetailList",buyHistoryDetailList);
 
+			//購入履歴詳細ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/history.jsp");
 			dispatcher.forward(request, response);
 

@@ -34,6 +34,7 @@ public class Favorite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -41,10 +42,12 @@ public class Favorite extends HttpServlet {
 			return;
 		}
 
+		//各種情報を取得
 		String strItemId = request.getParameter("itemId");
 		String strUserId = request.getParameter("userId");
 		String strFavorite = request.getParameter("favorite");
 
+		//ログインしているかの確認
 		if(strItemId == null || strUserId == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 			dispatcher.forward(request, response);
@@ -56,15 +59,19 @@ public class Favorite extends HttpServlet {
 		boolean favoCheck = Boolean.parseBoolean(strFavorite);
 
 		FavoriteDAO favoriteDAO = new FavoriteDAO();
+		//対象の商品をお気に入り登録していない場合
 		if(favoCheck == false) {
 			try {
+				//商品、ユーザー両IDを引数にしてDAOへ
 				boolean favorite = favoriteDAO.insertFavo(itemId, userId);
 				request.setAttribute("favorite", favorite);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		//対象の商品をお気に入り登録していない場合
 		}else {
 			try {
+				//商品、ユーザー両IDを引数にしてDAOへ
 				boolean favorite = favoriteDAO.deleteFavo(itemId, userId);
 				request.setAttribute("favorite", favorite);
 			} catch (SQLException e) {
@@ -72,14 +79,17 @@ public class Favorite extends HttpServlet {
 			}
 		}
 
+		//改めて商品の情報を取得
 		String detailId = request.getParameter("itemId");
 		ItemDAO itemDAO = new ItemDAO();
 		Item item = itemDAO.detail(detailId);
 
 		request.setAttribute("item",item);
 
+		//トップやランキングから入った場合の表示にする
 		request.setAttribute("link", "list");
 
+		//商品詳細ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemdetail.jsp");
 		dispatcher.forward(request, response);
 	}

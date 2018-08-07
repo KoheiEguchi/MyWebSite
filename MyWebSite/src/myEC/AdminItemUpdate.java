@@ -34,12 +34,14 @@ public class AdminItemUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
+		//管理者以外のユーザーはトップページを表示
 		User user = (User)session.getAttribute("user");
 		int adminCheck = user.getId();
 		if(adminCheck != 1) {
@@ -48,12 +50,15 @@ public class AdminItemUpdate extends HttpServlet {
 			return;
 		}
 
+		//商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 
 		request.setAttribute("item",item);
 
+		//商品更新ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemupdate.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -62,8 +67,10 @@ public class AdminItemUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 
+		//入力された各データを取得
 		String strId = request.getParameter("id");
 		String itemName = request.getParameter("itemName");
 		String itemDetail = request.getParameter("itemDetail");
@@ -72,15 +79,48 @@ public class AdminItemUpdate extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 
 		int id = Integer.parseInt(strId);
-		int price = Integer.parseInt(strPrice);
-
-		ItemDAO itemDAO = new ItemDAO();
 		try {
-			itemDAO.ItemUpdate(id,itemName,itemDetail,type,price,fileName);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			int price = Integer.parseInt(strPrice);
+			//価格が1円未満の時
+			if(price < 1) {
+				request.setAttribute("errMsg", "価格は1円以上で入力してください。");
+
+				//商品のデータを再取得
+				String detailId = request.getParameter("id");
+				ItemDAO itemDAO = new ItemDAO();
+				Item item = itemDAO.detail(detailId);
+
+				request.setAttribute("item",item);
+				//商品更新ページへ移行
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemupdate.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			ItemDAO itemDAO = new ItemDAO();
+			try {
+				//取得した各データを引数にしてDAOへ
+				itemDAO.ItemUpdate(id,itemName,itemDetail,type,price,fileName);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		//価格に数字以外が入力された場合
+		} catch (NumberFormatException e) {
+			request.setAttribute("errMsg", "価格を1円以上の整数で入力してください。");
+
+			//商品のデータを再取得
+			String detailId = request.getParameter("id");
+			ItemDAO itemDAO = new ItemDAO();
+			Item item = itemDAO.detail(detailId);
+
+			request.setAttribute("item",item);
+			//商品更新ページへ移行
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemupdate.jsp");
+			dispatcher.forward(request, response);
+			return;
 		}
 
+		//管理用トップページを再表示
 		response.sendRedirect("Admin");
 	}
 

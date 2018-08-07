@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-	<title>ヘッダー</title>
+	<title>警告</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
@@ -15,12 +15,11 @@
 </head>
 
 <body>
-	<div id="header-bk" class="headerZ">
-		<div id="header">
-			<p class="userName"><a href="UserData?id=${user.id}"><font color="yellow">${user.userName}さんのユーザー情報</font></a>
-			<p class="logout"><a href="Logout"><font color="yellow">ログアウト</font></a>
+	<c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger msgZ" role="alert">
+			${errMsg}
 		</div>
-	</div>
+	</c:if>
 </body>
 
 </html>

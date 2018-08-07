@@ -34,6 +34,7 @@ public class ItemDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -41,17 +42,21 @@ public class ItemDetail extends HttpServlet {
 			return;
 		}
 
+		//選択した商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 		int itemId = Integer.parseInt(detailId);
 
+		//ユーザーのIDを取得
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);
 
 		FavoriteDAO favoriteDAO = new FavoriteDAO();
 		boolean favorite = false;
 		try {
+			//商品とユーザーのIDを引数にしてDAOへ
 			favorite = favoriteDAO.checkFavo(itemId, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,8 +65,10 @@ public class ItemDetail extends HttpServlet {
 
 		request.setAttribute("item",item);
 
+		//トップやランキングから入った場合の表示にする
 		request.setAttribute("link", "list");
 
+		//商品詳細ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/itemdetail.jsp");
 		dispatcher.forward(request, response);
 	}

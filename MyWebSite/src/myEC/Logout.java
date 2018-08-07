@@ -28,6 +28,7 @@ public class Logout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//各セッションを削除
 		HttpSession session = request.getSession();
 		session.removeAttribute("cart");
 		session.removeAttribute("buyResult");
@@ -35,6 +36,7 @@ public class Logout extends HttpServlet {
 		session.removeAttribute("userId");
 		session.removeAttribute("user");
 
+		//ログインページを再表示
 		response.sendRedirect("Login");
 	}
 

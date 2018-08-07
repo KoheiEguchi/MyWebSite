@@ -20,13 +20,11 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">商品追加</font>
-			<c:if test="${errMsg != null}" >
-	    		<div class="alert alert-danger" role="alert">
-		 			${errMsg}
-				</div>
-			</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="AdminItemCreate" method="post" name="itemCreate">
-				<p class="formTitle">商品名
+				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲い、改行位置に<\br>をつけること)
 				<p><textarea name="itemName" cols="100" rows="1" placeholder="Item Name"></textarea>
 				<p class="formTitle">商品詳細
 				<p><textarea name="itemDetail" cols="100" rows="10" placeholder="Item Detail"></textarea>
@@ -41,7 +39,7 @@
 					<option value="air">エアー関連</option>
 				</select>
 				<p class="formTitle">価格
-				<p><input type="text" class="longText" name="price" placeholder="Price">
+				<p><input type="text" class="priceText" name="price" placeholder="Price">円
 				<p class="formTitle">商品画像
 				<p><input type="text" class="longText" name="fileName" placeholder="Picture Name" value="pic/">
 				<p><input class="button btn-success" type="submit" value="登録">

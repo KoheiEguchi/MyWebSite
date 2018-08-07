@@ -20,11 +20,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">商品情報更新</font>
-			<c:if test="${errMsg != null}" >
-	    		<div class="alert alert-danger" role="alert">
-		 			${errMsg}
-				</div>
-			</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="AdminItemUpdate?id=${item.id}" method="post">
 				<p class="formTitle">商品名
 				<p><textarea name="itemName" cols="100" rows="1">${item.itemName}</textarea>
@@ -41,7 +39,7 @@
 					<option value="air">エアー関連</option>
 				</select>
 				<p class="formTitle">価格
-				<p><input type="text" class="longText" name="price" value="${item.price}">
+				<p><input type="text" class="priceText" name="price" value="${item.price}">円
 				<p class="formTitle">商品画像
 				<p><input type="text" class="longText" name="fileName" value="${item.fileName}">
 				<p><input class="button btn-success" type="submit" value="更新">

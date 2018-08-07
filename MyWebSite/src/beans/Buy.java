@@ -24,12 +24,9 @@ public class Buy  implements Serializable {
 		this.totalPrice = setTotalPrice;
 		this.buyDate = setBuyDate;
 		this.buyTime = setBuyTime;
-		/*this.deliPrice = setDeliPrice;
-		this.deliveryMethod = setDeliveryMethod;*/
 	}
 
 	public Buy(int setBuyerId, int setTotalPrice, String setDeliveryMethod, String setBuyDate, String setBuyTime, int setBuyId) {
-		//this.id = setId;
 		this.buyerId = setBuyerId;
 		this.totalPrice = setTotalPrice;
 		this.deliveryMethod = setDeliveryMethod;

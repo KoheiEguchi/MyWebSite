@@ -20,11 +20,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">ユーザー情報更新</font>
-			<c:if test="${errMsg != null}" >
-	    			<div class="alert alert-danger" role="alert">
-		 				${errMsg}
-					</div>
-				</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="UserUpdate?id=${user.id}" method="post">
 				<p class="formTitle">ログインID
 				<p><input type="text" class="longText" name="loginId" value="${user.loginId}">
@@ -35,7 +33,7 @@
 				<p class="formTitle">パスワード(確認)
 				<p><input type="password" class="longText" name="password2" placeholder="Password">
 				<p class="formTitle">住所
-				<p><textarea name="address" cols="38" rows="2">${user.address}</textarea>
+				<p><input type="text" class="addressText" name="address" value="${user.address}">
 				<p><input class="button btn-success" type="submit" value="更新">
 				<p class="topmarginShort"><a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>

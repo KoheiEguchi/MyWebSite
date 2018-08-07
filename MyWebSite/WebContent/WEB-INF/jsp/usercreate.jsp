@@ -16,7 +16,7 @@
 
 <body>
 	<div id="contents">
-		<div id="header-bk">
+		<div id="header-bk" class="headerZ">
 			<div id="header">
 			</div>
 		</div>
@@ -24,11 +24,9 @@
 		<div id="body-bk">
 			<form action="UserCreate" method="post" name="userCreate">
 				<p class="headermargin"><font size="7">新規登録</font>
-				<c:if test="${errMsg != null}" >
-	    			<div class="alert alert-danger" role="alert">
-		 				${errMsg}
-					</div>
-				</c:if>
+
+				<jsp:include page="alert.jsp" flush="true" />
+
 				<p class="formTitle">ログインID
 				<p><input type="text" class="longText" name="loginId" placeholder="Login ID">
 				<p class="formTitle">ユーザー名
@@ -38,7 +36,7 @@
 				<p class="formTitle">パスワード(確認)
 				<p><input type="password" class="longText" name="password2" placeholder="Password">
 				<p class="formTitle">住所
-				<p><textarea name="address" cols="38" rows="2" placeholder="Address"></textarea>
+				<p><input type="text" class="addressText" name="address" placeholder="Address">
 				<p><input class="button btn-success" type="submit" value="登録">
 				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>

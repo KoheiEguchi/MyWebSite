@@ -32,6 +32,7 @@ public class CartDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -39,11 +40,14 @@ public class CartDelete extends HttpServlet {
 			return;
 		}
 		try {
+			//対象商品のIDを取得
 			String deleteItemId = request.getParameter("id");
+			//カゴのリストを参照
 			ArrayList<Item> cart = (ArrayList<Item>) session.getAttribute("cart");
 
 			String cartActionMessage = "";
 			if (deleteItemId != null) {
+				//カゴ内から対象商品IDを探して削除
 				for (Item cartInItem : cart) {
 					if (cartInItem.getId() == Integer.parseInt(deleteItemId)) {
 						cart.remove(cartInItem);
@@ -53,11 +57,13 @@ public class CartDelete extends HttpServlet {
 				cartActionMessage = "削除しました";
 
 			}
+			//カゴのリストが空の時
 			if(cart.size() == 0) {
 				boolean noCart = true;
 				request.setAttribute("noCart", noCart);
 			}
 			request.setAttribute("cartActionMessage", cartActionMessage);
+			//カゴ内一覧ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/incart.jsp");
 			dispatcher.forward(request, response);
 
@@ -72,8 +78,8 @@ public class CartDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		session.removeAttribute("cart");
-		response.sendRedirect("InCart");
+		response.sendRedirect("InCart");*/
 	}
 }

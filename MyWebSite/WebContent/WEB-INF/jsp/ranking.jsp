@@ -14,6 +14,7 @@
 		body{}
 		.centerText{text-align: center;}
 		.starIcon{color: gold;}
+		.cellSize{width: 600px;}
 	</style>
 </head>
 
@@ -23,11 +24,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">人気ランキング</font>
-			<c:if test="${errMsg != null}" >
-	    		<div class="alert alert-danger" role="alert">
-		 			${errMsg}
-				</div>
-			</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="Ranking?userId=${user.id}" method="post">
 				<p class="topmarginShort formTitle">名前で絞り込む
 				<p><input type="text" class="longText" name="searchName" placeholder="絞り込み語句"></input>
@@ -58,50 +57,39 @@
 				<p><input type="text" name="rankNum" size="1" value="${rankNum}">位まで表示
 				<p><input class="button btn-success" type="submit" value="絞り込み">
 			</form>
+			<c:if test="${searchResult == true}">
+				<p><font size="5">絞り込み結果</font>
+			</c:if>
 			<table class="table">
 				<tr>
 					<c:set var="cnt">
 						0
 					</c:set>
 					<c:forEach var="item" items="${itemList}">
-						<td class="centerText">
+						<td class="centerText cellSize">
 							<font size="5">
 								<c:choose>
 									<c:when test="${cnt == 0}">
-										<font size="6" color="orange">
-											1位
-										</font>
+										<font size="6" color="orange">1位</font>
 									</c:when>
 									<c:when test="${cnt == 1}">
-										<font size="6" color="gray">
-											2位
-										</font>
+										<font size="6" color="gray">2位</font>
 									</c:when>
 									<c:when test="${cnt == 2}">
-										<font size="6" color="bronze">
-											3位
-										</font>
+										<font size="6" color="bronze">3位</font>
 									</c:when>
 									<c:otherwise>
-										<font size="5">
-											${cnt+1}位
-										</font>
+										<font size="5">${cnt+1}位</font>
 									</c:otherwise>
 								</c:choose>
 								<br>
-								<a href="ItemDetail?id=${item.id}&userId=${user.id}">
-									<img src="${item.fileName}" width="500px" height="250px">
-								</a>
+								<a href="ItemDetail?id=${item.id}&userId=${user.id}"><img src="${item.fileName}" width="600px" height="300px"></a>
 								<br>
 								${item.itemName}
 								<br>
-								<font color="red">
-									${item.price}円
-								</font>
+								<font color="red">${item.price}円</font>
 							</font>
-						<div style="display:none">
-							${cnt = cnt + 1}
-						</div>
+						<div style="display:none">${cnt = cnt + 1}</div>
 						</td>
 						<c:if test="${cnt % 3 == 0}">
 							<tr></tr>
@@ -112,7 +100,7 @@
 			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
 			<c:if test="${searchResult == true}">
 				<script type="text/javascript">
-					window.scrollTo(0,400);
+					window.scrollTo(0,470);
 				</script>
 			</c:if>
 		</div>

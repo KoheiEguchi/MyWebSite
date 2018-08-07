@@ -33,6 +33,7 @@ public class Ranking extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -40,12 +41,15 @@ public class Ranking extends HttpServlet {
 			return;
 		}
 
+		//DAOを参照
 		ArrayList<Item>itemList = ItemDAO.ranking();
 		request.setAttribute("itemList", itemList);
 
+		//表示順位の初期値を6に設定
 		int rankNum = 6;
 		request.setAttribute("rankNum", rankNum);
 
+		//ランキングページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
 		dispatcher.forward(request, response);
 
@@ -55,13 +59,13 @@ public class Ranking extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		response.setContentType("text/html; charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-		String searchName = request.getParameter("searchName");
-
+        //入力された情報を取得
+        String searchName = request.getParameter("searchName");
 		String searchType = request.getParameter("searchType");
-
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchFavorite = request.getParameter("searchFavorite");
@@ -71,23 +75,45 @@ public class Ranking extends HttpServlet {
 		int userId = Integer.parseInt(strUserId);
 
 		String strRankNum = request.getParameter("rankNum");
-		int rankNum = Integer.parseInt(strRankNum);
+		try {
+			int rankNum = Integer.parseInt(strRankNum);
 
-		if(rankNum <= 0) {
-			request.setAttribute("errMsg", "その順位では商品を表示できません。");
-			rankNum = 6;
-		}else {
-		ItemDAO itemDAO = new ItemDAO();
-		ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId, rankNum);
+			//表示順位が0以下の時
+			if(rankNum <= 0) {
+				request.setAttribute("errMsg", "その順位では商品を表示できません。");
 
-		request.setAttribute("itemList", itemList);
+				//最初と同様に表示
+				ArrayList<Item>itemList = ItemDAO.ranking();
+				request.setAttribute("itemList", itemList);
+
+				rankNum = 6;
+
+			}else {
+				ItemDAO itemDAO = new ItemDAO();
+				//取得したデータを引数にしてDAOへ
+				ArrayList<Item> itemList = itemDAO.rankingSearch(searchName, searchType, searchPrice, searchFavorite, userId, rankNum);
+
+				request.setAttribute("itemList", itemList);
+
+				//検索後につき表示を変更
+				boolean searchResult = true;
+				request.setAttribute("searchResult", searchResult);
+			}
+			request.setAttribute("rankNum", rankNum);
+
+		//表示順位に数字が入力されなかった時
+		}catch(NumberFormatException e) {
+			request.setAttribute("errMsg", "順位を1以上の整数で入力してください。(算用数字のみ)");
+
+			//最初と同様に表示
+			ArrayList<Item>itemList = ItemDAO.ranking();
+			request.setAttribute("itemList", itemList);
+
+			int rankNum = 6;
+			request.setAttribute("rankNum", rankNum);
 		}
 
-		request.setAttribute("rankNum", rankNum);
-
-		boolean searchResult = true;
-		request.setAttribute("searchResult", searchResult);
-
+		//ランキングページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/ranking.jsp");
 		dispatcher.forward(request, response);
 	}

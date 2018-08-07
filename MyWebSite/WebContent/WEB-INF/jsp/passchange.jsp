@@ -17,17 +17,15 @@
 <body>
 	<div id="contents">
 		<div id="header-bk">
-			<div id="header">
+			<div id="header" class="headerZ">
 			</div>
 		</div>
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">パスワード再設定</font>
-			<c:if test="${errMsg != null}" >
-	    			<div class="alert alert-danger" role="alert">
-		 				${errMsg}
-					</div>
-				</c:if>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<form action="PassChange" method="post" name="usercheck">
 				<c:if test="${check == null}">
 					<p class="formTitle">ログインID
@@ -35,7 +33,7 @@
 					<p class="formTitle">ユーザー名
 					<p><input type="text" class="longText" name="userName" placeholder="User Name">
 					<p class="formTitle">住所
-					<p><textarea name="address" cols="38" rows="2" placeholder="Address"></textarea>
+					<p><input type="text" class="addressText" name="address" placeholder="Address">
 					<p><input class="button btn-success" type="submit" value="検索">
 				</c:if>
 			</form>

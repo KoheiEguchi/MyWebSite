@@ -33,12 +33,14 @@ public class BuyCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
+		//想定されていない接続方法で来た場合トップページを表示
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 		dispatcher.forward(request, response);
 		return;
@@ -48,11 +50,15 @@ public class BuyCheck extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
+
 		HttpSession session = request.getSession();
 		try {
+			//入力された配送方法を取得
 			String deliveryMethod = request.getParameter("deliveryMethod");
 
+			//取得した配送方法を元に送料を取得
 			int deliPrice = 0;
 			switch(deliveryMethod) {
 				case "normal" : deliPrice = 0;
@@ -67,33 +73,46 @@ public class BuyCheck extends HttpServlet {
 				deliveryMethod = "日時指定配送";
 				break;
 			}
+			//カゴのリストを参照
 			ArrayList<Item> cart = (ArrayList<Item>) session.getAttribute("cart");
 
+			//単価×個数を全商品分足して小計を算出
 			int allPrice = 0;
 			for (Item item : cart) {
 				allPrice += item.getPrice() * item.getCount();
 			}
+			//小計に送料を足して合計金額を算出
 			int totalPrice = allPrice + deliPrice;
 
+			//ユーザーのIDを取得
 			String strBuyId = request.getParameter("id");
 			int buyId = Integer.parseInt(strBuyId);
 
-			//String strCount = request.getParameter("count");
-			//int count = Integer.parseInt(strCount);//カゴから一度ほかの画面に行くとcount=nullになる
-
-
+			//入力された配送先住所を取得
 			String deliAddress = request.getParameter("deliAddress");
+			//住所が空欄の場合
+			if(deliAddress.isEmpty()) {
+				request.setAttribute("errMsg", "配送先の住所を入力して下さい。");
 
+				//カゴ内一覧ページへ移行
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/incart.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			//各情報を取得
 			Buy buy = new Buy();
 			buy.setBuyId(buyId);
-			//buy.setCount(count);
 			buy.setAllPrice(allPrice);
 			buy.setTotalPrice(totalPrice);
 			buy.setDeliveryMethod(deliveryMethod);
 			buy.setDeliPrice(deliPrice);
 			buy.setDeliAddress(deliAddress);
 
+			//購入情報をセッションに置く
 			session.setAttribute("buy", buy);
+
+			//購入確認ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/buycheck.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

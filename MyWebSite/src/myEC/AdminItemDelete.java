@@ -33,12 +33,14 @@ public class AdminItemDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
+		//管理者以外のユーザーはトップページを表示
 		User user = (User)session.getAttribute("user");
 		int adminCheck = user.getId();
 		if(adminCheck != 1) {
@@ -47,12 +49,15 @@ public class AdminItemDelete extends HttpServlet {
 			return;
 		}
 
+		//商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 
 		request.setAttribute("item",item);
 
+		//商品削除ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminitemdelete.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -61,14 +66,18 @@ public class AdminItemDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//文字化け防止
 		request.setCharacterEncoding("UTF-8");
 
+		//商品のIDを取得
 		String strId = request.getParameter("id");
 		int id = Integer.parseInt(strId);
 
 		ItemDAO itemDAO = new ItemDAO();
+		//取得したIDを引数にしてDAOへ
 		itemDAO.ItemDelete(id);
 
+		//管理用トップページを再表示
 		response.sendRedirect("Admin");
 	}
 
