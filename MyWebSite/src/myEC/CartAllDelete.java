@@ -44,6 +44,13 @@ public class CartAllDelete extends HttpServlet {
 		boolean cartAD = true;
 		request.setAttribute("cartAD", cartAD);
 
+		//ユーザー情報ページから来た場合表示を変える
+		String strFromData = request.getParameter("fromData");
+		if(strFromData != null) {
+		boolean fromData = Boolean.valueOf(strFromData);
+			request.setAttribute("fromData", fromData);
+		}
+
 		//カゴ内一覧ページを再表示
 		RequestDispatcher dispatcher = request.getRequestDispatcher("InCart");
 		dispatcher.forward(request, response);

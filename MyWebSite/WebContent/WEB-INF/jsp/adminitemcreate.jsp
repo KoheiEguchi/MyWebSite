@@ -24,9 +24,9 @@
 			<jsp:include page="alert.jsp" flush="true" />
 
 			<form action="AdminItemCreate" method="post" name="itemCreate">
-				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲い、改行位置に<\br>をつけること)
-				<p><textarea name="itemName" cols="100" rows="1" placeholder="Item Name"></textarea>
-				<p class="formTitle">商品詳細
+				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)
+				<p><textarea name="itemName" cols="100" rows="2" placeholder="Item Name"></textarea>
+				<p class="formTitle">商品詳細(改行位置に<\br>をつけること)
 				<p><textarea name="itemDetail" cols="100" rows="10" placeholder="Item Detail"></textarea>
 				<p class="formTitle">種類
 				<p><select class="longText" name="type">

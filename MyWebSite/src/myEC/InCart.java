@@ -62,7 +62,8 @@ public class InCart extends HttpServlet {
 			Object objCartAD = request.getAttribute("cartAD");
 			if(objCartAD != null) {
 				String strCartAD = objCartAD.toString();
-				Boolean cartAD = Boolean.parseBoolean(strCartAD);
+				Boolean cartAD = Boolean.valueOf(strCartAD);
+				//Boolean cartAD = Boolean.parseBoolean(strCartAD);
 				if(cartAD == true) {
 					cartActionMessage = "カゴの中を全て削除しました";
 				}
@@ -72,9 +73,10 @@ public class InCart extends HttpServlet {
 
 			request.setAttribute("cartActionMessage", cartActionMessage);
 
+			//ユーザー情報ページから来た場合表示を変える
 			String strFromData = request.getParameter("fromData");
-			boolean fromData = Boolean.getBoolean(strFromData);
-			if(fromData = true) {
+			if(strFromData != null) {
+			boolean fromData = Boolean.valueOf(strFromData);
 				request.setAttribute("fromData", fromData);
 			}
 

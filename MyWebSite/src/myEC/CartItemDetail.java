@@ -50,6 +50,13 @@ public class CartItemDetail extends HttpServlet {
 
 		request.setAttribute("item",item);
 
+		//ユーザー情報ページから来た場合表示を変える
+		String strFromData = request.getParameter("fromData");
+		if(strFromData != null) {
+		boolean fromData = Boolean.valueOf(strFromData);
+			request.setAttribute("fromData", fromData);
+		}
+
 		//カゴ内一覧から入った場合の表示にする
 		request.setAttribute("link", "cart");
 

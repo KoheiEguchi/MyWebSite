@@ -68,6 +68,10 @@ public class UserData extends HttpServlet {
 
 		request.setAttribute("boughtList", boughtList);
 
+		//カゴでの表示変更のため変数を置く
+		boolean fromData = true;
+		request.setAttribute("fromData", fromData);
+
 		//ユーザー情報ページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userdata.jsp");
 		dispatcher.forward(request, response);

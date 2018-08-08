@@ -61,6 +61,7 @@ html,body{
 
 .msgZ {
 	z-index: 1;
+	text-align: center;
 }
 
 .userName {

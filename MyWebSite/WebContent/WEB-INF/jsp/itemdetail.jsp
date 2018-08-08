@@ -59,7 +59,7 @@
 				</c:if>
 				<c:if test = "${link == 'cart'}">
 					　×　${item.count}個　＝　<font size="5" color="red">${item.countPrice}円</font>
-					<p class="topmarginShort"><a href="CartDelete?id=${item.id}">
+					<p class="topmarginShort"><a href="CartDelete?id=${item.id}&fromData=${fromData == true}">
 						<input class="inCartButton button btn-danger" type="button" value="カゴから出す">
 					</a>
 					<a href="InCart"><input class="cancelButton button btn-success" type="button" value="戻る"></a>

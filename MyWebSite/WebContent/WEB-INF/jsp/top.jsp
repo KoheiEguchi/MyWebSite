@@ -12,7 +12,9 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<style type="text/css">
 		body{}
+		.tableLink{display: block; width: 100%; height: 100%;}
 		.starIcon{color: gold;}
+		.cellSize{width: 500px; height: 250px;}
 	</style>
 </head>
 
@@ -33,11 +35,11 @@
 						0
 					</c:set>
 					<c:forEach var="item" items="${itemList}">
-						<td class="table-img">
+						<td class="table-img cellSize">
 							<div class="box">
 								<div class="box-img">
-									<a href="ItemDetail?id=${item.id}&userId=${user.id}">
-										<img src="${item.fileName}" width="400px" height="200px">
+									<a class="tableLink" href="ItemDetail?id=${item.id}&userId=${user.id}">
+										<img src="${item.fileName}" width="440px" height="220px">
 									</a>
 								</div>
 								<div class="box-text">
@@ -96,11 +98,11 @@
 						0
 					</c:set>
 					<c:forEach var="searchItem" items="${searchItemList}">
-						<td class="table-img">
+						<td class="table-img cellSize">
 							<div class="box">
 								<div class="box-img">
 									<a href="ItemDetail?id=${searchItem.id}&userId=${user.id}">
-										<img src="${searchItem.fileName}" width="400px" height="200px">
+										<img src="${searchItem.fileName}" width="440px" height="220px">
 									</a>
 								</div>
 								<div class="box-text">

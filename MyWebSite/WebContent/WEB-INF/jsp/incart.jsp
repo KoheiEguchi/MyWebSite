@@ -13,6 +13,8 @@
 		body{}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
+		.cellSize{width: 440px;}
+
 	</style>
 </head>
 
@@ -33,7 +35,7 @@
 							<input class="button btn-info" type="button" value="ユーザー情報に戻る">
 						</a>
 					</c:if>
-					<c:if test="${fromData == null}">
+					<c:if test="${fromData != true}">
 						<p class="topmarginShort"><a href="Top">
 							<input class="button btn-info" type="button" value="買い物を続ける">
 						</a>
@@ -45,7 +47,7 @@
 							<input class="leftButton button btn-info" type="button" value="ユーザー情報に戻る">
 						</a>
 					</c:if>
-					<c:if test="${fromData == null}">
+					<c:if test="${fromData != true}">
 						<p class="topmarginShort"><a href="Top">
 							<input class="leftButton button btn-info" type="button" value="買い物を続ける">
 						</a>
@@ -79,8 +81,8 @@
 							<td class="table-img">
 								<div class="box">
 									<div class="box-img">
-										<a href="CartItemDetail?id=${item.id}&count=${item.count}">
-											<img src="${item.fileName}" width="400px" height="200px">
+										<a href="CartItemDetail?id=${item.id}&count=${item.count}&fromData=${fromData == true}">
+											<img src="${item.fileName}" width="440px" height="220px">
 										</a>
 									</div>
 									<div class="box-text">
@@ -102,7 +104,7 @@
 				</table>
 			</form>
 			<c:if test="${noCart == null}">
-				<p><a href="CartAllDelete"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
+				<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
 			</c:if>
 		</div>
 

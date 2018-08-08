@@ -63,6 +63,14 @@ public class CartDelete extends HttpServlet {
 				request.setAttribute("noCart", noCart);
 			}
 			request.setAttribute("cartActionMessage", cartActionMessage);
+
+			//ユーザー情報ページから来た場合表示を変える
+			String strFromData = request.getParameter("fromData");
+			if(strFromData != null) {
+			boolean fromData = Boolean.valueOf(strFromData);
+				request.setAttribute("fromData", fromData);
+			}
+
 			//カゴ内一覧ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/incart.jsp");
 			dispatcher.forward(request, response);
@@ -78,8 +86,6 @@ public class CartDelete extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*HttpSession session = request.getSession();
-		session.removeAttribute("cart");
-		response.sendRedirect("InCart");*/
+		doGet(request, response);
 	}
 }

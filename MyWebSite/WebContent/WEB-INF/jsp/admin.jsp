@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		.cellSize{width: 440px;}
 	</style>
 </head>
 
@@ -56,11 +57,11 @@
 						0
 					</c:set>
 					<c:forEach var="item" items="${itemList}">
-						<td class="table-img">
+						<td class="table-img cellSize">
 							<div class="box">
 								<div class="box-img">
 									<a href="AdminItemDetail?id=${item.id}">
-										<img src="${item.fileName}" width="400px" height="200px">
+										<img src="${item.fileName}" width="440px" height="220px">
 									</a>
 								</div>
 								<div class="box-text">
@@ -83,11 +84,11 @@
 						0
 					</c:set>
 					<c:forEach var="searchItem" items="${searchItemList}">
-						<td class="table-img">
+						<td class="table-img cellSize">
 							<div class="box">
 								<div class="box-img">
 									<a href="AdminItemDetail?id=${searchItem.id}">
-										<img src="${searchItem.fileName}" width="400px" height="200px">
+										<img src="${searchItem.fileName}" width="440px" height="220px">
 									</a>
 								</div>
 								<div class="box-text">

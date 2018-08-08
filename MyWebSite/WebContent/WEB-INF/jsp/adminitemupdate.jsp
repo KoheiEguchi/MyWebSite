@@ -24,9 +24,9 @@
 			<jsp:include page="alert.jsp" flush="true" />
 
 			<form action="AdminItemUpdate?id=${item.id}" method="post">
-				<p class="formTitle">商品名
-				<p><textarea name="itemName" cols="100" rows="1">${item.itemName}</textarea>
-				<p class="formTitle">商品詳細
+				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)
+				<p><textarea name="itemName" cols="100" rows="2">${item.itemName}</textarea>
+				<p class="formTitle">商品詳細(改行位置に<\br>をつけること)
 				<p><textarea name="itemDetail" cols="100" rows="10">${item.itemDetail}</textarea>
 				<p class="formTitle">種類
 				<p><select class="longText" name="type">

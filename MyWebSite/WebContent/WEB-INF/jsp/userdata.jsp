@@ -13,6 +13,7 @@
 		body{}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
+		.linkShort{width:1%}
 	</style>
 </head>
 
@@ -22,15 +23,17 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">ユーザー情報</font>
-			<p class="topmarginShort"><a href="InCart?fromData"><input class="button btn-primary" type="button" value="カゴの中を見る"></a>
+			<p class="topmarginShort"><a href="InCart?fromData=${fromData == true}">
+				<input class="button btn-primary" type="button" value="カゴの中を見る">
+			</a>
 			<p class="topmarginShort"><font size="6">${user.userName}さんの情報</font>
 			<table class="table">
-				<tr><td>ログインID</td><td>${user.loginId}</td></tr>
-				<tr><td>住所</td><td>${user.address}</td></tr>
-				<tr><td>登録日時</td><td>${user.createDate}${user.createTime}</td></tr>
-				<tr><td>更新日時</td><td>${user.updateDate}${user.updateTime}</td></tr>
+				<tr><th>ログインID</th><td>${user.loginId}</td></tr>
+				<tr><th>住所</th><td>${user.address}</td></tr>
+				<tr><th>登録日時</th><td>${user.createDate}${user.createTime}</td></tr>
+				<tr><th>更新日時</th><td>${user.updateDate}${user.updateTime}</td></tr>
 			</table>
-			<p><a href="UserUpdate?id=${user.id}"><input class="leftButton button btn-success" type="button" value="ユーザー情報更新"></a>
+			<p><a class="linkShort" href="UserUpdate?id=${user.id}"><input class="leftButton button btn-success" type="button" value="ユーザー情報更新"></a>
 			<a href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<a href="UserDelete?id=${user.id}"><input class="rightButton button btn-danger" type="button" value="退会"></a>
 			<p><font size="5">購入履歴</font>
