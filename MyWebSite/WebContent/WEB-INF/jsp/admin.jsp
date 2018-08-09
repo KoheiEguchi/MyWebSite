@@ -11,6 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		.noLine{text-decoration: none; padding-bottom: 1px;}
 		.cellSize{width: 440px;}
 	</style>
 </head>
@@ -59,16 +62,21 @@
 					<c:forEach var="item" items="${itemList}">
 						<td class="table-img cellSize">
 							<div class="box">
-								<div class="box-img">
-									<a href="AdminItemDetail?id=${item.id}">
-										<img src="${item.fileName}" width="440px" height="220px">
-									</a>
-								</div>
-								<div class="box-text">
-									${item.itemName}
-									<p><font color="red">${item.price}円</font>
-									<p>総売り上げ数　${item.soldNum}個
-								</div>
+								<a class="noLine" href="AdminItemDetail?id=${item.id}">
+									<img src="${item.fileName}" width="440px" height="220px">
+									<br>
+									<font color="black">
+										${item.itemName}
+									</font>
+									<br>
+									<font color="red">
+										${item.price}円
+									</font>
+									<br>
+									<font color="black">
+										総売り上げ数　${item.soldNum}個
+									</font>
+								</a>
 							</div>
 						</td>
 						<div style="display:none">${cnt = cnt + 1}</div>
@@ -86,19 +94,21 @@
 					<c:forEach var="searchItem" items="${searchItemList}">
 						<td class="table-img cellSize">
 							<div class="box">
-								<div class="box-img">
-									<a href="AdminItemDetail?id=${searchItem.id}">
-										<img src="${searchItem.fileName}" width="440px" height="220px">
-									</a>
-								</div>
-								<div class="box-text">
-									${searchItem.itemName}
+								<a class="noLine" href="AdminItemDetail?id=${searchItem.id}">
+									<img src="${searchItem.fileName}" width="440px" height="220px">
+									<br>
+									<font color="black">
+										${searchItem.itemName}
+									</font>
 									<br>
 									<font color="red">
 										${searchItem.price}円
 									</font>
-									<p>総売り上げ数　${searchItem.soldNum}個
-								</div>
+									<br>
+									<font color="black">
+										総売り上げ数　${searchItem.soldNum}個
+									</font>
+								</a>
 							</div>
 						</td>
 						<div style="display:none">

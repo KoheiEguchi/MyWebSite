@@ -33,9 +33,9 @@
 				<tr><th>登録日時</th><td>${user.createDate}${user.createTime}</td></tr>
 				<tr><th>更新日時</th><td>${user.updateDate}${user.updateTime}</td></tr>
 			</table>
-			<p><a class="linkShort" href="UserUpdate?id=${user.id}"><input class="leftButton button btn-success" type="button" value="ユーザー情報更新"></a>
+			<p><a class="leftButton" href="UserUpdate?id=${user.id}"><input class="button btn-success" type="button" value="ユーザー情報更新"></a>
 			<a href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
-			<a href="UserDelete?id=${user.id}"><input class="rightButton button btn-danger" type="button" value="退会"></a>
+			<a class="rightButton" href="UserDelete?id=${user.id}"><input class="button btn-danger" type="button" value="退会"></a>
 			<p><font size="5">購入履歴</font>
 			<table class="table">
 				<tr>

@@ -38,7 +38,7 @@
 					<tr><th>合計金額</th><td colspan="3"></td><td><font size="4" color="red"><b>${buy.totalPrice}円</b></font></td></tr>
 				</table>
 				<p class="topmargin"><input class="leftButton button btn-success" type="submit" value="購入決定する">
-				<a href="InCart?id=${user.id}"><input class="rightButton button btn-danger" type="button" value="戻る"></a>
+				<a class="rightButton" href="InCart?id=${user.id}"><input class="button btn-danger" type="button" value="戻る"></a>
 			</form>
 		</div>
 

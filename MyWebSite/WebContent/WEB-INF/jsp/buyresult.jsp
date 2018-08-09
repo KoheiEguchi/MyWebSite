@@ -11,6 +11,10 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		.noLine{text-decoration: none; padding-bottom: 1px;}
+		.cellSize{width: 500px; height: 250px;}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>
@@ -23,8 +27,10 @@
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">購入完了</font>
 			<p><font size="6">お買い上げありがとうございます。</font>
-			<p class="topmargin"><a href="UserData?id=${user.id}"><input class="leftButton button btn-success" type="button" value="ユーザー情報確認"></a>
-			<a href="Top"><input class="rightButton button btn-info" type="button" value="トップへ戻る"></a>
+			<p class="topmargin"><a class="leftButton" href="UserData?id=${user.id}">
+				<input class="button btn-success" type="button" value="ユーザー情報確認">
+			</a>
+			<a class="rightButton" href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<p class="topmarginShort"><font size="5">あなたへのおすすめ</font>
 			<table class="table tablePic">
 				<tr>
@@ -32,17 +38,19 @@
 						0
 					</c:set>
 					<c:forEach var="item" items="${itemList}">
-						<td class="table-img">
+						<td class="table-img cellSize">
 							<div class="box">
-								<div class="box-img">
-									<a href="ItemDetail?id=${item.id}">
-										<img src="${item.fileName}" width="400px" height="200px">
-									</a>
-								</div>
-								<div class="box-text">
-									${item.itemName}
-									<p><font color="red">${item.price}円</font>
-								</div>
+								<a class="noLine" href="ItemDetail?id=${item.id}&userId=${user.id}">
+									<img src="${item.fileName}" width="440px" height="220px">
+									<br>
+									<font color="black">
+										${item.itemName}
+									</font>
+									<br>
+									<font color="red">
+										${item.price}円
+									</font>
+								</a>
 							</div>
 						</td>
 						<div style="display:none">

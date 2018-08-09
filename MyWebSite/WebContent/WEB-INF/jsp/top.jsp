@@ -12,9 +12,11 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<style type="text/css">
 		body{}
-		.tableLink{display: block; width: 100%; height: 100%;}
-		.starIcon{color: gold;}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		.noLine{text-decoration: none; padding-bottom: 1px;}
 		.cellSize{width: 500px; height: 250px;}
+		.starIcon{color: gold;}
 	</style>
 </head>
 
@@ -37,18 +39,17 @@
 					<c:forEach var="item" items="${itemList}">
 						<td class="table-img cellSize">
 							<div class="box">
-								<div class="box-img">
-									<a class="tableLink" href="ItemDetail?id=${item.id}&userId=${user.id}">
-										<img src="${item.fileName}" width="440px" height="220px">
-									</a>
-								</div>
-								<div class="box-text">
-									${item.itemName}
+								<a class="noLine" href="ItemDetail?id=${item.id}&userId=${user.id}">
+									<img src="${item.fileName}" width="500px" height="250px">
+									<br>
+									<font color="black">
+										${item.itemName}
+									</font>
 									<br>
 									<font color="red">
 										${item.price}円
 									</font>
-								</div>
+								</a>
 							</div>
 						</td>
 						<div style="display:none">
@@ -100,18 +101,17 @@
 					<c:forEach var="searchItem" items="${searchItemList}">
 						<td class="table-img cellSize">
 							<div class="box">
-								<div class="box-img">
-									<a href="ItemDetail?id=${searchItem.id}&userId=${user.id}">
-										<img src="${searchItem.fileName}" width="440px" height="220px">
-									</a>
-								</div>
-								<div class="box-text">
-									${searchItem.itemName}
+								<a class="tableLink noLine" href="ItemDetail?id=${searchItem.id}&userId=${user.id}">
+									<img src="${searchItem.fileName}" width="440px" height="220px">
+									<br>
+									<font color="black">
+										${searchItem.itemName}
+									</font>
 									<br>
 									<font color="red">
 										${searchItem.price}円
 									</font>
-								</div>
+								</a>
 							</div>
 						</td>
 						<div style="display:none">

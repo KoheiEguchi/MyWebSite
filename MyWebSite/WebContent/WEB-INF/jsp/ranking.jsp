@@ -12,9 +12,12 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<style type="text/css">
 		body{}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		.noLine{text-decoration: none; padding-bottom: 1px;}
+		.cellSize{width: 600px;}
 		.centerText{text-align: center;}
 		.starIcon{color: gold;}
-		.cellSize{width: 600px;}
 	</style>
 </head>
 
@@ -83,11 +86,17 @@
 									</c:otherwise>
 								</c:choose>
 								<br>
-								<a href="ItemDetail?id=${item.id}&userId=${user.id}"><img src="${item.fileName}" width="600px" height="300px"></a>
-								<br>
-								${item.itemName}
-								<br>
-								<font color="red">${item.price}円</font>
+								<a class="noLine" href="ItemDetail?id=${item.id}&userId=${user.id}">
+									<img src="${item.fileName}" width="600px" height="300px">
+									<br>
+									<font color="black">
+										${item.itemName}
+									</font>
+									<br>
+									<font color="red">
+										${item.price}円
+									</font>
+								</a>
 							</font>
 						<div style="display:none">${cnt = cnt + 1}</div>
 						</td>

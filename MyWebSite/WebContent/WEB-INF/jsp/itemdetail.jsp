@@ -12,11 +12,12 @@
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 	<style type="text/css">
 		body{}
-		.rightText{text-align:right;}
-		.inCartButton{margin-right:10%;}
-		.cancelButton{margin-left:10%;}
+		.rightText{text-align: right;}
+		.inCartButton{margin-right: 10%;}
+		.cancelButton{margin-left: 10%;}
 		.starIcon{color: gold;}
 		.hiddenButton{display: none;}
+		a:hover{text-decoration: none; padding-bottom: 1px;}
 	</style>
 </head>
 
@@ -29,7 +30,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="InCart?id=${item.id}&userId=${user.id}" method="post">
+			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" onSubmit="return double()">
 				<p><font size="6"><b>${item.itemName}</b></font>
 				<p class="rightText">
 					<c:if test = "${favorite == true}">
@@ -55,15 +56,26 @@
 							<input class="button btn-warning" type="button" value="お気に入り解除">
 						</a>
 					</c:if>
-					<a href="Top"><input class="cancelButton button btn-danger" type="button" value="買わない"></a>
+					<a class="cancelButton" href="Top"><input class="button btn-danger" type="button" value="買わない"></a>
 				</c:if>
 				<c:if test = "${link == 'cart'}">
 					　×　${item.count}個　＝　<font size="5" color="red">${item.countPrice}円</font>
-					<p class="topmarginShort"><a href="CartDelete?id=${item.id}&fromData=${fromData == true}">
-						<input class="inCartButton button btn-danger" type="button" value="カゴから出す">
+					<p class="topmarginShort"><a class="inCartButton" href="CartDelete?id=${item.id}&fromData=${fromData == true}">
+						<input class="button btn-danger" type="button" value="カゴから出す">
 					</a>
-					<a href="InCart"><input class="cancelButton button btn-success" type="button" value="戻る"></a>
+					<a class="cancelButton" href="InCart"><input class="button btn-success" type="button" value="戻る"></a>
 				</c:if>
+				<script type="text/javascript">
+					var set = 0;
+					function double(){
+						if(set == 0){
+							set = 1;
+						}else{
+							alert("二重クリックはできません。");
+							return false;
+						}
+					}
+				</script>
 			</form>
 		</div>
 

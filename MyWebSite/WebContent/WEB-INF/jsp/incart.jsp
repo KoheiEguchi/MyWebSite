@@ -11,9 +11,12 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		.noLine{text-decoration: none; padding-bottom: 1px;}
+		.cellSize{width: 500px; height: 250px;}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
-		.cellSize{width: 440px;}
 
 	</style>
 </head>
@@ -43,13 +46,13 @@
 				</c:if>
 				<c:if test="${noCart == null}">
 					<c:if test="${fromData == true}">
-						<p class="topmarginShort"><a href="UserData?id=${user.id}">
-							<input class="leftButton button btn-info" type="button" value="ユーザー情報に戻る">
+						<p class="topmarginShort"><a class="leftButton" href="UserData?id=${user.id}">
+							<input class="button btn-info" type="button" value="ユーザー情報に戻る">
 						</a>
 					</c:if>
 					<c:if test="${fromData != true}">
-						<p class="topmarginShort"><a href="Top">
-							<input class="leftButton button btn-info" type="button" value="買い物を続ける">
+						<p class="topmarginShort"><a class="leftButton" href="Top">
+							<input class="button btn-info" type="button" value="買い物を続ける">
 						</a>
 					</c:if>
 					<input class="rightButton button btn-success" type="submit" value="レジへ進む">
@@ -78,19 +81,25 @@
 							0
 						</c:set>
 						<c:forEach var="item" items="${cart}">
-							<td class="table-img">
+							<td class="table-img cellSize">
 								<div class="box">
-									<div class="box-img">
-										<a href="CartItemDetail?id=${item.id}&count=${item.count}&fromData=${fromData == true}">
-											<img src="${item.fileName}" width="440px" height="220px">
-										</a>
-									</div>
-									<div class="box-text">
-										${item.itemName}
-										<p><font color="red">${item.price}円</font>
-										　×　${item.count}個
-										　＝　<font size="5" color="red">${item.countPrice}円</font>
-									</div>
+									<a class="noLine" href="CartItemDetail?id=${item.id}&count=${item.count}&fromData=${fromData == true}">
+										<img src="${item.fileName}" width="440px" height="220px">
+										<br>
+										<font color="black">
+											${item.itemName}
+										</font>
+										<br>
+										<font color="red">
+											${item.price}円
+										</font>
+										<font color="black">
+											　×　${item.count}個　＝　
+										</font>
+										<font size="5" color="red">
+											${item.countPrice}円
+										</font>
+									</a>
 								</div>
 							</td>
 							<div style="display:none">
@@ -103,9 +112,21 @@
 					</tr>
 				</table>
 			</form>
+			<form name="cartAD">
 			<c:if test="${noCart == null}">
-				<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
+				<input type="button" name="cartAD" value="カゴを空にする" onClick="cartAD">
+				<%--<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>--%>
 			</c:if>
+			</form>
+			<script type="text/javascript">
+				function cartAD{
+					href = "CartAllDelete?fromData=${fromData == true}";
+				}
+				ret = confirm("本当？");
+				if(ret == true){
+					location.href = href;
+				}
+			</script>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />
