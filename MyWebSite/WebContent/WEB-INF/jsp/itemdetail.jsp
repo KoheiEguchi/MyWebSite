@@ -30,7 +30,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" onSubmit="return double()">
+			<form action="InCart?id=${item.id}&userId=${user.id}" method="post">
 				<p><font size="6"><b>${item.itemName}</b></font>
 				<p class="rightText">
 					<c:if test = "${favorite == true}">
@@ -65,17 +65,6 @@
 					</a>
 					<a class="cancelButton" href="InCart"><input class="button btn-success" type="button" value="戻る"></a>
 				</c:if>
-				<script type="text/javascript">
-					var set = 0;
-					function double(){
-						if(set == 0){
-							set = 1;
-						}else{
-							alert("二重クリックはできません。");
-							return false;
-						}
-					}
-				</script>
 			</form>
 		</div>
 

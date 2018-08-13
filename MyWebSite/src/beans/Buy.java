@@ -1,7 +1,6 @@
 package beans;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 public class Buy  implements Serializable {
 	private int id;
@@ -16,6 +15,7 @@ public class Buy  implements Serializable {
 	private String deliAddress;
 	private String buyDate;
 	private String buyTime;
+	private String name;
 
 	public Buy() {
 	}
@@ -33,6 +33,22 @@ public class Buy  implements Serializable {
 		this.buyDate = setBuyDate;
 		this.buyTime = setBuyTime;
 		this.buyId = setBuyId;
+	}
+
+	public Buy(int setBuyerId, int setTotalPrice, String setName) {
+		this.buyerId = setBuyerId;
+		this.totalPrice = setTotalPrice;
+		this.name = setName;
+	}
+
+	public Buy(int setId, int setBuyerId, int setBuyId, int setItemId, int setCount, int setTotalPrice, String setDeliveryMethod) {
+		this.id = setId;
+		this.buyerId = setBuyerId;
+		this.buyId = setBuyId;
+		this.itemId = setItemId;
+		this.count = setCount;
+		this.totalPrice = setTotalPrice;
+		this.deliveryMethod = setDeliveryMethod;
 	}
 
 	public Buy(int setId) {
@@ -111,9 +127,15 @@ public class Buy  implements Serializable {
 	public void setBuyTime(String buyTime) {
 		this.buyTime = buyTime;
 	}
-	public String getFormatDateC() {
+	/*public String getFormatDateC() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分");
 		return sdf.format(buyDate);
+	}*/
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

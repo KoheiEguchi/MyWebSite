@@ -24,7 +24,8 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">管理者用トップページ</font>
-			<p class="topmarginShort"><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
+			<p class="topmarginShort"><a href="AdminOrder"><input class="button btn-info" type="button" value="未発送一覧"></a>
+			<p><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
 			<form action="Admin?userId=${user.id}" method="post">
 				<p class="topmarginShort formTitle">名前検索
 				<p><input type="text" class="longText" name="searchName" placeholder="検索語句"></input>

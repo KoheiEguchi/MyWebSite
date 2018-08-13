@@ -409,4 +409,123 @@ public class BuyDAO {
 		return soldHistoryList;
 	}
 
+	public static ArrayList<Buy> allOrder(){
+		//DB起動
+		Connection con = null;
+		PreparedStatement st = null;
+        ArrayList<Buy> orderList = new ArrayList<Buy>();
+        try {
+        	con = DBManager.getConnection();
+        	//未発送の全注文記録を取得
+        	st = con.prepareStatement(
+        			"SELECT buy.buyer_id, buy.total_price, buy.buy_date, user.name FROM buy "
+        			+ "JOIN user ON buy.buyer_id = user.id "
+        			+ "WHERE buy.delivery_check = '0' ORDER BY buy.buy_date");
+            ResultSet rs = st.executeQuery();
+
+            //各情報を取得し注文リストに追加
+            while (rs.next()) {
+                int buyerId = rs.getInt("buyer_id");
+                int totalPrice = rs.getInt("total_price");
+                String name = rs.getString("name");
+                //購入日時は年月日と時分秒で分けて取得
+                Date subBuyDate = rs.getDate("buy_date");
+                Time subBuyTime = rs.getTime("buy_date");
+
+                //購入日時の書体を変更
+				SimpleDateFormat fmD = new SimpleDateFormat("yyyy'年'M'月'dd'日'");
+	            fmD.setLenient(false);
+	            SimpleDateFormat fmT = new SimpleDateFormat("k'時'mm'分'ss'秒'");
+	            fmT.setLenient(false);
+
+	            String buyDate = fmD.format(subBuyDate);
+	            String buyTime = fmT.format(subBuyTime);
+
+	            Buy order = new Buy(buyerId, totalPrice, name);
+	            order.setBuyDate(buyDate);
+	            order.setBuyTime(buyTime);
+
+	            //注文リストに追加
+	            orderList.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+        //DB切断
+        } finally {
+        	 if (con != null) {
+                 try {
+                     con.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                     return null;
+                 }
+             }
+        }
+        //注文リストを戻す
+        return orderList;
+	}
+
+	public static ArrayList<Buy> selectOrder(String select){
+		//DB起動
+		Connection con = null;
+		PreparedStatement st = null;
+        ArrayList<Buy> orderList = new ArrayList<Buy>();
+        try {
+        	con = DBManager.getConnection();
+        	//未発送の全注文記録を取得し選択された基準で並び替え
+        	st = con.prepareStatement(
+        			"SELECT buy.buyer_id, buy.total_price, buy.buy_date, user.name FROM buy "
+        			+"JOIN user ON buy.buyer_id = user.id "
+        			+"WHERE buy.delivery_check = '0' ORDER BY ?");
+        	st.setString(1, select);
+            ResultSet rs = st.executeQuery();
+
+            //各情報を取得し注文リストに追加
+            while (rs.next()) {
+                int buyerId = rs.getInt("buyer_id");
+                int totalPrice = rs.getInt("total_price");
+                String name = rs.getString("name");
+                //購入日時は年月日と時分秒で分けて取得
+                Date subBuyDate = rs.getDate("buy_date");
+                Time subBuyTime = rs.getTime("buy_date");
+
+                //購入日時の書体を変更
+				SimpleDateFormat fmD = new SimpleDateFormat("yyyy'年'M'月'dd'日'");
+	            fmD.setLenient(false);
+	            SimpleDateFormat fmT = new SimpleDateFormat("k'時'mm'分'ss'秒'");
+	            fmT.setLenient(false);
+
+	            String buyDate = fmD.format(subBuyDate);
+	            String buyTime = fmT.format(subBuyTime);
+
+	            Buy order = new Buy(buyerId, totalPrice, name);
+	            order.setBuyDate(buyDate);
+	            order.setBuyTime(buyTime);
+
+	            //注文リストに追加
+	            orderList.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+        //DB切断
+        } finally {
+        	 if (con != null) {
+                 try {
+                     con.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                     return null;
+                 }
+             }
+        }
+        //注文リストを戻す
+        return orderList;
+	}
+
 }

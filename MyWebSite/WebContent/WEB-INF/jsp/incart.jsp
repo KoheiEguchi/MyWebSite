@@ -17,7 +17,6 @@
 		.cellSize{width: 500px; height: 250px;}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
-
 	</style>
 </head>
 
@@ -112,21 +111,9 @@
 					</tr>
 				</table>
 			</form>
-			<form name="cartAD">
 			<c:if test="${noCart == null}">
-				<input type="button" name="cartAD" value="カゴを空にする" onClick="cartAD">
-				<%--<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>--%>
+				<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
 			</c:if>
-			</form>
-			<script type="text/javascript">
-				function cartAD{
-					href = "CartAllDelete?fromData=${fromData == true}";
-				}
-				ret = confirm("本当？");
-				if(ret == true){
-					location.href = href;
-				}
-			</script>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />
