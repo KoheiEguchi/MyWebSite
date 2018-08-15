@@ -84,12 +84,15 @@ public class BuyResult extends HttpServlet {
 			ArrayList<Buy> buyIdList = BuyDAO.buyIdSelect();
 			//購入記録に共通の番号を振る
 			Buy buyId = buyIdList.get(0);
-			BuyDAO.insertBuyId(buyId);
+
+			//番号の被り防止
+			User user = (User)session.getAttribute("user");
+			int userId = user.getId();
+
+			BuyDAO.insertBuyId(buyId, userId);
 
 
 			//新たに購入履歴からおすすめ商品を取得
-			User user = (User)session.getAttribute("user");
-			int userId = user.getId();
 			ArrayList<Item>itemList = ItemDAO.recommendItem(userId);
 			request.setAttribute("itemList", itemList);
 

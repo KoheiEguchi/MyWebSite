@@ -15,6 +15,18 @@
 		.inCartButton{margin-right:10%;}
 		.cancelButton{margin-left:10%;}
 	</style>
+	<script type="text/javascript">
+		function showHide(foldingID) {
+			if( document.getElementById(foldingID)){
+				if( document.getElementById(foldingID).style.display == "none"){
+					document.getElementById(foldingID).style.display = "block";
+				}
+				else{
+					document.getElementById(foldingID).style.display = "none";
+				}
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -27,14 +39,16 @@
 			<p><img src="${item.fileName}">
 			<p>${item.itemDetail}
 			<p><font size="5" color="red">${item.price}円</font>
-			<p class="topmarginShort"><font size="5">売り上げ履歴</font>
-			<table class="table">
-				<tr><th>売り上げ日時</th><th>売り上げ個数</th>
-				<c:forEach var="soldHistory" items="${soldHistoryList}">
-					<tr><td>${soldHistory.buyDate} ${soldHistory.buyTime}</td><td>${soldHistory.count}個</td></tr>
-				</c:forEach>
-				<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
-			</table>
+			<p><a href="#" onClick="showHide('test');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで表示)</font></a>
+			<div id="test" style="display: none">
+				<table class="table">
+					<tr><th>売り上げ日時</th><th>売り上げ個数</th>
+					<c:forEach var="soldHistory" items="${soldHistoryList}">
+						<tr><td>${soldHistory.buyDate} ${soldHistory.buyTime}</td><td>${soldHistory.count}個</td></tr>
+					</c:forEach>
+					<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
+				</table>
+			</div>
 			<p class="topmarginShort"><a class="inCartButton" href="AdminItemUpdate?id=${item.id}"><input class="button btn-info" type="button" value="商品情報更新"></a>
 			<a href="Admin"><input class="button btn-primary" type="button" value="戻る"></a>
 			<a class="cancelButton" href="AdminItemDelete?id=${item.id}"><input class="button btn-danger" type="button" value="商品削除"></a>

@@ -50,6 +50,7 @@ public class History extends HttpServlet {
 		String strBuyId = request.getParameter("buyId");
 		String buyDate = request.getParameter("buyDate");
 		String buyTime = request.getParameter("buyTime");
+		String deliConfirm = request.getParameter("deliConfirm");
 
 		int buyId = Integer.parseInt(strBuyId);
 
@@ -62,6 +63,8 @@ public class History extends HttpServlet {
 			//細かいデータを取得
 			ArrayList<Item> buyHistoryDetailList = BuyDAO.boughtListData(buyerId, buyId);
 			request.setAttribute("buyHistoryDetailList",buyHistoryDetailList);
+
+			request.setAttribute("deliConfirm", deliConfirm);
 
 			//購入履歴詳細ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/history.jsp");

@@ -124,7 +124,7 @@
 			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
 			<c:if test="${searchResult == true}">
 				<script  type="text/javascript">
-					window.scrollTo(0,520);
+					window.scrollTo(0,570);
 				</script>
 			</c:if>
 		</div>

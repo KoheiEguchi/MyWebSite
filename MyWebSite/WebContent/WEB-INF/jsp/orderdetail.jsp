@@ -20,42 +20,47 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">未発送詳細</font>
-			<table class="topmarginShort table">
-				<tr>
-					<td>購入者</td>
-					<td colspan="2"></td>
-					<td>${order.buyerId}</td>
-				</tr>
-				<tr>
-					<td>購入日時</td>
-					<td colspan="2"></td>
-					<td>${buyHistory.buyDate} ${buyHistory.buyTime}</td>
-				</tr>
-				<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}">
+			<form action="OrderDetail?buyId=${buyId}" method="post">
+				<table class="topmarginShort table">
 					<tr>
-						<td>${buyHistoryDetail.itemName}</td>
-						<td>${buyHistoryDetail.price}円</td>
-						<td>${buyHistoryDetail.count}個</td>
-						<td>${buyHistoryDetail.price * buyHistoryDetail.count}円</td>
+						<th>購入者</th>
+						<td colspan="3"></td>
+						<td>${boughtName} 様</td>
 					</tr>
-				</c:forEach>
-				<tr>
-					<td>小計</td>
-					<td colspan="2"></td>
-					<td>${buyHistory.totalPrice - buyHistory.deliPrice}円</td>
-				</tr>
-				<tr>
-					<td>${buyHistory.deliveryMethod}</td>
-					<td colspan="2"></td>
-					<td>${buyHistory.deliPrice}円</td>
-				</tr>
-				<tr>
-					<td>合計金額</td>
-					<td colspan="2"></td>
-					<td><font color="red">${buyHistory.totalPrice}円</font></td>
-				</tr>
-			</table>
-			<p><a href="AdminOrder"><input class="topmarginShort button btn-info" type="button" value="戻る"></a>
+					<tr>
+						<th>購入日時</th>
+						<td colspan="3"></td>
+						<td>${buyHistory.buyDate} ${buyHistory.buyTime}</td>
+					</tr>
+					<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}">
+						<tr>
+							<th>商品名</th>
+							<td>${buyHistoryDetail.itemName}</td>
+							<td>${buyHistoryDetail.price}円</td>
+							<td>${buyHistoryDetail.count}個</td>
+							<td>${buyHistoryDetail.price * buyHistoryDetail.count}円</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<th>小計</th>
+						<td colspan="3"></td>
+						<td>${buyHistory.totalPrice - buyHistory.deliPrice}円</td>
+					</tr>
+					<tr>
+						<th>配送方法</th>
+						<td>${buyHistory.deliveryMethod}</td>
+						<td colspan="2"></td>
+						<td>${buyHistory.deliPrice}円</td>
+					</tr>
+					<tr>
+						<th>合計金額</th>
+						<td colspan="3"></td>
+						<td><font color="red">${buyHistory.totalPrice}円</font></td>
+					</tr>
+				</table>
+				<p><input class="topmarginShort button btn-success" type="submit" value="配送完了">
+				<p><a href="AdminOrder"><input class="topmarginShort button btn-info" type="button" value="戻る"></a>
+			</form>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

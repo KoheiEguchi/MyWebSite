@@ -16,6 +16,7 @@ public class Buy  implements Serializable {
 	private String buyDate;
 	private String buyTime;
 	private String name;
+	private String deliConfirm;
 
 	public Buy() {
 	}
@@ -26,17 +27,19 @@ public class Buy  implements Serializable {
 		this.buyTime = setBuyTime;
 	}
 
-	public Buy(int setBuyerId, int setTotalPrice, String setDeliveryMethod, String setBuyDate, String setBuyTime, int setBuyId) {
+	public Buy(int setBuyerId, int setTotalPrice, String setDeliveryMethod, String setBuyDate, String setBuyTime, int setBuyId, String setDeliConfirm) {
 		this.buyerId = setBuyerId;
 		this.totalPrice = setTotalPrice;
 		this.deliveryMethod = setDeliveryMethod;
 		this.buyDate = setBuyDate;
 		this.buyTime = setBuyTime;
 		this.buyId = setBuyId;
+		this.deliConfirm = setDeliConfirm;
 	}
 
-	public Buy(int setBuyerId, int setTotalPrice, String setName) {
+	public Buy(int setBuyerId, int setBuyId, int setTotalPrice, String setName) {
 		this.buyerId = setBuyerId;
+		this.buyId = setBuyId;
 		this.totalPrice = setTotalPrice;
 		this.name = setName;
 	}
@@ -136,6 +139,12 @@ public class Buy  implements Serializable {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getDeliConfirm() {
+		return deliConfirm;
+	}
+	public void setDeliConfirm(String deliConfirm) {
+		this.deliConfirm = deliConfirm;
 	}
 
 }

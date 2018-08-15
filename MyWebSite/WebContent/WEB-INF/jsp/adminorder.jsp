@@ -24,24 +24,29 @@
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">未発送一覧</font>
 			<form action="AdminOrder" method="post">
-				<table class="table">
-					<tr>
-						<th>クリックで並び替え(${orderSelect}で並べ替え中)</th>
-						<th><input class="buyerButton button btn-primary" type="submit" name="order" value="購入者"></th>
-						<th><input class="priceButton button btn-warning" type="submit" name="order" value="合計金額"></th>
-						<th><input class="dateButton button btn-success" type="submit" name="order" value="購入日時"></th>
-					</tr>
-					<c:forEach var="order" items="${orderList}">
+				<c:if test="${noOrder == null}">
+					<table class="table">
 						<tr>
-							<td><a href=OrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}&buyDate=${order.buyDate}&buyTime=${order.buyTime}>
-								詳しく見る
-							</a></td>
-							<td>${order.name}</td>
-							<td>${order.totalPrice}円</td>
-							<td>${order.buyDate}${order.buyTime}</td>
+							<th>クリックで並び替え(${orderSelect}で並べ替え中)</th>
+							<th><input class="buyerButton button btn-primary" type="submit" name="order" value="購入者"></th>
+							<th><input class="priceButton button btn-warning" type="submit" name="order" value="合計金額"></th>
+							<th><input class="dateButton button btn-success" type="submit" name="order" value="購入日時"></th>
 						</tr>
-					</c:forEach>
-				</table>
+						<c:forEach var="order" items="${orderList}">
+							<tr>
+								<td><a href="OrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+									詳しく見る
+								</a></td>
+								<td>${order.name} 様</td>
+								<td>${order.totalPrice}円</td>
+								<td>${order.buyDate}${order.buyTime}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</c:if>
+				<c:if test="${noOrder != null}">
+					<p class="topmarginShort"><font size="6">未発送の商品はありません</font>
+				</c:if>
 			</form>
 			<p class="topmarginShort"><a href="Admin"><input class="button btn-info" type="button" value="戻る"></a>
 		</div>

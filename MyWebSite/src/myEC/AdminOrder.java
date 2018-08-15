@@ -51,11 +51,18 @@ public class AdminOrder extends HttpServlet {
 		}
 		//DAOで全注文記録を取得
 		ArrayList<Buy>orderList = BuyDAO.allOrder();
+
+		//カゴが空の場合
+		if(orderList.size() == 0) {
+			boolean noOrder = true;
+			request.setAttribute("noOrder", noOrder);
+		}else {
 		request.setAttribute("orderList", orderList);
 
 		//最初は購入日時を基準に並べる
 		String order = "購入日時";
 		request.setAttribute("orderSelect", order);
+		}
 
 		//注文一覧ページに移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminorder.jsp");

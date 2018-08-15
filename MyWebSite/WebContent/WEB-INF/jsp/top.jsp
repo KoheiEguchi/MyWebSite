@@ -40,7 +40,7 @@
 						<td class="table-img cellSize">
 							<div class="box">
 								<a class="noLine" href="ItemDetail?id=${item.id}&userId=${user.id}">
-									<img src="${item.fileName}" width="500px" height="250px">
+									<img src="${item.fileName}" width="440px" height="220px">
 									<br>
 									<font color="black">
 										${item.itemName}

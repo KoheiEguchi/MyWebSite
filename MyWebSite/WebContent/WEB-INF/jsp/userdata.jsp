@@ -15,6 +15,18 @@
 		.rightButton{margin-left:20%;}
 		.linkShort{width:1%}
 	</style>
+	<script type="text/javascript">
+		function showHide(foldingID) {
+			if( document.getElementById(foldingID)){
+				if( document.getElementById(foldingID).style.display == "none"){
+					document.getElementById(foldingID).style.display = "block";
+				}
+				else{
+					document.getElementById(foldingID).style.display = "none";
+				}
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -36,21 +48,27 @@
 			<p><a class="leftButton" href="UserUpdate?id=${user.id}"><input class="button btn-success" type="button" value="ユーザー情報更新"></a>
 			<a href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<a class="rightButton" href="UserDelete?id=${user.id}"><input class="button btn-danger" type="button" value="退会"></a>
-			<p><font size="5">購入履歴</font>
-			<table class="table">
-				<tr>
-					<th></th>
-					<th>合計金額</th>
-					<th>購入日時</th>
-				</tr>
-				<c:forEach var="bought" items="${boughtList}">
+			<p><a href="#" onClick="showHide('test');return false;"><font size="5" color="crimson">購入履歴(クリックで表示)</font></a>
+			<div id="test" style="display: none">
+				<table class="table">
 					<tr>
-						<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}&buyTime=${bought.buyTime}">詳しく見る</a></td>
-						<td>${bought.totalPrice}円</td>
-						<td>${bought.buyDate}${bought.buyTime}</td>
+						<th></th>
+						<th>合計金額</th>
+						<th>購入日時</th>
+						<th>配送状況</th>
 					</tr>
-				</c:forEach>
-			</table>
+					<c:forEach var="bought" items="${boughtList}">
+						<tr>
+							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
+								詳しく見る
+							</a></td>
+							<td>${bought.totalPrice}円</td>
+							<td>${bought.buyDate}${bought.buyTime}</td>
+							<td>${bought.deliConfirm}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

@@ -66,9 +66,16 @@ public class OrderDetail extends HttpServlet {
 			Item buyHistory = BuyDAO.boughtDetail(buyerId, buyId, buyDate, buyTime);
 			request.setAttribute("buyHistory",buyHistory);
 
+			//購入者名を取得
+			String boughtName = BuyDAO.boughtName(buyerId);
+			request.setAttribute("boughtName", boughtName);
+
 			//細かいデータを取得
 			ArrayList<Item> buyHistoryDetailList = BuyDAO.boughtListData(buyerId, buyId);
 			request.setAttribute("buyHistoryDetailList",buyHistoryDetailList);
+
+			//配送完了時に使用
+			request.setAttribute("buyId", buyId);
 
 			//注文詳細ページへ移行
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderdetail.jsp");
@@ -85,8 +92,18 @@ public class OrderDetail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String strBuyId = request.getParameter("buyId");
+		int buyId = Integer.parseInt(strBuyId);
+
+		BuyDAO buyDAO = new BuyDAO();
+		try {
+			buyDAO.deliCheckChange(buyId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		//未発送一覧ページを再表示
+		response.sendRedirect("AdminOrder");
 	}
 
 }

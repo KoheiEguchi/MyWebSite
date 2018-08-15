@@ -178,7 +178,7 @@ public class BuyDAO {
 		return buyIdList;
 	}
 
-	public static void insertBuyId(Buy buyId) throws SQLException {
+	public static void insertBuyId(Buy buyId, int userId) throws SQLException {
 		//DB起動
 		Connection con = null;
 		PreparedStatement st = null;
@@ -186,9 +186,10 @@ public class BuyDAO {
 			con = DBManager.getConnection();
 			//取得した購入ID以下のID＝今回購入した記録のIDを全て統一する
 			st = con.prepareStatement(
-					"UPDATE buy SET buy_id = ? WHERE id >= ?");
+					"UPDATE buy SET buy_id = ? WHERE id >= ? AND buyer_id = ?");
 			st.setInt(1, buyId.getId());
 			st.setInt(2, buyId.getId());
+			st.setInt(3, userId);
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -211,7 +212,8 @@ public class BuyDAO {
 			con = DBManager.getConnection();
 			//対象ユーザーの購入履歴を取得
 			st = con.prepareStatement(
-					"SELECT DISTINCT buyer_id, total_price, delivery_method, buy_date, buy_id FROM buy WHERE buyer_id = ? GROUP BY buy_id");
+					"SELECT DISTINCT buyer_id, total_price, delivery_method, buy_date, buy_id, delivery_check "
+					+ "FROM buy WHERE buyer_id = ? GROUP BY buy_id");
 			st.setString(1, userId);
 			ResultSet rs = st.executeQuery();
 
@@ -223,6 +225,7 @@ public class BuyDAO {
 				Date subBuyDate = (rs.getDate("buy_date"));
 				Time subBuyTime = (rs.getTime("buy_date"));
 				int buyId = (rs.getInt("buy_id"));
+				int deliveryCheck = (rs.getInt("delivery_check"));
 
 				//購入日時の書体を変更
 				SimpleDateFormat fmD = new SimpleDateFormat("yyyy'年'MM'月'dd'日'");
@@ -233,7 +236,15 @@ public class BuyDAO {
 	            String buyDate = fmD.format(subBuyDate);
 	            String buyTime = fmT.format(subBuyTime);
 
-				Buy bought = new Buy(buyerId,totalPrice,deliveryMethod,buyDate,buyTime,buyId);
+	            //対象商品の配送状況を表示
+	            String deliConfirm = null;
+	            if(deliveryCheck == 1) {
+	            	deliConfirm = "配送済み";
+	            }else if(deliveryCheck == 0) {
+	            	deliConfirm = "配送をお待ちください";
+	            }
+
+				Buy bought = new Buy(buyerId,totalPrice,deliveryMethod,buyDate,buyTime,buyId,deliConfirm);
 
 				//取得した各情報を購入リストに追加
 				boughtList.add(bought);
@@ -352,6 +363,43 @@ public class BuyDAO {
 		return buyHistoryDetailList;
 	}
 
+	public static String boughtName(int buyerId) throws SQLException {
+		//DB起動
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DBManager.getConnection();
+
+			//購入者のIDからユーザー名を取得
+			st = con.prepareStatement(
+					"SELECT DISTINCT user.name FROM user JOIN buy ON user.id = buy.buyer_id WHERE buy.buyer_id = ?");
+			st.setInt(1, buyerId);
+			ResultSet rs = st.executeQuery();
+
+			if (!(rs.next())) {
+				return null;
+			}
+
+			//ユーザー名を取得
+			String boughtName = (rs.getString("name"));
+
+			//取得したデータを戻す
+			return boughtName;
+
+			}catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+
+			//DB切断
+			} finally {
+				if (con != null) {
+					con.close();
+				}
+			}
+
+		}
+
 	public ArrayList<Buy> soldHistory(int itemId) throws SQLException {
 		//DB起動
 		Connection con = null;
@@ -418,14 +466,15 @@ public class BuyDAO {
         	con = DBManager.getConnection();
         	//未発送の全注文記録を取得
         	st = con.prepareStatement(
-        			"SELECT buy.buyer_id, buy.total_price, buy.buy_date, user.name FROM buy "
+        			"SELECT buy.buyer_id, buy.buy_id, buy.total_price, buy.buy_date, user.name FROM buy "
         			+ "JOIN user ON buy.buyer_id = user.id "
-        			+ "WHERE buy.delivery_check = '0' ORDER BY buy.buy_date");
+        			+ "WHERE buy.delivery_check = '0' GROUP BY buy.buy_id ORDER BY buy.buy_date");
             ResultSet rs = st.executeQuery();
 
             //各情報を取得し注文リストに追加
             while (rs.next()) {
                 int buyerId = rs.getInt("buyer_id");
+                int buyId = rs.getInt("buy_id");
                 int totalPrice = rs.getInt("total_price");
                 String name = rs.getString("name");
                 //購入日時は年月日と時分秒で分けて取得
@@ -441,7 +490,7 @@ public class BuyDAO {
 	            String buyDate = fmD.format(subBuyDate);
 	            String buyTime = fmT.format(subBuyTime);
 
-	            Buy order = new Buy(buyerId, totalPrice, name);
+	            Buy order = new Buy(buyerId, buyId, totalPrice, name);
 	            order.setBuyDate(buyDate);
 	            order.setBuyTime(buyTime);
 
@@ -476,16 +525,25 @@ public class BuyDAO {
         try {
         	con = DBManager.getConnection();
         	//未発送の全注文記録を取得し選択された基準で並び替え
-        	st = con.prepareStatement(
-        			"SELECT buy.buyer_id, buy.total_price, buy.buy_date, user.name FROM buy "
-        			+"JOIN user ON buy.buyer_id = user.id "
-        			+"WHERE buy.delivery_check = '0' ORDER BY ?");
-        	st.setString(1, select);
+        	String sql = "SELECT buy.buyer_id, buy.buy_id, buy.total_price, buy.buy_date, user.name FROM buy "
+        				+"JOIN user ON buy.buyer_id = user.id "
+        				+"WHERE buy.delivery_check = '0' GROUP BY buy.buy_id ";
+
+        	if(select.equals("buyer_id")) {
+        		sql = sql + "ORDER BY buy.buyer_id";
+        	}else if(select.equals("total_price")) {
+        		sql = sql + "ORDER BY buy.total_price";
+        	}else if(select.equals("buy_date")) {
+        		sql = sql + "ORDER BY buy.buy_date";
+        	}
+
+        	st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
             //各情報を取得し注文リストに追加
             while (rs.next()) {
                 int buyerId = rs.getInt("buyer_id");
+                int buyId = rs.getInt("buy_id");
                 int totalPrice = rs.getInt("total_price");
                 String name = rs.getString("name");
                 //購入日時は年月日と時分秒で分けて取得
@@ -501,7 +559,7 @@ public class BuyDAO {
 	            String buyDate = fmD.format(subBuyDate);
 	            String buyTime = fmT.format(subBuyTime);
 
-	            Buy order = new Buy(buyerId, totalPrice, name);
+	            Buy order = new Buy(buyerId, buyId, totalPrice, name);
 	            order.setBuyDate(buyDate);
 	            order.setBuyTime(buyTime);
 
@@ -526,6 +584,28 @@ public class BuyDAO {
         }
         //注文リストを戻す
         return orderList;
+	}
+
+	public void deliCheckChange(int buyId) throws SQLException {
+		//DB起動
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DBManager.getConnection();
+			//対象商品の発送チェックを更新
+			st = con.prepareStatement("UPDATE buy SET delivery_check = 1 WHERE buy_id = ?");
+			st.setInt(1, buyId);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+
+		//DB切断
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
 	}
 
 }
