@@ -14,8 +14,6 @@
 		body{}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
-		.noLine{text-decoration: none; padding-bottom: 1px;}
-		.cellSize{width: 500px; height: 250px;}
 		.starIcon{color: gold;}
 	</style>
 </head>
@@ -26,6 +24,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">トップページ</font>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<p><img src="pic/aqua2.jpg" width="800px" height="400px">
 			<c:if test="${searchResult != true}">
 				<p><font size="6">ようこそ</font>

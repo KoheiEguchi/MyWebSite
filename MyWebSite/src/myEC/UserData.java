@@ -40,6 +40,7 @@ public class UserData extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;

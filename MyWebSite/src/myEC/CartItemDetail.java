@@ -35,6 +35,7 @@ public class CartItemDetail extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -43,6 +44,14 @@ public class CartItemDetail extends HttpServlet {
 		//対象商品のIDと個数を取得
 		String detailId = request.getParameter("id");
 		String strCount = request.getParameter("count");
+
+		//想定されていない接続方法で来た場合トップページを表示
+		if(detailId == null || strCount == null) {
+			request.setAttribute("errMsg", "そのページには直接アクセスできません。");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+			dispatcher.forward(request, response);
+			return;
+		}
 		int count = Integer.parseInt(strCount);
 
 		//取得したIDと個数を引数にしてDAOへ

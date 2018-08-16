@@ -48,8 +48,8 @@
 			<p><a class="leftButton" href="UserUpdate?id=${user.id}"><input class="button btn-success" type="button" value="ユーザー情報更新"></a>
 			<a href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<a class="rightButton" href="UserDelete?id=${user.id}"><input class="button btn-danger" type="button" value="退会"></a>
-			<p><a href="#" onClick="showHide('test');return false;"><font size="5" color="crimson">購入履歴(クリックで表示)</font></a>
-			<div id="test" style="display: none">
+			<p><a href="#" onClick="showHide('boughtTable');return false;"><font size="5" color="crimson">購入履歴(クリックで切り替え)</font></a>
+			<div id="boughtTable" style="display: none">
 				<table class="table">
 					<tr>
 						<th></th>

@@ -36,6 +36,7 @@ public class AdminItemDelete extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -44,6 +45,7 @@ public class AdminItemDelete extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		int adminCheck = user.getId();
 		if(adminCheck != 1) {
+			request.setAttribute("errMsg", "管理者以外はアクセスできません。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 			dispatcher.forward(request, response);
 			return;
@@ -52,6 +54,15 @@ public class AdminItemDelete extends HttpServlet {
 		//商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+
+		//想定されていない接続方法で来た場合管理用トップページを表示
+		if(detailId == null) {
+		request.setAttribute("errMsg", "そのページには直接アクセスできません。");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Admin");
+		dispatcher.forward(request, response);
+		return;
+		}
+
 		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 

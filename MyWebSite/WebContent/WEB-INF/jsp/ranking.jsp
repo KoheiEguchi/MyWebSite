@@ -14,8 +14,6 @@
 		body{}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
-		.noLine{text-decoration: none; padding-bottom: 1px;}
-		.cellSize{width: 600px;}
 		.centerText{text-align: center;}
 		.starIcon{color: gold;}
 	</style>

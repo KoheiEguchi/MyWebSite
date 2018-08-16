@@ -13,11 +13,16 @@
 		body{}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
-		.noLine{text-decoration: none; padding-bottom: 1px;}
-		.cellSize{width: 500px; height: 250px;}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>
+	<script type="text/javascript">
+		function deleteCheck(){
+			if(window.confirm('カゴの中を空にしてよろしいですか？')){
+				location.href = "CartAllDelete?fromData=${fromData == true}";
+			}
+		}
+	</script>
 </head>
 
 <body>
@@ -112,7 +117,7 @@
 				</table>
 			</form>
 			<c:if test="${noCart == null}">
-				<p><a href="CartAllDelete?fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴを空にする"></a>
+				<p><input class="button btn-danger" type="button" value="カゴを空にする" onClick="deleteCheck()">
 			</c:if>
 		</div>
 

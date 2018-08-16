@@ -39,8 +39,8 @@
 			<p><img src="${item.fileName}">
 			<p>${item.itemDetail}
 			<p><font size="5" color="red">${item.price}円</font>
-			<p><a href="#" onClick="showHide('test');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで表示)</font></a>
-			<div id="test" style="display: none">
+			<p><a href="#" onClick="showHide('soldTable');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで切り替え)</font></a>
+			<div id="soldTable" style="display: none">
 				<table class="table">
 					<tr><th>売り上げ日時</th><th>売り上げ個数</th>
 					<c:forEach var="soldHistory" items="${soldHistoryList}">

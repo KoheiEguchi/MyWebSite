@@ -37,6 +37,7 @@ public class Top extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -55,6 +56,11 @@ public class Top extends HttpServlet {
 		}else {
 		request.setAttribute("itemList", itemList);
 		}
+
+		//エラーでトップページへ飛ぶ際のメッセージを取得
+		String errMsg = "";
+		errMsg = (String)request.getAttribute("errMsg");
+		request.setAttribute("errMsg", errMsg);
 
 		//トップページへ移行
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/top.jsp");

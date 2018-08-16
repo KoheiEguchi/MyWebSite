@@ -13,8 +13,6 @@
 		body{}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
-		.noLine{text-decoration: none; padding-bottom: 1px;}
-		.cellSize{width: 440px;}
 	</style>
 </head>
 
@@ -24,6 +22,9 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">管理者用トップページ</font>
+
+			<jsp:include page="alert.jsp" flush="true" />
+
 			<p class="topmarginShort"><a href="AdminOrder"><input class="button btn-info" type="button" value="未発送一覧"></a>
 			<p><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
 			<form action="Admin?userId=${user.id}" method="post">

@@ -38,6 +38,7 @@ public class History extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -51,6 +52,14 @@ public class History extends HttpServlet {
 		String buyDate = request.getParameter("buyDate");
 		String buyTime = request.getParameter("buyTime");
 		String deliConfirm = request.getParameter("deliConfirm");
+
+		//想定されていない接続方法で来た場合トップページを表示
+		if(strBuyId == null || buyDate == null || deliConfirm == null) {
+		request.setAttribute("errMsg", "そのページには直接アクセスできません。");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+		dispatcher.forward(request, response);
+		return;
+		}
 
 		int buyId = Integer.parseInt(strBuyId);
 

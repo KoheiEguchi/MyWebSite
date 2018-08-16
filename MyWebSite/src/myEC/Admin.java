@@ -37,6 +37,7 @@ public class Admin extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null){
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -45,6 +46,7 @@ public class Admin extends HttpServlet {
 		User user = (User)session.getAttribute("user");
 		int adminCheck = user.getId();
 		if(adminCheck != 1) {
+			request.setAttribute("errMsg", "管理者以外はアクセスできません。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 			dispatcher.forward(request, response);
 			return;

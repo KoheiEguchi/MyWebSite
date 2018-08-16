@@ -37,6 +37,7 @@ public class ItemDetail extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -45,6 +46,15 @@ public class ItemDetail extends HttpServlet {
 		//選択した商品のIDを取得
 		String detailId = request.getParameter("id");
 		ItemDAO itemDAO = new ItemDAO();
+
+		//想定されていない接続方法で来た場合トップページを表示
+		if(detailId == null) {
+		request.setAttribute("errMsg", "そのページには直接アクセスできません。");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
+		dispatcher.forward(request, response);
+		return;
+		}
+
 		//取得したIDを引数にしてDAOへ
 		Item item = itemDAO.detail(detailId);
 		int itemId = Integer.parseInt(detailId);

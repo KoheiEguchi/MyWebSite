@@ -36,11 +36,13 @@ public class BuyCheck extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
 		//想定されていない接続方法で来た場合トップページを表示
+		request.setAttribute("errMsg", "そのページには直接アクセスできません。");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 		dispatcher.forward(request, response);
 		return;
@@ -91,7 +93,7 @@ public class BuyCheck extends HttpServlet {
 			//入力された配送先住所を取得
 			String deliAddress = request.getParameter("deliAddress");
 			//住所が空欄の場合
-			if(deliAddress.isEmpty()) {
+			if(deliAddress.isEmpty() || deliAddress.equals(" ")) {
 				request.setAttribute("errMsg", "配送先の住所を入力して下さい。");
 
 				//カゴ内一覧ページへ移行

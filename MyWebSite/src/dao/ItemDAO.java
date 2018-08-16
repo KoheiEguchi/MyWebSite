@@ -22,7 +22,7 @@ public class ItemDAO {
         ArrayList<Item> itemList = new ArrayList<Item>();
 	    try {
 	        	con = DBManager.getConnection();
-	        	//対象のユーザーが最後に買った商品と同じ種類の商品を取得
+	        	//対象のユーザーが最後に買った商品と同じ種類の商品を売り上げ順に4つ取得
 	        	st = con.prepareStatement(
 	        			"SELECT * FROM item "
 	        			+ "WHERE item.type = ("
@@ -33,7 +33,7 @@ public class ItemDAO {
 	        					+ "FROM buy "
 	        					+ "WHERE buy.buyer_id = ?"
 	        				+ ") HAVING max(buy.id)"
-	        			+ ")"
+	        			+ ")ORDER BY sold_num DESC LIMIT 4"
 	        	);
 	        	st.setInt(1, userId);
 	            ResultSet rs = st.executeQuery();

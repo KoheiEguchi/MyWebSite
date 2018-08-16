@@ -37,6 +37,7 @@ public class Favorite extends HttpServlet {
 		//ログインしていないユーザーはログインページへ移行
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
+			request.setAttribute("errMsg", "ログインしてください。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 			return;
@@ -47,8 +48,9 @@ public class Favorite extends HttpServlet {
 		String strUserId = request.getParameter("userId");
 		String strFavorite = request.getParameter("favorite");
 
-		//ログインしているかの確認
+		//想定されていない接続方法で来た場合トップページを表示
 		if(strItemId == null || strUserId == null) {
+			request.setAttribute("errMsg", "そのページには直接アクセスできません。");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Top");
 			dispatcher.forward(request, response);
 			return;
