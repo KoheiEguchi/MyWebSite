@@ -17,16 +17,16 @@ import beans.User;
 import dao.BuyDAO;
 
 /**
- * Servlet implementation class OrderDetail
+ * Servlet implementation class AdminOrderDetail
  */
-@WebServlet("/OrderDetail")
-public class OrderDetail extends HttpServlet {
+@WebServlet("/AdminOrderDetail")
+public class AdminOrderDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OrderDetail() {
+    public AdminOrderDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -89,7 +89,7 @@ public class OrderDetail extends HttpServlet {
 			request.setAttribute("buyId", buyId);
 
 			//注文詳細ページへ移行
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/orderdetail.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/adminorderdetail.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
@@ -112,8 +112,8 @@ public class OrderDetail extends HttpServlet {
 		int buyerId = Integer.parseInt(strBuyerId);
 		int buyId = Integer.parseInt(strBuyId);
 
-		boolean orderItem = false; //商品が複数ある時、どれか一つでもチェックが入っているとtrueになってしまう
-		String strOrderItem = request.getParameter("orderItem");
+		/*boolean orderItem = false; //商品が複数ある時、どれか一つでもチェックが入っているとtrueになってしまう
+		String strOrderItem = request.getParameter("orderItem");//複数商品のうち一つのチェックをいじるとそれだけで反応してしまう
 		orderItem = Boolean.parseBoolean(strOrderItem);
 
 		//商品のチェックがなされたか確認
@@ -127,7 +127,7 @@ public class OrderDetail extends HttpServlet {
 
 			doGet(request, response);
 			return;
-		}
+		}*/
 
 		BuyDAO buyDAO = new BuyDAO();
 		try {

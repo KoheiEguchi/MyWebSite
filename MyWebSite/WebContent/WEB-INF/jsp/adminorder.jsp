@@ -34,7 +34,7 @@
 						</tr>
 						<c:forEach var="order" items="${orderList}">
 							<tr>
-								<td><a href="OrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
 									詳しく見る
 								</a></td>
 								<td>${order.name} 様</td>

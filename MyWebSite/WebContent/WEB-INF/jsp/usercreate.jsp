@@ -12,6 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
+	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 		</div>
 
 		<div id="body-bk">
-			<form action="UserCreate" method="post" name="userCreate">
+			<form action="UserCreate" method="post" name="userCreate" onsubmit="return doubleSubmit();">
 				<p class="headermargin"><font size="7">新規登録</font>
 
 				<jsp:include page="alert.jsp" flush="true" />
@@ -37,7 +38,7 @@
 				<p><input type="password" class="longText" name="password2" placeholder="Password">
 				<p class="formTitle">住所
 				<p><input type="text" class="addressText" name="address" placeholder="Address">
-				<p><input class="button btn-success" type="submit" value="登録">
+				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録">
 				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>
 			<script type="text/javascript">

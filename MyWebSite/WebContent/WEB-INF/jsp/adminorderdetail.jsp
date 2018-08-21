@@ -12,6 +12,8 @@
 	<style type="text/css">
 		body{}
 	</style>
+	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/ordercheck.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,9 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="OrderDetail?buyerId=${buyerId}&buyId=${buyId}&buyDate=${buyHistory.buyDate}&buyTime=${buyHistory.buyTime}" method="post">
+			<form name="orderForm"
+				action="AdminOrderDetail?buyerId=${buyerId}&buyId=${buyId}&buyDate=${buyHistory.buyDate}&buyTime=${buyHistory.buyTime}"
+				method="post" onsubmit="return doubleSubmit();">
 				<table class="topmarginShort table">
 					<tr>
 						<th>購入者</th>
@@ -35,10 +39,10 @@
 						<td colspan="3"></td>
 						<td>${buyHistory.buyDate} ${buyHistory.buyTime}</td>
 					</tr>
-					<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}" varStatus="i" begin="1">
+					<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}">
 						<tr>
 							<th>商品名</th>
-							<td><label><input type="checkbox" name="orderItem${i.index}" value="true" />${buyHistoryDetail.itemName}</label></td>
+							<td><label><input type="checkbox" name="orderItem" value="true"/>${buyHistoryDetail.itemName}</label></td>
 							<td>${buyHistoryDetail.price}円</td>
 							<td>${buyHistoryDetail.count}個</td>
 							<td>${buyHistoryDetail.price * buyHistoryDetail.count}円</td>
@@ -61,7 +65,7 @@
 						<td><font color="red">${buyHistory.totalPrice}円</font></td>
 					</tr>
 				</table>
-				<p><input class="topmarginShort button btn-success" type="submit" value="発送完了">
+				<p><input class="topmarginShort button btn-success" type="submit" id="btnSubmit" value="発送完了" onClick="return orderCheck()">
 				<p><a href="AdminOrder"><input class="topmarginShort button btn-info" type="button" value="戻る"></a>
 			</form>
 		</div>

@@ -15,18 +15,7 @@
 		.rightButton{margin-left:20%;}
 		.linkShort{width:1%}
 	</style>
-	<script type="text/javascript">
-		function showHide(foldingID) {
-			if( document.getElementById(foldingID)){
-				if( document.getElementById(foldingID).style.display == "none"){
-					document.getElementById(foldingID).style.display = "block";
-				}
-				else{
-					document.getElementById(foldingID).style.display = "none";
-				}
-			}
-		}
-	</script>
+	<script type="text/javascript"  src="js/origin/showhide.js"></script>
 </head>
 
 <body>
@@ -48,7 +37,9 @@
 			<p><a class="leftButton" href="UserUpdate?id=${user.id}"><input class="button btn-success" type="button" value="ユーザー情報更新"></a>
 			<a href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<a class="rightButton" href="UserDelete?id=${user.id}"><input class="button btn-danger" type="button" value="退会"></a>
-			<p><a href="#" onClick="showHide('boughtTable');return false;"><font size="5" color="crimson">購入履歴(クリックで切り替え)</font></a>
+			<div id="hideList">
+				<p><a href="#" onClick="showHide('boughtTable');return false;"><font size="5" color="crimson">購入履歴(クリックで切り替え)</font></a>
+			</div>
 			<div id="boughtTable" style="display: none">
 				<table class="table">
 					<tr>

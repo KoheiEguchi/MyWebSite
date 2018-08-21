@@ -15,18 +15,7 @@
 		.inCartButton{margin-right:10%;}
 		.cancelButton{margin-left:10%;}
 	</style>
-	<script type="text/javascript">
-		function showHide(foldingID) {
-			if( document.getElementById(foldingID)){
-				if( document.getElementById(foldingID).style.display == "none"){
-					document.getElementById(foldingID).style.display = "block";
-				}
-				else{
-					document.getElementById(foldingID).style.display = "none";
-				}
-			}
-		}
-	</script>
+	<script type="text/javascript"  src="js/origin/showhide.js"></script>
 </head>
 
 <body>
@@ -39,7 +28,9 @@
 			<p><img src="${item.fileName}">
 			<p>${item.itemDetail}
 			<p><font size="5" color="red">${item.price}円</font>
-			<p><a href="#" onClick="showHide('soldTable');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで切り替え)</font></a>
+			<div id="hideList">
+				<p><a href="#" onClick="showHide('soldTable');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで表示)</font></a>
+			</div>
 			<div id="soldTable" style="display: none">
 				<table class="table">
 					<tr><th>売り上げ日時</th><th>売り上げ個数</th>

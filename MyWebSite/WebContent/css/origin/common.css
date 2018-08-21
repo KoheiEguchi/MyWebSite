@@ -134,15 +134,6 @@ label,input[type='checkbox']{
 	width: 300px;
 }
 
-/*.box-img,
-.box-text{
-  display: inline-block;
-  vertical-align: middle;
-}
-.box-img > img{
-  width: 60px;
-}*/
-
 .noLine{
 	text-decoration: none;
 	padding-bottom: 1px;

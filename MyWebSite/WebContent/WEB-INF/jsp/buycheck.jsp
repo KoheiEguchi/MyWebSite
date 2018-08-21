@@ -14,6 +14,7 @@
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>
+	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">購入確認</font>
-			<form action="BuyResult" method="post">
+			<form action="BuyResult" method="post" onsubmit="return doubleSubmit();">
 				<table class="table topmarginShort">
 					<tr><th>配送先住所</th><td>${buy.deliAddress}</td></tr>
 					<tr><th>配送方法</th><td>${buy.deliveryMethod}</td></tr>
@@ -37,7 +38,7 @@
 					<tr><th>送料</th><td colspan="3"></td><td>${buy.deliPrice}円</td></tr>
 					<tr><th>合計金額</th><td colspan="3"></td><td><font size="4" color="red"><b>${buy.totalPrice}円</b></font></td></tr>
 				</table>
-				<p class="topmargin"><input class="leftButton button btn-success" type="submit" value="購入決定する">
+				<p class="topmargin"><input class="leftButton button btn-success" type="submit" id="btnSubmit" value="購入決定する">
 				<a class="rightButton" href="InCart?id=${user.id}"><input class="button btn-danger" type="button" value="戻る"></a>
 			</form>
 		</div>

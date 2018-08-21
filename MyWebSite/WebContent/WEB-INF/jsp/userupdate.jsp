@@ -12,6 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
+	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="UserUpdate?id=${user.id}" method="post">
+			<form action="UserUpdate?id=${user.id}" method="post" onsubmit="return doubleSubmit();">
 				<p class="formTitle">ログインID
 				<p><input type="text" class="longText" name="loginId" value="${user.loginId}">
 				<p class="formTitle">ユーザー名
@@ -34,7 +35,7 @@
 				<p><input type="password" class="longText" name="password2" placeholder="Password">
 				<p class="formTitle">住所
 				<p><input type="text" class="addressText" name="address" value="${user.address}">
-				<p><input class="button btn-success" type="submit" value="更新">
+				<p><input class="button btn-success" type="submit" id="btnSubmit" value="更新">
 				<p class="topmarginShort"><a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>
 		</div>
