@@ -15,7 +15,7 @@
 		.inCartButton{margin-right:10%;}
 		.cancelButton{margin-left:10%;}
 	</style>
-	<script type="text/javascript"  src="js/origin/showhide.js"></script>
+	<script type="text/javascript"  src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -28,9 +28,8 @@
 			<p><img src="${item.fileName}">
 			<p>${item.itemDetail}
 			<p><font size="5" color="red">${item.price}円</font>
-			<div id="hideList">
-				<p><a href="#" onClick="showHide('soldTable');return false;"><font size="5" color="yellow">売り上げ履歴(クリックで表示)</font></a>
-			</div>
+			<p><a href="#" onClick="showHide('soldTable');return false;">
+				<font size="5" color="yellow">売り上げ履歴<span id="hideList">(クリックで表示)</span></font></a>
 			<div id="soldTable" style="display: none">
 				<table class="table">
 					<tr><th>売り上げ日時</th><th>売り上げ個数</th>
@@ -40,7 +39,9 @@
 					<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
 				</table>
 			</div>
-			<p class="topmarginShort"><a class="inCartButton" href="AdminItemUpdate?id=${item.id}"><input class="button btn-info" type="button" value="商品情報更新"></a>
+			<p class="topmarginShort"><a class="inCartButton" href="AdminItemUpdate?id=${item.id}">
+				<input class="button btn-info" type="button" value="商品情報更新">
+			</a>
 			<a href="Admin"><input class="button btn-primary" type="button" value="戻る"></a>
 			<a class="cancelButton" href="AdminItemDelete?id=${item.id}"><input class="button btn-danger" type="button" value="商品削除"></a>
 		</div>

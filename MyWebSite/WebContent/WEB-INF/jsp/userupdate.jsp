@@ -12,7 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -24,17 +24,17 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="UserUpdate?id=${user.id}" method="post" onsubmit="return doubleSubmit();">
+			<form action="UserUpdate?id=${user.id}" method="post" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p class="formTitle">ログインID
-				<p><input type="text" class="longText" name="loginId" value="${user.loginId}">
+				<p><input type="text" class="longText" name="loginId" value="${user.loginId}" placeholder="Login ID">
 				<p class="formTitle">ユーザー名
-				<p><input type="text" class="longText" name="userName" value="${user.userName}">
+				<p><input type="text" class="longText" name="userName" value="${user.userName}" placeholder="User Name">
 				<p class="formTitle">パスワード
 				<p><input type="password" class="longText" name="password1" placeholder="Password">
 				<p class="formTitle">パスワード(確認)
 				<p><input type="password" class="longText" name="password2" placeholder="Password">
 				<p class="formTitle">住所
-				<p><input type="text" class="addressText" name="address" value="${user.address}">
+				<p><input type="text" class="addressText" name="address" value="${user.address}" placeholder="Address">
 				<p><input class="button btn-success" type="submit" id="btnSubmit" value="更新">
 				<p class="topmarginShort"><a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>

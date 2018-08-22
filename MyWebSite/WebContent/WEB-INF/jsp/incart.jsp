@@ -17,11 +17,11 @@
 		.rightButton{margin-left:20%;}
 	</style>
 	<script type="text/javascript">
-		function deleteCheck(){
-			if(window.confirm('カゴの中を空にしてよろしいですか？')){
-				location.href = "CartAllDelete?fromData=${fromData == true}";
-			}
+	function deleteCheck(){
+		if(window.confirm('カゴの中を空にしてよろしいですか？')){
+			location.href = "CartAllDelete?fromData=${fromData == true}";
 		}
+	}
 	</script>
 </head>
 
@@ -35,7 +35,7 @@
 			<jsp:include page="alert.jsp" flush="true" />
 
 			<p class="topmarginShort"><font size="5">${cartActionMessage}</font>
-			<form action="BuyCheck?id=${user.id}" method="post">
+			<form action="BuyCheck?id=${user.id}" method="post" autocomplete="off">
 				<c:if test="${noCart != null}">
 					<c:if test="${fromData == true}">
 						<p class="topmarginShort"><a href="UserData?id=${user.id}">
@@ -73,7 +73,7 @@
 						<input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font>
 					</label>
 					<p class="topmarginShort">配送先の住所を入力してください<br>
-					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}">
+					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address">
 				</c:if>
 				<p class="topmarginShort"><font size="5">カゴ内の商品</font>
 				<c:if test="${noCart != null}">

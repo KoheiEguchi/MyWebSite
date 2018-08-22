@@ -14,7 +14,7 @@
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>

@@ -15,17 +15,16 @@
 			margin-top: 2%;
 		}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
+
 </head>
 
-<body>
+<body onload="headerNoLink();footerNoLink()">
 	<div id="contents">
-		<div id="header-bk" class="headerZ">
-			<div id="header">
-			</div>
-		</div>
+		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<form action="Login" method="post" name="login">
+			<form action="Login" method="post" name="login" autocomplete="off">
 				<p class="headermargin"><font size="7">ログイン</font>
 
 				<jsp:include page="alert.jsp" flush="true" />
@@ -44,9 +43,7 @@
 			</script>
 		</div>
 
-		<div id="footer-bk">
-			<div id="footer"></div>
-		</div>
+		<jsp:include page="footer.jsp" flush="true" />
 	</div>
 </body>
 

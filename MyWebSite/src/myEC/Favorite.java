@@ -70,7 +70,7 @@ public class Favorite extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		//対象の商品をお気に入り登録していない場合
+		//対象の商品をお気に入り登録している場合
 		}else {
 			try {
 				//商品、ユーザー両IDを引数にしてDAOへ

@@ -16,9 +16,10 @@
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
 		.starIcon{color: gold;}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="footerNoLink()">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -63,29 +64,10 @@
 				</tr>
 			</table>
 			<p class="topmarginShort"><a href="Ranking"><input class="button btn-info" type="button" value="人気ランキング"></a>
-			<form action="Top?userId=${user.id}" method="post">
-				<p class="topmarginShort formTitle">名前検索
-				<p><input type="text" class="longText" name="searchName" placeholder="検索語句"></input>
-				<p class="formTitle">種類検索
-				<p><select class="longText" name="searchType">
-					<option value="all">種類指定しない</option>
-					<option value="set">セット</option>
-					<option value="sand">底砂</option>
-					<option value="filter">濾過フィルター</option>
-					<option value="light">照明</option>
-					<option value="food">エサ</option>
-					<option value="air">エアー関連</option>
-				</select>
-				<p class="formTitle">価格検索
-				<p><select class="longText" name="searchPrice">
-					<option value="0">価格指定しない</option>
-					<option value="1000">～1000円</option>
-					<option value="3000">1001～3000円</option>
-					<option value="5000">3001～5000円</option>
-					<option value="10000">5001～10000円</option>
-					<option value="20000">10001～20000円</option>
-					<option value="20001">20001円～</option>
-				</select>
+			<form action="Top?userId=${user.id}" method="post" autocomplete="off">
+
+				<jsp:include page="search.jsp" flush="true" />
+
 				<p><label>
 					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
 				</label>
@@ -134,9 +116,7 @@
 			</c:if>
 		</div>
 
-		<div id="footer-bk">
-			<div id="footer"></div>
-		</div>
+		<jsp:include page="footer.jsp" flush="true" />
 	</div>
 </body>
 

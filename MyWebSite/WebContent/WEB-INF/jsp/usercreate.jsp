@@ -12,18 +12,15 @@
 	<style type="text/css">
 		body{}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="headerNoLink();footerNoLink()">
 	<div id="contents">
-		<div id="header-bk" class="headerZ">
-			<div id="header">
-			</div>
-		</div>
+		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<form action="UserCreate" method="post" name="userCreate" onsubmit="return doubleSubmit();">
+			<form action="UserCreate" method="post" name="userCreate" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p class="headermargin"><font size="7">新規登録</font>
 
 				<jsp:include page="alert.jsp" flush="true" />
@@ -46,9 +43,7 @@
 			</script>
 		</div>
 
-		<div id="footer-bk">
-			<div id="footer"></div>
-		</div>
+		<jsp:include page="footer.jsp" flush="true" />
 	</div>
 </body>
 

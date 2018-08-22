@@ -12,8 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
-	<script type="text/javascript" src="js/origin/ordercheck.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>

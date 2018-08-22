@@ -12,7 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="AdminItemCreate" method="post" name="itemCreate" onsubmit="return doubleSubmit();">
+			<form action="AdminItemCreate" method="post" name="itemCreate" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)
 				<p><textarea name="itemName" cols="100" rows="2" placeholder="Item Name"></textarea>
 				<p class="formTitle">商品詳細(改行位置に<\br>をつけること)
@@ -42,7 +42,7 @@
 				<p class="formTitle">価格
 				<p><input type="text" class="priceText" name="price" placeholder="Price">円
 				<p class="formTitle">商品画像
-				<p><input type="text" class="longText" name="fileName" placeholder="Picture Name" value="pic/">
+				<p><input type="text" class="longText" name="fileName" value="pic/" placeholder="Picture Name">
 				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録">
 				<p class="topmarginShort"><a href="Admin"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>

@@ -12,21 +12,19 @@
 	<style type="text/css">
 		body{}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="headerNoLink();footerNoLink()">
 	<div id="contents">
-		<div id="header-bk">
-			<div id="header" class="headerZ">
-			</div>
-		</div>
+		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">パスワード再設定</font>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="PassChange" method="post" name="usercheck">
+			<form action="PassChange" method="post" name="usercheck" autocomplete="off">
 				<c:if test="${check == null}">
 					<p class="formTitle">ログインID
 					<p><input type="text" class="longText" name="loginId" placeholder="Login ID">
@@ -55,9 +53,7 @@
 			</script>
 		</div>
 
-		<div id="footer-bk">
-			<div id="footer"></div>
-		</div>
+		<jsp:include page="footer.jsp" flush="true" />
 	</div>
 </body>
 </html>

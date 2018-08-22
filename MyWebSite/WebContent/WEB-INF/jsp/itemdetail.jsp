@@ -19,7 +19,7 @@
 		.hiddenButton{display: none;}
 		a:hover{text-decoration: none; padding-bottom: 1px;}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -31,21 +31,16 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" onsubmit="return doubleSubmit();">
+			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p><font size="6"><b>${item.itemName}</b></font>
-				<p class="rightText">
-					<c:if test = "${favorite == true}">
-						<label for="favorite">
-							<input type="button" id="favoritebutton" class="hiddenButton">
-								<i class="fas fa-star fa-2x starIcon"></i>
-							お気に入り登録済み
-						</label>
-					</c:if>
+				<p class="rightText"><c:if test = "${favorite == true}">
+					<input type="button" id="favoritebutton" class="hiddenButton"><i class="fas fa-star fa-2x starIcon"></i>お気に入り登録済み
+				</c:if>
 				<p><img src="${item.fileName}">
 				<p>${item.itemDetail}
 				<p><font size="5" color="red">${item.price}円</font>
 				<c:if test = "${link == 'list'}">
-					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1">個
+					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1" placeholder="Count">個
 					<p class="topmarginShort"><input class="inCartButton button btn-success" type="submit" id="btnSubmit" value="カゴに入れる">
 					<c:if test = "${favorite == false}">
 						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}">

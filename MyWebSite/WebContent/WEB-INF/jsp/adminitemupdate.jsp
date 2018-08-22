@@ -12,7 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
-	<script type="text/javascript" src="js/origin/doublesubmit.js"></script>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -24,11 +24,11 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="AdminItemUpdate?id=${item.id}" method="post" onsubmit="return doubleSubmit();">
+			<form action="AdminItemUpdate?id=${item.id}" method="post" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)
-				<p><textarea name="itemName" cols="100" rows="2">${item.itemName}</textarea>
+				<p><textarea name="itemName" cols="100" rows="2" placeholder="Item Name">${item.itemName}</textarea>
 				<p class="formTitle">商品詳細(改行位置に<\br>をつけること)
-				<p><textarea name="itemDetail" cols="100" rows="10">${item.itemDetail}</textarea>
+				<p><textarea name="itemDetail" cols="100" rows="10" placeholder="Item Detail">${item.itemDetail}</textarea>
 				<p class="formTitle">種類
 				<p><select class="longText" name="type">
 					<option value="${item.type}">変更しない</option>
@@ -40,9 +40,9 @@
 					<option value="air">エアー関連</option>
 				</select>
 				<p class="formTitle">価格
-				<p><input type="text" class="priceText" name="price" value="${item.price}">円
+				<p><input type="text" class="priceText" name="price" value="${item.price}" placeholder="Price">円
 				<p class="formTitle">商品画像
-				<p><input type="text" class="longText" name="fileName" value="${item.fileName}">
+				<p><input type="text" class="longText" name="fileName" value="${item.fileName}" placeholder="Picture Name">
 				<p><input class="button btn-success" type="submit" id="btnSubmit" value="更新">
 				<p class="topmarginShort"><a href="AdminItemDetail?id=${item.id}"><input class="button btn-info" type="button" value="戻る"></a>
 			</form>
