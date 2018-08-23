@@ -14,9 +14,10 @@
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="adminContents">
 		<jsp:include page="header.jsp" flush="true" />
 

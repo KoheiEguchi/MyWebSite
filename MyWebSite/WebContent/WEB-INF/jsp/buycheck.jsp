@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 

@@ -20,16 +20,14 @@
 	</style>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">購入完了</font>
 			<p><font size="6">お買い上げありがとうございます。</font>
-			<p class="topmargin"><a class="leftButton" href="UserData?id=${user.id}">
-				<input class="button btn-success" type="button" value="ユーザー情報確認">
-			</a>
+			<p class="topmargin"><a class="leftButton" href="UserData?id=${user.id}"><input class="button btn-success" type="button" value="ユーザー情報確認"></a>
 			<a class="rightButton" href="Top"><input class="button btn-info" type="button" value="トップへ戻る"></a>
 			<p class="topmarginShort"><font size="5">あなたへのおすすめ</font>
 			<table class="table tablePic">

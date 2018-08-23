@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -43,14 +43,10 @@
 					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1" placeholder="Count">個
 					<p class="topmarginShort"><input class="inCartButton button btn-success" type="submit" id="btnSubmit" value="カゴに入れる">
 					<c:if test = "${favorite == false}">
-						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}">
-							<input class="button btn-warning" type="button" value="お気に入り登録">
-						</a>
+						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}"><input class="button btn-warning" type="button" value="お気に入り登録"></a>
 					</c:if>
 					<c:if test = "${favorite == true}">
-						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}">
-							<input class="button btn-warning" type="button" value="お気に入り解除">
-						</a>
+						<a href="Favorite?itemId=${item.id}&userId=${user.id}&favorite=${favorite}"><input class="button btn-warning" type="button" value="お気に入り解除"></a>
 					</c:if>
 					<a class="cancelButton" href="Top"><input class="button btn-danger" type="button" value="買わない"></a>
 				</c:if>

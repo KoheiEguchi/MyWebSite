@@ -1,11 +1,12 @@
-//一部ページでヘッダーを空白にする
-function headerNoLink(){
-	document.getElementById("header").style.display = "none";
+//多くのページでヘッダーとフッダーにリンクをつける
+function hfLink(){
+	document.getElementById("header").classList.remove("noLink");
+	document.getElementById("footer").classList.remove("noLink");
 }
 
-//一部ページでフッターを空白にする
-function footerNoLink(){
-	document.getElementById("footer").style.display = "none";
+//トップページでヘッダーにのみリンクをつける
+function headerLink(){
+	document.getElementById("header").classList.remove("noLink");
 }
 
 //submitの二重送信防止

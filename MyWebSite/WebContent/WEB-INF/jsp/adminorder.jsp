@@ -15,9 +15,10 @@
 		.priceButton{padding-right: 35%;}
 		.dateButton{padding-right: 10%;}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="adminContents">
 		<jsp:include page="header.jsp" flush="true" />
 

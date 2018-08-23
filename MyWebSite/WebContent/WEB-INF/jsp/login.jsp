@@ -15,11 +15,10 @@
 			margin-top: 2%;
 		}
 	</style>
-	<script type="text/javascript" src="js/origin/common.js"></script>
 
 </head>
 
-<body onload="headerNoLink();footerNoLink()">
+<body>
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 

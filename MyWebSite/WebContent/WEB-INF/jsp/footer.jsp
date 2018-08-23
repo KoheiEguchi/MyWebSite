@@ -11,12 +11,15 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		.noLink{
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
 	<div id="footer-bk">
-		<div id="footer">
+		<div id="footer" class="noLink">
 			<p class="userName"><a href="Top"><font color="orange">トップへ戻る</font></a>
 		</div>
 	</div>

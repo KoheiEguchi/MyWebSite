@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body onload="footerNoLink()">
+<body onload="headerLink()">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 

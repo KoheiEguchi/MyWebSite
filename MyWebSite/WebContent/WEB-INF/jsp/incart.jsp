@@ -16,6 +16,7 @@
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 	<script type="text/javascript">
 	function deleteCheck(){
 		if(window.confirm('カゴの中を空にしてよろしいですか？')){
@@ -25,7 +26,7 @@
 	</script>
 </head>
 
-<body>
+<body onload="hfLink();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -38,40 +39,30 @@
 			<form action="BuyCheck?id=${user.id}" method="post" autocomplete="off">
 				<c:if test="${noCart != null}">
 					<c:if test="${fromData == true}">
-						<p class="topmarginShort"><a href="UserData?id=${user.id}">
-							<input class="button btn-info" type="button" value="ユーザー情報に戻る">
-						</a>
+						<p class="topmarginShort">
+						<a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="ユーザー情報に戻る"></a>
 					</c:if>
 					<c:if test="${fromData != true}">
-						<p class="topmarginShort"><a href="Top">
-							<input class="button btn-info" type="button" value="買い物を続ける">
-						</a>
+						<p class="topmarginShort">
+						<a href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
 					</c:if>
 				</c:if>
 				<c:if test="${noCart == null}">
 					<c:if test="${fromData == true}">
-						<p class="topmarginShort"><a class="leftButton" href="UserData?id=${user.id}">
-							<input class="button btn-info" type="button" value="ユーザー情報に戻る">
-						</a>
+						<p class="topmarginShort">
+						<a class="leftButton" href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="ユーザー情報に戻る"></a>
 					</c:if>
 					<c:if test="${fromData != true}">
-						<p class="topmarginShort"><a class="leftButton" href="Top">
-							<input class="button btn-info" type="button" value="買い物を続ける">
-						</a>
+						<p class="topmarginShort">
+						<a class="leftButton" href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
 					</c:if>
 					<input class="rightButton button btn-success" type="submit" value="レジへ進む">
 					<p>配送方法を選んでください<br>
-					<label>
-						<input type="radio" name="deliveryMethod" value="normal" checked="checked"><font size="4">通常配送(送料無料)</font>
-					</label>
+					<label><input type="radio" name="deliveryMethod" value="normal" checked="checked"><font size="4">通常配送(送料無料)</font></label>
 					<br>
-					<label>
-						<input type="radio" name="deliveryMethod" value="quick"><font size="4">お急ぎ配送(送料500円)</font>
-					</label>
+					<label><input type="radio" name="deliveryMethod" value="quick"><font size="4">お急ぎ配送(送料500円)</font></label>
 					<br>
-					<label>
-						<input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font>
-					</label>
+					<label><input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font></label>
 					<p class="topmarginShort">配送先の住所を入力してください<br>
 					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address">
 				</c:if>
@@ -90,19 +81,11 @@
 									<a class="noLine" href="CartItemDetail?id=${item.id}&count=${item.count}&fromData=${fromData == true}">
 										<img src="${item.fileName}" width="440px" height="220px">
 										<br>
-										<font color="black">
-											${item.itemName}
-										</font>
+										<font color="black">${item.itemName}</font>
 										<br>
-										<font color="red">
-											${item.price}円
-										</font>
-										<font color="black">
-											　×　${item.count}個　＝　
-										</font>
-										<font size="5" color="red">
-											${item.countPrice}円
-										</font>
+										<font color="red">${item.price}円</font>
+										<font color="black">　×　${item.count}個　＝　</font>
+										<font size="5" color="red">${item.countPrice}円</font>
 									</a>
 								</div>
 							</td>

@@ -11,12 +11,15 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		.noLink{
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
 	<div id="header-bk" class="headerZ">
-		<div id="header">
+		<div id="header" class="noLink">
 			<p class="userName"><a href="UserData?id=${user.id}"><font color="yellow">${user.userName}さんのユーザー情報</font></a>
 			<p class="logout"><a href="Logout"><font color="yellow">ログアウト</font></a>
 		</div>
