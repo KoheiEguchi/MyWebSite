@@ -13,7 +13,6 @@
 		body{}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
-		.linkShort{width:1%}
 	</style>
 	<script type="text/javascript"  src="js/origin/common.js"></script>
 </head>

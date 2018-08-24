@@ -30,9 +30,9 @@
 
 				<p><img src="pic/aqua1.jpg" width="700px" height="350px">
 				<p class="topmarginShort formTitle">ログインID
-				<p><input type="text" class="longText" name="loginId" placeholder="login ID"></input>
+				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></input>
 				<p class="formTitle">パスワード
-				<p><input type="password" class="longText" name="password" placeholder="password"></input>
+				<p><input type="password" class="longText" name="password" placeholder="Password"></input>
 				<p><input class="button btn-success" type="submit" value="ログイン">
 				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a>
 				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a>

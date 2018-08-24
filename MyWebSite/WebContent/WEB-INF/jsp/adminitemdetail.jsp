@@ -39,9 +39,8 @@
 					<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
 				</table>
 			</div>
-			<p class="topmarginShort"><a class="inCartButton" href="AdminItemUpdate?id=${item.id}">
-				<input class="button btn-info" type="button" value="商品情報更新">
-			</a>
+			<p class="topmarginShort">
+			<a class="inCartButton" href="AdminItemUpdate?id=${item.id}"><input class="button btn-info" type="button" value="商品情報更新"></a>
 			<a href="Admin"><input class="button btn-primary" type="button" value="戻る"></a>
 			<a class="cancelButton" href="AdminItemDelete?id=${item.id}"><input class="button btn-danger" type="button" value="商品削除"></a>
 		</div>

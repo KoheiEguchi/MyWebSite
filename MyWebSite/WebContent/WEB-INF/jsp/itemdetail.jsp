@@ -17,7 +17,6 @@
 		.cancelButton{margin-left: 10%;}
 		.starIcon{color: gold;}
 		.hiddenButton{display: none;}
-		a:hover{text-decoration: none; padding-bottom: 1px;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
@@ -52,9 +51,8 @@
 				</c:if>
 				<c:if test = "${link == 'cart'}">
 					　×　${item.count}個　＝　<font size="5" color="red">${item.countPrice}円</font>
-					<p class="topmarginShort"><a class="inCartButton" href="CartDelete?id=${item.id}&fromData=${fromData == true}">
-						<input class="button btn-danger" type="button" value="カゴから出す">
-					</a>
+					<p class="topmarginShort">
+					<a class="inCartButton" href="CartDelete?id=${item.id}&fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴから出す"></a>
 					<a class="cancelButton" href="InCart"><input class="button btn-success" type="button" value="戻る"></a>
 				</c:if>
 			</form>

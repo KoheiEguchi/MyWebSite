@@ -12,7 +12,8 @@
 	<style type="text/css">
 		body{}
 		table a{display: block; width: 100%; height: 100%;}
-		table a:hover{text-decoration: none; padding-bottom: 1px; background-color: #68D0F3;}
+		table a:hover{text-decoration: none;}
+		table td:hover{background-color: #68D0F3;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
