@@ -19,30 +19,30 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">パスワード再設定</font>
+			<p class="headermargin"><font size="7">パスワード再設定</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
 			<form action="PassChange" method="post" name="usercheck" autocomplete="off">
 				<c:if test="${check == null}">
-					<p class="formTitle">ログインID
-					<p><input type="text" class="longText" name="loginId" placeholder="Login ID">
-					<p class="formTitle">ユーザー名
-					<p><input type="text" class="longText" name="userName" placeholder="User Name">
-					<p class="formTitle">住所
-					<p><input type="text" class="addressText" name="address" placeholder="Address">
-					<p><input class="button btn-success" type="submit" value="検索">
+					<p class="formTitle">ログインID</p>
+					<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></p>
+					<p class="formTitle">ユーザー名</p>
+					<p><input type="text" class="longText" name="userName" placeholder="User Name"></p>
+					<p class="formTitle">住所</p>
+					<p><input type="text" class="addressText" name="address" placeholder="Address"></p>
+					<p><input class="button btn-success" type="submit" value="検索"></p>
 				</c:if>
 			</form>
 			<form action="PassChange?userId=${userId}" method="get" name="passchange">
 				<c:if test="${check == true}">
-					<p class="formTitle">新しいパスワードを入力してください。
-					<p><input type="password" class="longText" name="password1" placeholder="New Password">
-					<p class="formTitle">確認のためもう一度入力してください。
-					<p><input type="password" class="longText" name="password2" placeholder="New Password">
-					<p><input class="button btn-primary" type="submit" value="変更">
+					<p class="formTitle">新しいパスワードを入力してください。</p>
+					<p><input type="password" class="longText" name="password1" placeholder="New Password"></p>
+					<p class="formTitle">確認のためもう一度入力してください。</p>
+					<p><input type="password" class="longText" name="password2" placeholder="New Password"></p>
+					<p><input class="button btn-primary" type="submit" value="変更"></p>
 				</c:if>
-				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a>
+				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a></p>
 			</form>
 			<script type="text/javascript">
 				document.usercheck.loginId.focus();

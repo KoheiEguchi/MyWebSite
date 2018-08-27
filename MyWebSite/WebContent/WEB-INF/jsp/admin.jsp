@@ -23,18 +23,18 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">管理者用トップページ</font>
+			<p class="headermargin"><font size="7">管理者用トップページ</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<p class="topmarginShort"><a href="AdminOrder"><input class="button btn-info" type="button" value="未発送一覧"></a>
-			<p><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a>
+			<p class="topmarginShort"><a href="AdminOrder"><input class="button btn-info" type="button" value="未発送一覧"></a></p>
+			<p><a href="AdminItemCreate"><input class="button btn-primary" type="button" value="商品追加"></a></p>
 			<form action="Admin?userId=${user.id}" method="post" autocomplete="off">
 
 				<jsp:include page="search.jsp" flush="true" />
 
-				<p><label><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える</label>
-				<p><input class="button btn-success" type="submit" value="検索">
+				<p><label><input type="checkbox" name="searchSold" value="true" />売り上げ順に並べ替える</label></p>
+				<p><input class="button btn-success" type="submit" value="検索"></p>
 			</form>
 			<c:if test="${searchResult == true}">
 				<p><font size="5">検索結果</font>
@@ -105,7 +105,7 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
+			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a></p>
 			<c:if test="${searchResult == true}">
 				<script  type="text/javascript">
 					window.scrollTo(0,570);

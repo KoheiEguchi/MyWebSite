@@ -14,6 +14,8 @@
 		.rightText{text-align:right;}
 		.inCartButton{margin-right:10%;}
 		.cancelButton{margin-left:10%;}
+		.detailWrapper{max-width: 60%; margin: 0 auto; text-align: center;}
+		.detail{display: inline-block; text-align: left;}
 	</style>
 	<script type="text/javascript"  src="js/origin/common.js"></script>
 </head>
@@ -23,13 +25,13 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">商品詳細</font>
-			<p><font size="6"><b>${item.itemName}</b></font>
-			<p><img src="${item.fileName}">
-			<p>${item.itemDetail}
-			<p><font size="5" color="red">${item.price}円</font>
+			<p class="headermargin"><font size="7">商品詳細</font></p>
+			<p><font size="6"><b>${item.itemName}</b></font></p>
+			<p><img src="${item.fileName}"></p>
+			<div class="detailWrapper"><p class="detail">${item.itemDetail}</p></div>
+			<p><font size="5" color="red">${item.price}円</font></p>
 			<p><a href="#" onClick="showHide('soldTable');return false;">
-				<font size="5" color="yellow">売り上げ履歴<span id="hideList">(クリックで表示)</span></font></a>
+				<font size="5" color="yellow">売り上げ履歴<span id="hideList">(クリックで表示)</span></font></a></p>
 			<div id="soldTable" style="display: none">
 				<table class="table">
 					<tr><th>売り上げ日時</th><th>売り上げ個数</th>
@@ -40,9 +42,10 @@
 				</table>
 			</div>
 			<p class="topmarginShort">
-			<a class="inCartButton" href="AdminItemUpdate?id=${item.id}"><input class="button btn-info" type="button" value="商品情報更新"></a>
-			<a href="Admin"><input class="button btn-primary" type="button" value="戻る"></a>
-			<a class="cancelButton" href="AdminItemDelete?id=${item.id}"><input class="button btn-danger" type="button" value="商品削除"></a>
+				<a class="inCartButton" href="AdminItemUpdate?id=${item.id}"><input class="button btn-info" type="button" value="商品情報更新"></a>
+				<a href="Admin"><input class="button btn-primary" type="button" value="戻る"></a>
+				<a class="cancelButton" href="AdminItemDelete?id=${item.id}"><input class="button btn-danger" type="button" value="商品削除"></a>
+			</p>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

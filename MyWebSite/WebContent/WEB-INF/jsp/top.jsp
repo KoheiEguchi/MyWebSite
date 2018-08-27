@@ -25,14 +25,14 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">トップページ</font>
+			<p class="headermargin"><font size="7">トップページ</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<p><img src="pic/aqua2.jpg" width="800px" height="400px">
+			<p><img src="pic/aqua2.jpg" width="800px" height="400px"></p>
 			<c:if test="${searchResult != true}">
-				<p><font size="6">ようこそ</font>
-				<p class=""><font size="5">おすすめ商品</font>
+				<p><font size="6">ようこそ</font></p>
+				<p class=""><font size="5">おすすめ商品</font></p>
 			</c:if>
 			<table class="table tablePic">
 				<tr>
@@ -64,18 +64,18 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<p class="topmarginShort"><a href="Ranking"><input class="button btn-info" type="button" value="人気ランキング"></a>
+			<p class="topmarginShort"><a href="Ranking"><input class="button btn-info" type="button" value="人気ランキング"></a></p>
 			<form action="Top?userId=${user.id}" method="post" autocomplete="off">
 
 				<jsp:include page="search.jsp" flush="true" />
 
 				<p><label>
 					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
-				</label>
-				<p><input class="button btn-success" type="submit" value="検索">
+				</label></p>
+				<p><input class="button btn-success" type="submit" value="検索"></p>
 			</form>
 			<c:if test="${searchResult == true}">
-				<p><font size="5">検索結果</font>
+				<p><font size="5">検索結果</font></p>
 			</c:if>
 			<table class="table">
 				<tr>
@@ -108,7 +108,7 @@
 				</tr>
 			</table>
 			<c:if test = "${user.id == '1'}">
-				<p class="topmarginShort"><a href="Admin"><input class="button btn-primary" type="button" value="管理者用ページ"></a>
+				<p class="topmarginShort"><a href="Admin"><input class="button btn-primary" type="button" value="管理者用ページ"></a></p>
 			</c:if>
 			<c:if test="${searchResult == true}">
 				<script type="text/javascript">

@@ -24,12 +24,14 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">商品削除</font>
+			<p class="headermargin"><font size="7">商品削除</font></p>
 			<form action="AdminItemDelete?id=${item.id}" method="post">
-				<p><font size="5"><font color="red">${item.itemName}</font>を本当に<font color="red"><b>削除</b></font>しますか？</font>
-				<p class="topmarginShort"><i class="fas fa-exclamation fa-5x warningIcon"></i>
-				<p><a class="inCartButton" href="AdminItemDetail?id=${item.id}"><input class="button btn-info" type="button" value="キャンセル"></a>
-				<input class="cancelButton button btn-danger" type="submit" value="削除">
+				<p><font size="5"><font color="red">${item.itemName}</font>を本当に<font color="red"><b>削除</b></font>しますか？</font></p>
+				<p class="topmarginShort"><i class="fas fa-exclamation fa-5x warningIcon"></i></p>
+				<p>
+					<a class="inCartButton" href="AdminItemDetail?id=${item.id}"><input class="button btn-info" type="button" value="キャンセル"></a>
+					<input class="cancelButton button btn-danger" type="submit" value="削除">
+				</p>
 			</form>
 		</div>
 

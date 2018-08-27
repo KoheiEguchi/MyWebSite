@@ -14,6 +14,9 @@
 		.buyerButton{padding-right: 30%;}
 		.priceButton{padding-right: 35%;}
 		.dateButton{padding-right: 10%;}
+		table a{display: block; width: 100%; height: 100%;}
+		table a:hover{text-decoration: none;}
+		.orderData:hover{background-color: #68D0F3;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
@@ -23,7 +26,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">未発送一覧</font>
+			<p class="headermargin"><font size="7">未発送一覧</font></p>
 			<form action="AdminOrder" method="post">
 				<c:if test="${noOrder == null}">
 					<table class="table">
@@ -34,10 +37,10 @@
 							<th><input class="dateButton button btn-success" type="submit" name="order" value="購入日時"></th>
 						</tr>
 						<c:forEach var="order" items="${orderList}">
-							<tr>
+							<tr class="orderData">
 								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
 									&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
-									詳しく見る
+									<font color="brown">詳しく見る</font>
 								</a></td>
 								<td>${order.name} 様</td>
 								<td>${order.totalPrice}円</td>
@@ -47,10 +50,10 @@
 					</table>
 				</c:if>
 				<c:if test="${noOrder != null}">
-					<p class="topmarginShort"><font size="6">未発送の商品はありません</font>
+					<p class="topmarginShort"><font size="6">未発送の商品はありません</font></p>
 				</c:if>
 			</form>
-			<p class="topmarginShort"><a href="Admin"><input class="button btn-info" type="button" value="戻る"></a>
+			<p class="topmarginShort"><a href="Admin"><input class="button btn-info" type="button" value="戻る"></a></p>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

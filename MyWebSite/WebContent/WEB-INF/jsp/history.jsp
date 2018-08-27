@@ -20,7 +20,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">購入履歴詳細</font>
+			<p class="headermargin"><font size="7">購入履歴詳細</font></p>
 			<table class="topmarginShort table">
 				<tr>
 					<th>購入日時</th>
@@ -57,7 +57,7 @@
 					<td colspan="3"></td>
 					<td>${deliConfirm}</td>
 			</table>
-			<p><a href="UserData?id=${user.id}"><input class="topmarginShort button btn-info" type="button" value="戻る"></a>
+			<p><a href="UserData?id=${user.id}"><input class="topmarginShort button btn-info" type="button" value="戻る"></a></p>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

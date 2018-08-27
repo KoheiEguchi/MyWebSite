@@ -129,9 +129,16 @@ public class InCart extends HttpServlet {
 			//既にカゴに入っている商品が新たに入れられたらまとめる
 			for(Item cartItem : cart) {
 				if(item.getId() == cartItem.getId()) {
+					//新たな個数を取得
 					int newCount = item.getCount() + cartItem.getCount();
 					item.setCount(newCount);
+					//新たな合計金額を取得
+					int newCountPrice = item.getPrice() * newCount;
+					item.setCountPrice(newCountPrice);
+
+					//元々入っていた商品を削除
 					cart.remove(cartItem);
+
 					request.setAttribute("errMsg", "同じ商品をまとめました。");
 					break;
 				}

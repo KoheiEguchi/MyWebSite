@@ -26,7 +26,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">人気ランキング</font>
+			<p class="headermargin"><font size="7">人気ランキング</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
@@ -36,13 +36,13 @@
 
 				<p><label>
 					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
-				</label>
-				<p class="formTitle">表示順位を変える
-				<p><input type="text" name="rankNum" size="1" value="${rankNum}" placeholder="Rank">位まで表示
-				<p><input class="button btn-success" type="submit" value="絞り込み">
+				</label></p>
+				<p class="formTitle">表示順位を変える</p>
+				<p><input type="text" name="rankNum" size="1" value="${rankNum}" placeholder="Rank">位まで表示</p>
+				<p><input class="button btn-success" type="submit" value="絞り込み"></p>
 			</form>
 			<c:if test="${searchResult == true}">
-				<p><font size="5">絞り込み結果</font>
+				<p><font size="5">絞り込み結果</font></p>
 			</c:if>
 			<table class="table">
 				<tr>
@@ -87,7 +87,7 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a>
+			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a></p>
 			<c:if test="${searchResult == true}">
 				<script type="text/javascript">
 					window.scrollTo(0,470);

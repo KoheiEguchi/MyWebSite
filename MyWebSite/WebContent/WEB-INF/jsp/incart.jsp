@@ -32,20 +32,22 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">カゴ内一覧</font>
+			<p class="headermargin"><font size="7">カゴ内一覧</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<p class="topmarginShort"><font size="5">${cartActionMessage}</font>
+			<p class="topmarginShort"><font size="5">${cartActionMessage}</font></p>
 			<form action="BuyCheck?id=${user.id}" method="post" autocomplete="off">
 				<c:if test="${noCart != null}">
 					<c:if test="${fromData == true}">
 						<p class="topmarginShort">
-						<a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="ユーザー情報に戻る"></a>
+							<a href="UserData?id=${user.id}"><input class="button btn-info" type="button" value="ユーザー情報に戻る"></a>
+						</p>
 					</c:if>
 					<c:if test="${fromData != true}">
 						<p class="topmarginShort">
-						<a href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
+							<a href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
+						</p>
 					</c:if>
 				</c:if>
 				<c:if test="${noCart == null}">
@@ -58,18 +60,20 @@
 						<a class="leftButton" href="Top"><input class="button btn-info" type="button" value="買い物を続ける"></a>
 					</c:if>
 					<input class="rightButton button btn-success" type="submit" value="レジへ進む">
-					<p>配送方法を選んでください<br>
-					<label><input type="radio" name="deliveryMethod" value="normal" checked="checked"><font size="4">通常配送(送料無料)</font></label>
-					<br>
-					<label><input type="radio" name="deliveryMethod" value="quick"><font size="4">お急ぎ配送(送料500円)</font></label>
-					<br>
-					<label><input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font></label>
-					<p class="topmarginShort">配送先の住所を入力してください<br>
-					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address">
+					<p>
+						配送方法を選んでください<br>
+						<label><input type="radio" name="deliveryMethod" value="normal" checked="checked"><font size="4">通常配送(送料無料)</font></label>
+						<br>
+						<label><input type="radio" name="deliveryMethod" value="quick"><font size="4">お急ぎ配送(送料500円)</font></label>
+						<br>
+						<label><input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font></label>
+					</p>
+					<p class="topmarginShort">配送先の住所を入力してください</p>
+					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address"></p>
 				</c:if>
-				<p class="topmarginShort"><font size="5">カゴ内の商品</font>
+				<p class="topmarginShort"><font size="5">カゴ内の商品</font></p>
 				<c:if test="${noCart != null}">
-					<p class="topmarginShort"><font size="6">カゴは空です</font>
+					<p class="topmarginShort"><font size="6">カゴは空です</font></p>
 				</c:if>
 				<table class="table">
 					<tr>
@@ -101,7 +105,7 @@
 				</table>
 			</form>
 			<c:if test="${noCart == null}">
-				<p><input class="button btn-danger" type="button" value="カゴを空にする" onClick="deleteCheck()">
+				<p><input class="button btn-danger" type="button" value="カゴを空にする" onClick="deleteCheck()"></p>
 			</c:if>
 		</div>
 

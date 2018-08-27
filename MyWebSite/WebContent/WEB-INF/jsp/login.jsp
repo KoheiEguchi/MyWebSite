@@ -24,18 +24,18 @@
 
 		<div id="body-bk">
 			<form action="Login" method="post" name="login" autocomplete="off">
-				<p class="headermargin"><font size="7">ログイン</font>
+				<p class="headermargin"><font size="7">ログイン</font></p>
 
 				<jsp:include page="alert.jsp" flush="true" />
 
-				<p><img src="pic/aqua1.jpg" width="700px" height="350px">
-				<p class="topmarginShort formTitle">ログインID
-				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></input>
-				<p class="formTitle">パスワード
-				<p><input type="password" class="longText" name="password" placeholder="Password"></input>
-				<p><input class="button btn-success" type="submit" value="ログイン">
-				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a>
-				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a>
+				<p><img src="pic/aqua1.jpg" width="700px" height="350px"></p>
+				<p class="topmarginShort formTitle">ログインID</p>
+				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></input></p>
+				<p class="formTitle">パスワード</p>
+				<p><input type="password" class="longText" name="password" placeholder="Password"></input></p>
+				<p><input class="button btn-success" type="submit" value="ログイン"></p>
+				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a></p>
+				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a></p>
 			</form>
 			<script type="text/javascript">
 				document.login.loginId.focus();

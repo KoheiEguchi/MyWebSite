@@ -21,22 +21,22 @@
 
 		<div id="body-bk">
 			<form action="UserCreate" method="post" name="userCreate" autocomplete="off" onsubmit="return doubleSubmit();">
-				<p class="headermargin"><font size="7">新規登録</font>
+				<p class="headermargin"><font size="7">新規登録</font></p>
 
 				<jsp:include page="alert.jsp" flush="true" />
 
-				<p class="formTitle">ログインID
-				<p><input type="text" class="longText" name="loginId" placeholder="Login ID">
-				<p class="formTitle">ユーザー名
-				<p><input type="text" class="longText" name="userName" placeholder="User Name">
-				<p class="formTitle">パスワード
-				<p><input type="password" class="longText" name="password1" placeholder="Password">
-				<p class="formTitle">パスワード(確認)
-				<p><input type="password" class="longText" name="password2" placeholder="Password">
-				<p class="formTitle">住所
-				<p><input type="text" class="addressText" name="address" placeholder="Address">
-				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録">
-				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a>
+				<p class="formTitle">ログインID</p>
+				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></p>
+				<p class="formTitle">ユーザー名</p>
+				<p><input type="text" class="longText" name="userName" placeholder="User Name"></p>
+				<p class="formTitle">パスワード</p>
+				<p><input type="password" class="longText" name="password1" placeholder="Password"></p>
+				<p class="formTitle">パスワード(確認)</p>
+				<p><input type="password" class="longText" name="password2" placeholder="Password"></p>
+				<p class="formTitle">住所</p>
+				<p><input type="text" class="addressText" name="address" placeholder="Address"></p>
+				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録"></p>
+				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a></p>
 			</form>
 			<script type="text/javascript">
 				document.userCreate.loginId.focus();

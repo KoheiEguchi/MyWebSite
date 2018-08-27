@@ -15,9 +15,9 @@
 </head>
 
 <body>
-	<p class="topmarginShort formTitle">名前<span id="select[1]">検索</span>
-	<p><input type="text" class="longText" name="searchName" placeholder="Word"></input>
-	<p class="formTitle">種類<span id="select[2]">検索</span>
+	<p class="topmarginShort formTitle">名前<span id="select[1]">検索</span></p>
+	<p><input type="text" class="longText" name="searchName" placeholder="Word"></input></p>
+	<p class="formTitle">種類<span id="select[2]">検索</span></p>
 	<p><select class="longText" name="searchType">
 		<option value="all">種類指定しない</option>
 		<option value="set">セット</option>
@@ -26,8 +26,8 @@
 		<option value="light">照明</option>
 		<option value="food">エサ</option>
 		<option value="air">エアー関連</option>
-	</select>
-	<p class="formTitle">価格<span id="select[3]">検索</span>
+	</select></p>
+	<p class="formTitle">価格<span id="select[3]">検索</span></p>
 	<p><select class="longText" name="searchPrice">
 		<option value="0">価格指定しない</option>
 		<option value="1000">～1000円</option>
@@ -36,7 +36,7 @@
 		<option value="10000">5001～10000円</option>
 		<option value="20000">10001～20000円</option>
 		<option value="20001">20001円～</option>
-	</select>
+	</select></p>
 </body>
 
 </html>

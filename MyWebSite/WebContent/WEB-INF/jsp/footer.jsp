@@ -20,7 +20,7 @@
 <body>
 	<div id="footer-bk">
 		<div id="footer" class="noLink">
-			<p class="userName"><a href="Top"><font color="orange">トップへ戻る</font></a>
+			<p class="userName"><a href="Top"><font color="orange">トップへ戻る</font></a></p>
 		</div>
 	</div>
 </body>

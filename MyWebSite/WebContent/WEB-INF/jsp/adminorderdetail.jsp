@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		.checkOk{background: #F3FFD8;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
@@ -20,7 +21,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<p class="headermargin"><font size="7">未発送詳細</font>
+			<p class="headermargin"><font size="7">未発送詳細</font></p>
 
 			<jsp:include page="alert.jsp" flush="true" />
 
@@ -41,7 +42,9 @@
 					<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}">
 						<tr>
 							<th>商品名</th>
-							<td><label><input type="checkbox" name="orderItem" value="true"/>${buyHistoryDetail.itemName}</label></td>
+							<td><label>
+								<input type="checkbox" id="orderItem" name="orderItem" value="true" onClick="checkOk()"/>${buyHistoryDetail.itemName}
+							</label></td>
 							<td>${buyHistoryDetail.price}円</td>
 							<td>${buyHistoryDetail.count}個</td>
 							<td>${buyHistoryDetail.price * buyHistoryDetail.count}円</td>
@@ -64,8 +67,8 @@
 						<td><font color="red">${buyHistory.totalPrice}円</font></td>
 					</tr>
 				</table>
-				<p><input class="topmarginShort button btn-success" type="submit" id="btnSubmit" value="発送完了" onClick="return orderCheck()">
-				<p><a href="AdminOrder"><input class="topmarginShort button btn-info" type="button" value="戻る"></a>
+				<p><input class="topmarginShort button btn-success" type="submit" id="btnSubmit" value="発送完了" onClick="return orderCheck()"></p>
+				<p><a href="AdminOrder"><input class="topmarginShort button btn-info" type="button" value="戻る"></a></p>
 			</form>
 		</div>
 
