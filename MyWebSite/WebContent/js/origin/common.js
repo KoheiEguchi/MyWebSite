@@ -9,6 +9,16 @@ function headerLink(){
 	document.getElementById("header").classList.remove("noLink");
 }
 
+//入力中のテキストボックスの色を変える
+function focusBox(control){
+	control.style.backgroundColor = "#FFFFCC";
+}
+
+//入力していないテキストボックスの色を戻す
+function blurBox(control){
+	control.style.backgroundColor = "#FFFFFF";
+}
+
 //submitの二重送信防止
 function doubleSubmit(){
 	var submit = document.getElementById("btnSubmit");
@@ -19,6 +29,12 @@ function doubleSubmit(){
 		submit.disabled = true;
 		return true;
 	}
+}
+
+//価格をカンマで区切る
+function price(num){
+	var newPrice = num.replace(/()(?=()+$)/g, "$1,");
+	document.getElementById("oldPrice[cnt]").innerHTML = newPrice;
 }
 
 //ランキングページでの表示変更

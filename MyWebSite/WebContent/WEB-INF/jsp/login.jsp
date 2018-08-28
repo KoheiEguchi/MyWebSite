@@ -15,7 +15,7 @@
 			margin-top: 2%;
 		}
 	</style>
-
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -30,9 +30,11 @@
 
 				<p><img src="pic/aqua1.jpg" width="700px" height="350px"></p>
 				<p class="topmarginShort formTitle">ログインID</p>
-				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></input></p>
+				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"
+					onfocus="focusBox(this)" onBlur="blurBox(this)"></input></p>
 				<p class="formTitle">パスワード</p>
-				<p><input type="password" class="longText" name="password" placeholder="Password"></input></p>
+				<p><input type="password" class="longText" name="password" placeholder="Password"
+					onfocus="focusBox(this)" onBlur="blurBox(this)"></input></p>
 				<p><input class="button btn-success" type="submit" value="ログイン"></p>
 				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a></p>
 				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a></p>

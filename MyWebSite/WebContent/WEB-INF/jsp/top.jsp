@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body onload="headerLink()">
+<body onload="headerLink();price('${item.price}')">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -49,8 +49,9 @@
 										${item.itemName}
 									</font>
 									<br>
+									<span style="display:none">price("${item.price}")</span>
 									<font color="red">
-										${item.price}円
+										<span class="oldPrice">${item.price}</span>円
 									</font>
 								</a>
 							</div>

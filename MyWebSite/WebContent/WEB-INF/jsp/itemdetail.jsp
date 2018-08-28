@@ -41,7 +41,8 @@
 				<div class="detailWrapper"><p class="detail">${item.itemDetail}</p></div>
 				<p><font size="5" color="red">${item.price}円</font>
 				<c:if test = "${link == 'list'}">
-					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1" placeholder="Count">個</p>
+					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1" placeholder="Count"
+						onfocus="focusBox(this)" onBlur="blurBox(this)">個</p>
 					<p class="topmarginShort">
 						<input class="inCartButton button btn-success" type="submit" id="btnSubmit" value="カゴに入れる">
 						<c:if test = "${favorite == false}">

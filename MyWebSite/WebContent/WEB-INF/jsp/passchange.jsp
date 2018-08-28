@@ -12,6 +12,7 @@
 	<style type="text/css">
 		body{}
 	</style>
+	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
 <body>
@@ -26,20 +27,25 @@
 			<form action="PassChange" method="post" name="usercheck" autocomplete="off">
 				<c:if test="${check == null}">
 					<p class="formTitle">ログインID</p>
-					<p><input type="text" class="longText" name="loginId" placeholder="Login ID"></p>
+					<p><input type="text" class="longText" name="loginId" placeholder="Login ID"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 					<p class="formTitle">ユーザー名</p>
-					<p><input type="text" class="longText" name="userName" placeholder="User Name"></p>
+					<p><input type="text" class="longText" name="userName" placeholder="User Name"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 					<p class="formTitle">住所</p>
-					<p><input type="text" class="addressText" name="address" placeholder="Address"></p>
+					<p><input type="text" class="addressText" name="address" placeholder="Address"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 					<p><input class="button btn-success" type="submit" value="検索"></p>
 				</c:if>
 			</form>
 			<form action="PassChange?userId=${userId}" method="get" name="passchange">
 				<c:if test="${check == true}">
 					<p class="formTitle">新しいパスワードを入力してください。</p>
-					<p><input type="password" class="longText" name="password1" placeholder="New Password"></p>
+					<p><input type="password" class="longText" name="password1" placeholder="New Password"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 					<p class="formTitle">確認のためもう一度入力してください。</p>
-					<p><input type="password" class="longText" name="password2" placeholder="New Password"></p>
+					<p><input type="password" class="longText" name="password2" placeholder="New Password"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 					<p><input class="button btn-primary" type="submit" value="変更"></p>
 				</c:if>
 				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a></p>

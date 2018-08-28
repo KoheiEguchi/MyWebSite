@@ -16,7 +16,8 @@
 
 <body>
 	<p class="topmarginShort formTitle">名前<span id="select[1]">検索</span></p>
-	<p><input type="text" class="longText" name="searchName" placeholder="Word"></input></p>
+	<p><input type="text" class="longText" name="searchName" placeholder="Word"
+		onfocus="focusBox(this)" onBlur="blurBox(this)"></input></p>
 	<p class="formTitle">種類<span id="select[2]">検索</span></p>
 	<p><select class="longText" name="searchType">
 		<option value="all">種類指定しない</option>

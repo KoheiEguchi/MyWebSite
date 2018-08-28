@@ -38,7 +38,8 @@
 					<i class="fas fa-star starIcon"></i><input type="checkbox" name="searchFavorite" value="true">お気に入りで絞り込む
 				</label></p>
 				<p class="formTitle">表示順位を変える</p>
-				<p><input type="text" name="rankNum" size="1" value="${rankNum}" placeholder="Rank">位まで表示</p>
+				<p><input type="text" name="rankNum" size="1" value="${rankNum}" placeholder="Rank"
+					onfocus="focusBox(this)" onBlur="blurBox(this)">位まで表示</p>
 				<p><input class="button btn-success" type="submit" value="絞り込み"></p>
 			</form>
 			<c:if test="${searchResult == true}">

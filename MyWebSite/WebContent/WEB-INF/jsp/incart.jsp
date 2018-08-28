@@ -69,7 +69,8 @@
 						<label><input type="radio" name="deliveryMethod" value="select"><font size="4">日時指定配送(送料200円)</font></label>
 					</p>
 					<p class="topmarginShort">配送先の住所を入力してください</p>
-					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address"></p>
+					<p><input type="text" class="addressText" name="deliAddress" value="${user.address}" placeholder="Address"
+						onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 				</c:if>
 				<p class="topmarginShort"><font size="5">カゴ内の商品</font></p>
 				<c:if test="${noCart != null}">
