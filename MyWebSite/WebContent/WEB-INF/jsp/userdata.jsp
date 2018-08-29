@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -52,12 +53,22 @@
 					</tr>
 					<c:forEach var="bought" items="${boughtList}">
 						<tr class="historyList">
-							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
+							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
+							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
 								<font color="crimson">詳しく見る</font>
 							</a></td>
-							<td>${bought.totalPrice}円</td>
-							<td>${bought.buyDate}${bought.buyTime}</td>
-							<td>${bought.deliConfirm}</td>
+							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
+							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
+								<font color="black"><fmt:formatNumber value="${bought.totalPrice}" pattern="###,###円" /></font>
+							</a></td>
+							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
+							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
+								<font color="black">${bought.buyDate}${bought.buyTime}</font>
+							</a></td>
+							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
+							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
+								<font color="black">${bought.deliConfirm}</font>
+							</a></td>
 						</tr>
 					</c:forEach>
 				</table>

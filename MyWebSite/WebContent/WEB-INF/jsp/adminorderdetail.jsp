@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -45,26 +46,26 @@
 							<td><label>
 								<input type="checkbox" id="orderItem" name="orderItem" value="true" onClick="checkOk()"/>${buyHistoryDetail.itemName}
 							</label></td>
-							<td>${buyHistoryDetail.price}円</td>
+							<td><fmt:formatNumber value="${buyHistoryDetail.price}" pattern="###,###円" /></td>
 							<td>${buyHistoryDetail.count}個</td>
-							<td>${buyHistoryDetail.price * buyHistoryDetail.count}円</td>
+							<td><fmt:formatNumber value="${buyHistoryDetail.price * buyHistoryDetail.count}" pattern="###,###円" /></td>
 						</tr>
 					</c:forEach>
 					<tr>
 						<th>小計</th>
 						<td colspan="3"></td>
-						<td>${buyHistory.totalPrice - buyHistory.deliPrice}円</td>
+						<td><fmt:formatNumber value="${buyHistory.totalPrice - buyHistory.deliPrice}" pattern="###,###円" /></td>
 					</tr>
 					<tr>
 						<th>配送方法</th>
 						<td>${buyHistory.deliveryMethod}</td>
 						<td colspan="2"></td>
-						<td>${buyHistory.deliPrice}円</td>
+						<td><fmt:formatNumber value="${buyHistory.deliPrice}" pattern="###,###円" /></td>
 					</tr>
 					<tr>
 						<th>合計金額</th>
 						<td colspan="3"></td>
-						<td><font color="red">${buyHistory.totalPrice}円</font></td>
+						<td><font color="red"><fmt:formatNumber value="${buyHistory.totalPrice}" pattern="###,###円" /></font></td>
 					</tr>
 				</table>
 				<p><input class="topmarginShort button btn-success" type="submit" id="btnSubmit" value="発送完了" onClick="return orderCheck()"></p>

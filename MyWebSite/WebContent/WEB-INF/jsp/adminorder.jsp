@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -39,12 +40,21 @@
 						<c:forEach var="order" items="${orderList}">
 							<tr class="orderData">
 								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
-									&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
 									<font color="brown">詳しく見る</font>
 								</a></td>
-								<td>${order.name} 様</td>
-								<td>${order.totalPrice}円</td>
-								<td>${order.buyDate}${order.buyTime}</td>
+								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
+								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+									<font color="black">${order.name} 様</font>
+								</a></td>
+								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
+								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+									<font color="black"><fmt:formatNumber value="${order.totalPrice}" pattern="###,###円" /></font>
+								</a></td>
+								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
+								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
+									<font color="black">${order.buyDate}${order.buyTime}</font>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</table>

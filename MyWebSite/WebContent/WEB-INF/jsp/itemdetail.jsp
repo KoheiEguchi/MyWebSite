@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,7 @@
 				</c:if></p>
 				<p><img src="${item.fileName}"></p>
 				<div class="detailWrapper"><p class="detail">${item.itemDetail}</p></div>
-				<p><font size="5" color="red">${item.price}円</font>
+				<p><font size="5" color="red"><fmt:formatNumber value="${item.price}" pattern="###,###円" /></font>
 				<c:if test = "${link == 'list'}">
 					<p>カゴに入れる数を入力してください<input type="text" name="count" size="3" value="1" placeholder="Count"
 						onfocus="focusBox(this)" onBlur="blurBox(this)">個</p>
@@ -55,7 +56,7 @@
 					</p>
 				</c:if>
 				<c:if test = "${link == 'cart'}">
-					　×　${item.count}個　＝　<font size="5" color="red">${item.countPrice}円</font>
+					　×　${item.count}個　＝　<font size="5" color="red"><fmt:formatNumber value="${item.countPrice}" pattern="###,###円" /></font>
 					<p class="topmarginShort">
 						<a class="inCartButton" href="CartDelete?id=${item.id}&fromData=${fromData == true}"><input class="button btn-danger" type="button" value="カゴから出す"></a>
 						<a class="cancelButton" href="InCart"><input class="button btn-success" type="button" value="戻る"></a>

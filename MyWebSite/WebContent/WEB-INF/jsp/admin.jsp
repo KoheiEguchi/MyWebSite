@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,7 @@
 									</font>
 									<br>
 									<font color="red">
-										${item.price}円
+										<fmt:formatNumber value="${item.price}" pattern="###,###円" />
 									</font>
 									<br>
 									<font color="black">
@@ -87,7 +88,7 @@
 									</font>
 									<br>
 									<font color="red">
-										${searchItem.price}円
+										<fmt:formatNumber value="${searchItem.price}" pattern="###,###円" />
 									</font>
 									<br>
 									<font color="black">

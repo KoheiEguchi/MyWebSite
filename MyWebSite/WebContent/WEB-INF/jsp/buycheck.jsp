@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -32,11 +33,13 @@
 				<table class="table">
 					<tr><th></th><th>商品名</th><th>単価</th><th>個数</th><th>金額
 					<c:forEach var="item" items="${cart}">
-						<tr><th>商品</th><td>${item.itemName}</td><td>${item.price}円</td><td>${item.count}個</td><td>${item.countPrice}円</tr>
+						<tr><th>商品</th><td>${item.itemName}</td><td><fmt:formatNumber value="${item.price}" pattern="###,###円" /></td>
+						<td>${item.count}個</td><td><fmt:formatNumber value="${item.countPrice}" pattern="###,###円" /></tr>
 					</c:forEach>
-					<tr><th>小計</th><td colspan="3"></td><td>${buy.allPrice}円</td></tr>
-					<tr><th>送料</th><td colspan="3"></td><td>${buy.deliPrice}円</td></tr>
-					<tr><th>合計金額</th><td colspan="3"></td><td><font size="4" color="red"><b>${buy.totalPrice}円</b></font></td></tr>
+					<tr><th>小計</th><td colspan="3"></td><td><fmt:formatNumber value="${buy.allPrice}" pattern="###,###円" /></td></tr>
+					<tr><th>送料</th><td colspan="3"></td><td><fmt:formatNumber value="${buy.deliPrice}" pattern="###,###円" /></td></tr>
+					<tr><th>合計金額</th><td colspan="3"></td>
+					<td><font size="4" color="red"><b><fmt:formatNumber value="${buy.totalPrice}" pattern="###,###円" /></b></font></td></tr>
 				</table>
 				<p class="topmargin">
 					<input class="leftButton button btn-success" type="submit" id="btnSubmit" value="購入決定する">

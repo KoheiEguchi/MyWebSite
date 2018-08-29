@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@
 			<p><font size="6"><b>${item.itemName}</b></font></p>
 			<p><img src="${item.fileName}"></p>
 			<div class="detailWrapper"><p class="detail">${item.itemDetail}</p></div>
-			<p><font size="5" color="red">${item.price}円</font></p>
+			<p><font size="5" color="red"><fmt:formatNumber value="${item.price}" pattern="###,###円" /></font></p>
 			<p><a href="#" onClick="showHide('soldTable');return false;">
 				<font size="5" color="yellow">売り上げ履歴<span id="hideList">(クリックで表示)</span></font></a></p>
 			<div id="soldTable" style="display: none">

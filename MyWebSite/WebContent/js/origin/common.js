@@ -31,12 +31,6 @@ function doubleSubmit(){
 	}
 }
 
-//価格をカンマで区切る
-function price(num){
-	var newPrice = num.replace(/()(?=()+$)/g, "$1,");
-	document.getElementById("oldPrice[cnt]").innerHTML = newPrice;
-}
-
 //ランキングページでの表示変更
 function select(){
 	for(var i = 1; i < 4; i++){

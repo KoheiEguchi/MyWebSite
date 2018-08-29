@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -18,9 +19,10 @@
 		.starIcon{color: gold;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
+
 </head>
 
-<body onload="headerLink();price('${item.price}')">
+<body onload="headerLink()">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -49,9 +51,8 @@
 										${item.itemName}
 									</font>
 									<br>
-									<span style="display:none">price("${item.price}")</span>
 									<font color="red">
-										<span class="oldPrice">${item.price}</span>円
+										<fmt:formatNumber value="${item.price}" pattern="###,###円" />
 									</font>
 								</a>
 							</div>
@@ -94,7 +95,7 @@
 									</font>
 									<br>
 									<font color="red">
-										${searchItem.price}円
+										<fmt:formatNumber value="${searchItem.price}" pattern="###,###円" />
 									</font>
 								</a>
 							</div>

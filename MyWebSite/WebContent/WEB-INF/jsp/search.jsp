@@ -31,12 +31,12 @@
 	<p class="formTitle">価格<span id="select[3]">検索</span></p>
 	<p><select class="longText" name="searchPrice">
 		<option value="0">価格指定しない</option>
-		<option value="1000">～1000円</option>
-		<option value="3000">1001～3000円</option>
-		<option value="5000">3001～5000円</option>
-		<option value="10000">5001～10000円</option>
-		<option value="20000">10001～20000円</option>
-		<option value="20001">20001円～</option>
+		<option value="1000">～1,000円</option>
+		<option value="3000">1,001～3,000円</option>
+		<option value="5000">3,001～5,000円</option>
+		<option value="10000">5,001～10,000円</option>
+		<option value="20000">10,001～20,000円</option>
+		<option value="20001">20,001円～</option>
 	</select></p>
 </body>
 
