@@ -24,7 +24,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<form action="UserDelete?id=${user.id}" method="post">
+			<form action="UserDelete?id=${user.id}" method="post" onSubmit="return deleteCheck()">
 				<p class="headermargin"><font size="7">退会</font></p>
 				<p><font size="5">
 					<font color="red">${user.userName}</font>さんのアカウントを<font color="red"><b>削除</b></font>しますがよろしいですか？

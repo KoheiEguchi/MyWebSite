@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body onload="hfLink();">
+<body onload="hfLink();firstText();">
 	<div id="adminContents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -26,7 +26,7 @@
 
 			<form action="AdminItemCreate" method="post" name="itemCreate" autocomplete="off" onsubmit="return doubleSubmit();">
 				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)</p>
-				<p><textarea name="itemName" cols="100" rows="2" placeholder="Item Name"
+				<p><textarea id="firstText" name="itemName" cols="100" rows="2" placeholder="Item Name"
 					onfocus="focusBox(this)" onBlur="blurBox(this)"></textarea></p>
 				<p class="formTitle">商品詳細(改行位置に<\br>をつけること)</p>
 				<p><textarea name="itemDetail" cols="100" rows="10" placeholder="Item Detail"
@@ -50,9 +50,6 @@
 				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録"></p>
 				<p class="topmarginShort"><a href="Admin"><input class="button btn-info" type="button" value="戻る"></a></p>
 			</form>
-			<script type="text/javascript">
-				document.itemCreate.itemName.focus();
-			</script>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

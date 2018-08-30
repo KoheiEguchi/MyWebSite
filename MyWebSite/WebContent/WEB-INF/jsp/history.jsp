@@ -12,6 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		table td{text-align: right;}
+		.itemName{text-align: left;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
@@ -30,8 +32,8 @@
 				</tr>
 				<c:forEach var="buyHistoryDetail" items="${buyHistoryDetailList}">
 					<tr>
-						<th>商品名</th>
-						<td>${buyHistoryDetail.itemName}</td>
+						<th>商品</th>
+						<td class="itemName">${buyHistoryDetail.itemName}</td>
 						<td><fmt:formatNumber value="${buyHistoryDetail.price}" pattern="###,###円" /></td>
 						<td>${buyHistoryDetail.count}個</td>
 						<td><fmt:formatNumber value="${buyHistoryDetail.price * buyHistoryDetail.count}" pattern="###,###円" /></td>
@@ -44,7 +46,7 @@
 				</tr>
 				<tr>
 					<th>配送方法</th>
-					<td>${buyHistory.deliveryMethod}</td>
+					<td class="itemName">${buyHistory.deliveryMethod}</td>
 					<td colspan="2"></td>
 					<td><fmt:formatNumber value="${buyHistory.deliPrice}" pattern="###,###円" /></td>
 				</tr>

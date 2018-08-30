@@ -64,7 +64,6 @@ public class InCart extends HttpServlet {
 			if(objCartAD != null) {
 				String strCartAD = objCartAD.toString();
 				Boolean cartAD = Boolean.valueOf(strCartAD);
-				//Boolean cartAD = Boolean.parseBoolean(strCartAD);
 				if(cartAD == true) {
 					cartActionMessage = "カゴの中を全て削除しました";
 				}

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
-		.rightText{text-align:right;}
+		table td{text-align: right;}
 		.inCartButton{margin-right:10%;}
 		.cancelButton{margin-left:10%;}
 		.detailWrapper{max-width: 60%; margin: 0 auto; text-align: center;}
@@ -39,7 +39,7 @@
 					<c:forEach var="soldHistory" items="${soldHistoryList}">
 						<tr><td>${soldHistory.buyDate} ${soldHistory.buyTime}</td><td>${soldHistory.count}個</td></tr>
 					</c:forEach>
-					<tr><th>合計</th><th><b>${item.soldNum}個</b></th></tr>
+					<tr><th>合計</th><td><b>${item.soldNum}個</b></td></tr>
 				</table>
 			</div>
 			<p class="topmarginShort">

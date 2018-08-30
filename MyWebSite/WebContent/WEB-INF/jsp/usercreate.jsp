@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="firstText();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -26,7 +26,7 @@
 				<jsp:include page="alert.jsp" flush="true" />
 
 				<p class="formTitle">ログインID</p>
-				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"
+				<p><input type="text" class="longText" id="firstText" name="loginId" placeholder="Login ID"
 					onfocus="focusBox(this)" onBlur="blurBox(this)"></p>
 				<p class="formTitle">ユーザー名</p>
 				<p><input type="text" class="longText" name="userName" placeholder="User Name"
@@ -43,9 +43,6 @@
 				<p><input class="button btn-success" type="submit" id="btnSubmit" value="登録"></p>
 				<p class="topmarginShort"><a href="Login"><input class="button btn-info" type="button" value="戻る"></a></p>
 			</form>
-			<script type="text/javascript">
-				document.userCreate.loginId.focus();
-			</script>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/origin/common.css">
 	<style type="text/css">
 		body{}
+		table td{text-align: right;}
 		.leftButton{margin-right:20%;}
 		.rightButton{margin-left:20%;}
 	</style>

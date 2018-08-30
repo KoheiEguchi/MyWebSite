@@ -9,6 +9,11 @@ function headerLink(){
 	document.getElementById("header").classList.remove("noLink");
 }
 
+//入力必須な最初のテキストボックスにフォーカスをあてる
+function firstText(){
+	document.getElementById("firstText").focus();
+}
+
 //入力中のテキストボックスの色を変える
 function focusBox(control){
 	control.style.backgroundColor = "#FFFFCC";
@@ -52,6 +57,18 @@ function showHide(foldingID) {
 	}
 }
 
+//購入履歴閲覧後リストを開いたままにする
+function listOpen(foldingID){
+	var g = document.getElementById(foldingID);
+	var r = document.referrer;
+	var h = "MyWebSite/History?buyId=";
+
+	if(r.indexOf(h) > -1){
+		g.style.display = "block";
+		document.getElementById("hideList").innerHTML = "(クリックで格納)";
+	}
+}
+
 //配送時の商品チェック漏れ点検
 function orderCheck(){
 	var f = document.orderForm.orderItem;
@@ -62,6 +79,7 @@ function orderCheck(){
 			ok++;
 		}
 	}
+	alert(f.length);
 
 	if(ok != f.length){
 		if(confirm("チェックされていない商品がありますがよろしいですか？")){
@@ -69,5 +87,14 @@ function orderCheck(){
 		}else{
 			return false;
 		}
+	}
+}
+
+//アカウントや商品削除時の確認
+function deleteCheck(){
+	if(window.confirm('本当に削除してよろしいですか？')){
+		return true;
+	}else{
+		return false;
 	}
 }

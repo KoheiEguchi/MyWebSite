@@ -103,31 +103,9 @@ public class AdminOrderDetail extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//各情報を取得
-		String strBuyerId = request.getParameter("buyerId");
+		//購入IDを取得
 		String strBuyId = request.getParameter("buyId");
-		String buyDate = request.getParameter("buyDate");
-		String buyTime = request.getParameter("buyTime");
-
-		int buyerId = Integer.parseInt(strBuyerId);
 		int buyId = Integer.parseInt(strBuyId);
-
-		/*boolean orderItem = false; //商品が複数ある時、どれか一つでもチェックが入っているとtrueになってしまう
-		String strOrderItem = request.getParameter("orderItem");//複数商品のうち一つのチェックをいじるとそれだけで反応してしまう
-		orderItem = Boolean.parseBoolean(strOrderItem);
-
-		//商品のチェックがなされたか確認
-		if(orderItem == false) {
-			request.setAttribute("errMsg", "チェックされていない商品があります。");
-
-			request.setAttribute("buyerId", buyerId);
-			request.setAttribute("buyId", buyId);
-			request.setAttribute("buyDate", buyDate);
-			request.setAttribute("buyTime", buyTime);
-
-			doGet(request, response);
-			return;
-		}*/
 
 		BuyDAO buyDAO = new BuyDAO();
 		try {

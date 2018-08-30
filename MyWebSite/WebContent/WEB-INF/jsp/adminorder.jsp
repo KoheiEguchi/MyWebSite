@@ -17,6 +17,7 @@
 		.dateButton{padding-right: 10%;}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none;}
+		table td{text-align: right;}
 		.orderData:hover{background-color: #68D0F3;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
@@ -39,10 +40,10 @@
 						</tr>
 						<c:forEach var="order" items="${orderList}">
 							<tr class="orderData">
-								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
+								<th><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
 								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
 									<font color="brown">詳しく見る</font>
-								</a></td>
+								</a></th>
 								<td><a href="AdminOrderDetail?buyerId=${order.buyerId}&buyId=${order.buyId}
 								&buyDate=${order.buyDate}&buyTime=${order.buyTime}">
 									<font color="black">${order.name} 様</font>

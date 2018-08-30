@@ -16,12 +16,13 @@
 		.rightButton{margin-left:20%;}
 		table a{display: block; width: 100%; height: 100%;}
 		table a:hover{text-decoration: none;}
+		table td{text-align: right;}
 		.historyList:hover{background-color: #68D0F3;}
 	</style>
 	<script type="text/javascript"  src="js/origin/common.js"></script>
 </head>
 
-<body onload="hfLink();">
+<body onload="hfLink();listOpen('boughtTable')">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -53,10 +54,10 @@
 					</tr>
 					<c:forEach var="bought" items="${boughtList}">
 						<tr class="historyList">
-							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
+							<th><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
 							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
 								<font color="crimson">詳しく見る</font>
-							</a></td>
+							</a></th>
 							<td><a href="History?buyId=${bought.buyId}&buyDate=${bought.buyDate}
 							&buyTime=${bought.buyTime}&deliConfirm=${bought.deliConfirm}">
 								<font color="black"><fmt:formatNumber value="${bought.totalPrice}" pattern="###,###円" /></font>

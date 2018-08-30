@@ -85,18 +85,19 @@ public class AdminOrder extends HttpServlet {
 		String select = null;
 
 		//指定された情報を取得
-		if(order.equals("購入者")) {
-        	//購入者を選んだ時
-        	select = "buyer_id";
+		switch(order) {
+			//購入者を選んだ時
+			case "購入者" : select = "buyer_id";
+			break;
 
-		}else if(order.equals("合計金額")) {
-        	//合計金額を選んだ時
-    		select = "total_price";
+			//合計金額を選んだ時
+			case "合計金額" : select = "total_price";
+			break;
 
-		}else if(order.equals("購入日時")) {
-        	//購入日時を選んだ時
-    		select = "buy_date";
-        }
+			//購入日時を選んだ時
+			case "購入日時" : select = "buy_date";
+			break;
+		}
 
         //選んだものを基準にDAOで並べ替え
 		orderList = BuyDAO.selectOrder(select);

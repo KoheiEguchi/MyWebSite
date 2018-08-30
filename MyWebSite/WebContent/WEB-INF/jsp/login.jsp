@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body>
+<body onload="firstText();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -30,7 +30,7 @@
 
 				<p><img src="pic/aqua1.jpg" width="700px" height="350px"></p>
 				<p class="topmarginShort formTitle">ログインID</p>
-				<p><input type="text" class="longText" name="loginId" placeholder="Login ID"
+				<p><input type="text" class="longText" id="firstText" name="loginId" placeholder="Login ID"
 					onfocus="focusBox(this)" onBlur="blurBox(this)"></input></p>
 				<p class="formTitle">パスワード</p>
 				<p><input type="password" class="longText" name="password" placeholder="Password"
@@ -39,9 +39,6 @@
 				<p class="topmarginMini"><a href="UserCreate"><input class="button btn-info" type="button" value="新規登録"></a></p>
 				<p class="topmarginMini"><a href="PassChange"><input class="button btn-danger" type="button" value="パスワードを忘れた"></a></p>
 			</form>
-			<script type="text/javascript">
-				document.login.loginId.focus();
-			</script>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />
