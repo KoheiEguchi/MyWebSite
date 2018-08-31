@@ -22,7 +22,7 @@
 
 </head>
 
-<body onload="headerLink()">
+<body onload="headerLink();scroll();">
 	<div id="contents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -77,7 +77,8 @@
 				<p><input class="button btn-success" type="submit" value="検索"></p>
 			</form>
 			<c:if test="${searchResult == true}">
-				<p><font size="5">検索結果</font></p>
+				<div style="visibility: hidden" id="searchResult">scrollTarget</div>
+				<p class="topmarginShort"><font size="5">検索結果</font></p>
 			</c:if>
 			<table class="table">
 				<tr>
@@ -111,11 +112,6 @@
 			</table>
 			<c:if test = "${user.id == '1'}">
 				<p class="topmarginShort"><a href="Admin"><input class="button btn-primary" type="button" value="管理者用ページ"></a></p>
-			</c:if>
-			<c:if test="${searchResult == true}">
-				<script type="text/javascript">
-					window.scrollTo(0,950);
-				</script>
 			</c:if>
 		</div>
 

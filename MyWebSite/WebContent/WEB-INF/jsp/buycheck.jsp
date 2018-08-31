@@ -25,7 +25,7 @@
 
 		<div id="body-bk">
 			<p class="headermargin"><font size="7">購入確認</font></p>
-			<form action="BuyResult" method="post" onsubmit="return doubleSubmit();">
+			<form action="BuyResult" method="post" onSubmit="return doubleSubmit();">
 				<table class="table topmarginShort">
 					<tr><th>配送先住所</th><td>${buy.deliAddress}</td></tr>
 					<tr><th>配送方法</th><td>${buy.deliveryMethod}</td></tr>

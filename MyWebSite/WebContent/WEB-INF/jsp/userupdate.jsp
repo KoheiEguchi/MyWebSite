@@ -24,7 +24,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="UserUpdate?id=${user.id}" method="post" autocomplete="off" onsubmit="return doubleSubmit();">
+			<form action="UserUpdate?id=${user.id}" method="post" autocomplete="off" onSubmit="return doubleSubmit();">
 				<p class="formTitle">ログインID</p>
 				<p><input type="text" class="longText" name="loginId" value="${user.loginId}" placeholder="Login ID"
 					onfocus="focusBox(this)" onBlur="blurBox(this)"></p>

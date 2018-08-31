@@ -27,9 +27,8 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form name="orderForm"
-				action="AdminOrderDetail?buyerId=${buyerId}&buyId=${buyId}&buyDate=${buyHistory.buyDate}&buyTime=${buyHistory.buyTime}"
-				method="post" onsubmit="return doubleSubmit();">
+			<form name="orderForm" action="AdminOrderDetail?buyerId=${buyerId}&buyId=${buyId}&buyDate=${buyHistory.buyDate}&buyTime=${buyHistory.buyTime}"
+			method="post" onSubmit="return doubleSubmit();">
 				<table class="topmarginShort table">
 					<tr>
 						<th>購入者</th>

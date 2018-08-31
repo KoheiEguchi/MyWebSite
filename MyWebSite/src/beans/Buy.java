@@ -130,10 +130,6 @@ public class Buy  implements Serializable {
 	public void setBuyTime(String buyTime) {
 		this.buyTime = buyTime;
 	}
-	/*public String getFormatDateC() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分");
-		return sdf.format(buyDate);
-	}*/
 	public String getName() {
 		return name;
 	}

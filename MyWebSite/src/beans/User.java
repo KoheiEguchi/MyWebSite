@@ -19,14 +19,14 @@ public class User {
 		this.address = "";
 	}
 
-	public User(int setId, String setUserName, String address) { //ログイン時に読み込む
+	public User(int setId, String setUserName, String address) {
 		this.id = setId;
 		this.userName = setUserName;
 		this.address = address;
 	}
 
 	public User(int setId, String setUserName, String setAddress, String setLoginId,
-			String setCreateDate, String setCreateTime, String setUpdateDate, String setUpdateTime) { //ユーザー情報閲覧時に読み込む
+			String setCreateDate, String setCreateTime, String setUpdateDate, String setUpdateTime) {
 		this.id = setId;
 		this.userName = setUserName;
 		this.address = setAddress;
@@ -116,15 +116,5 @@ public class User {
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
 	}
-
-	/*public String getFormatDateC() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分ss秒");
-		return sdf.format(createDate);
-	}
-
-	public String getFormatDateU() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分ss秒");
-		return sdf.format(updateDate);
-	}*/
 
 }

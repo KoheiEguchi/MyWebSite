@@ -20,7 +20,7 @@
 <body>
 	<div id="header-bk" class="headerZ">
 		<div id="header" class="noLink">
-			<p class="userName"><a href="UserData?id=${user.id}"><font color="yellow">${user.userName}さんのユーザー情報</font></a></p>
+			<p class="userName"><a href="UserData?id=${user.id}"><font color="yellow">${user.userName}様のユーザー情報</font></a></p>
 			<p class="logout"><a href="Logout"><font color="yellow">ログアウト</font></a></p>
 		</div>
 	</div>

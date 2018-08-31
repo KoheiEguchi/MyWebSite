@@ -81,7 +81,7 @@ public class Top extends HttpServlet {
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchFavorite = request.getParameter("searchFavorite");
-		boolean searchFavorite = Boolean.parseBoolean(strSearchFavorite);
+		boolean searchFavorite = Boolean.valueOf(strSearchFavorite);
 
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);

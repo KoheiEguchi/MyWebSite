@@ -19,13 +19,6 @@
 		.rightButton{margin-left:20%;}
 	</style>
 	<script type="text/javascript" src="js/origin/common.js"></script>
-	<script type="text/javascript">
-	function deleteCheck(){
-		if(window.confirm('カゴの中を空にしてよろしいですか？')){
-			location.href = "CartAllDelete?fromData=${fromData == true}";
-		}
-	}
-	</script>
 </head>
 
 <body onload="hfLink();">
@@ -107,7 +100,9 @@
 				</table>
 			</form>
 			<c:if test="${noCart == null}">
-				<p><input class="button btn-danger" type="button" value="カゴを空にする" onClick="deleteCheck()"></p>
+				<p><a href="CartAllDelete?fromData=${fromData == true}">
+					<input class="button btn-danger"type="button" value="カゴを空にする" onClick="return deleteCheck()">
+				</a></p>
 			</c:if>
 		</div>
 

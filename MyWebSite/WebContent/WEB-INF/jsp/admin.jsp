@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="js/origin/common.js"></script>
 </head>
 
-<body onload="hfLink();">
+<body onload="hfLink();scroll();">
 	<div id="adminContents">
 		<jsp:include page="header.jsp" flush="true" />
 
@@ -38,7 +38,8 @@
 				<p><input class="button btn-success" type="submit" value="検索"></p>
 			</form>
 			<c:if test="${searchResult == true}">
-				<p><font size="5">検索結果</font>
+				<div style="visibility: hidden" id="searchResult">scrollTarget</div>
+				<p class="topmarginShort"><font size="5">検索結果</font>
 			</c:if>
 			<table class="table">
 				<tr>
@@ -107,11 +108,6 @@
 				</tr>
 			</table>
 			<p class="topmarginShort"><a href="Top"><input class="button btn-info" type="button" value="戻る"></a></p>
-			<c:if test="${searchResult == true}">
-				<script  type="text/javascript">
-					window.scrollTo(0,570);
-				</script>
-			</c:if>
 		</div>
 
 		<jsp:include page="footer.jsp" flush="true" />

@@ -20,7 +20,7 @@
 		<jsp:include page="header.jsp" flush="true" />
 
 		<div id="body-bk">
-			<form action="UserCreate" method="post" name="userCreate" autocomplete="off" onsubmit="return doubleSubmit();">
+			<form action="UserCreate" method="post" name="userCreate" autocomplete="off" onSubmit="return doubleSubmit();">
 				<p class="headermargin"><font size="7">新規登録</font></p>
 
 				<jsp:include page="alert.jsp" flush="true" />

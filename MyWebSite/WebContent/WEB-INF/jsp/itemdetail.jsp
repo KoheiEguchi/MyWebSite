@@ -33,7 +33,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" autocomplete="off" onsubmit="return doubleSubmit();">
+			<form action="InCart?id=${item.id}&userId=${user.id}" method="post" autocomplete="off" onSubmit="return doubleSubmit();">
 				<p><font size="6"><b>${item.itemName}</b></font></p>
 				<p class="rightText"><c:if test = "${favorite == true}">
 					<input type="button" id="favoritebutton" class="hiddenButton"><i class="fas fa-star fa-2x starIcon"></i>お気に入り登録済み

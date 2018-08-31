@@ -24,7 +24,7 @@
 
 			<jsp:include page="alert.jsp" flush="true" />
 
-			<form action="AdminItemCreate" method="post" name="itemCreate" autocomplete="off" onsubmit="return doubleSubmit();">
+			<form action="AdminItemCreate" method="post" name="itemCreate" autocomplete="off" onSubmit="return doubleSubmit();">
 				<p class="formTitle">商品名(文節ごとに<\span class="spanName"><\/span>で囲うこと)</p>
 				<p><textarea id="firstText" name="itemName" cols="100" rows="2" placeholder="Item Name"
 					onfocus="focusBox(this)" onBlur="blurBox(this)"></textarea></p>

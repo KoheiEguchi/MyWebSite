@@ -58,7 +58,7 @@ public class Favorite extends HttpServlet {
 
 		int itemId = Integer.parseInt(strItemId);
 		int userId = Integer.parseInt(strUserId);
-		boolean favoCheck = Boolean.parseBoolean(strFavorite);
+		boolean favoCheck = Boolean.valueOf(strFavorite);
 
 		FavoriteDAO favoriteDAO = new FavoriteDAO();
 		//対象の商品をお気に入り登録していない場合

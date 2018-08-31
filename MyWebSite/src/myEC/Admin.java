@@ -75,7 +75,7 @@ public class Admin extends HttpServlet {
 		String searchPrice = request.getParameter("searchPrice");
 
 		String strSearchSold = request.getParameter("searchSold");
-		boolean searchSold = Boolean.parseBoolean(strSearchSold);
+		boolean searchSold = Boolean.valueOf(strSearchSold);
 
 		String strUserId = request.getParameter("userId");
 		int userId = Integer.parseInt(strUserId);

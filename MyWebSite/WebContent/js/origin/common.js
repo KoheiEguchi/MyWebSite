@@ -36,10 +36,24 @@ function doubleSubmit(){
 	}
 }
 
+//検索、絞り込み後画面を結果へスクロールする
+function scroll(){
+	document.getElementById("searchResult").scrollIntoView(true);
+}
+
 //ランキングページでの表示変更
 function select(){
 	for(var i = 1; i < 4; i++){
 		document.getElementById("select[" + i + "]").innerHTML = "で絞り込み";
+	}
+}
+
+//カゴ内を空にするかの確認
+function deleteCheck(){
+	if(window.confirm('カゴの中を空にしてよろしいですか？')){
+		return true;
+	}else{
+		return false;
 	}
 }
 
@@ -74,13 +88,22 @@ function orderCheck(){
 	var f = document.orderForm.orderItem;
 	var ok = 0;
 
-	for(var i = 0; i < f.length; i++){
-		if(f[i].checked){
-			ok++;
+	//商品が複数種類ある場合
+	if(f.length != undefined){
+		for(var i = 0; i < f.length; i++){
+			if(f[i].checked){
+				ok++;
+			}
+		}
+
+	//商品が一種類だけの場合
+	}else{
+		if(f.checked){
+			return true;
 		}
 	}
-	alert(f.length);
 
+	//チェックされていない商品がある場合
 	if(ok != f.length){
 		if(confirm("チェックされていない商品がありますがよろしいですか？")){
 			return true;

@@ -31,7 +31,7 @@
 			<p class="topmarginShort"><a href="InCart?fromData=${fromData == true}">
 				<input class="button btn-primary" type="button" value="カゴの中を見る">
 			</a></p>
-			<p class="topmarginShort"><font size="6">${user.userName}さんの情報</font></p>
+			<p class="topmarginShort"><font size="6">${user.userName}様の情報</font></p>
 			<table class="table">
 				<tr><th>ログインID</th><td>${user.loginId}</td></tr>
 				<tr><th>住所</th><td>${user.address}</td></tr>
